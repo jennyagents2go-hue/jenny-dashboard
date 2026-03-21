@@ -731,15 +731,25 @@
   .tag-einzel { background: var(--orange-light); color: var(--orange); }
 
   @media (max-width: 1024px) {
-    #tab-tasks .card { min-height: auto !important; }
-    #tab-tasks > div:last-child {
-      grid-template-columns: 1fr 1fr !important;
+    #tab-tasks .card { min-height: 300px !important; }
+    .kanban-board {
+      display: flex !important;
+      overflow-x: auto !important;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      gap: 12px !important;
+      padding-bottom: 8px;
+    }
+    .kanban-board > .card {
+      min-width: 280px !important;
+      flex-shrink: 0;
+      scroll-snap-align: start;
     }
   }
 
   @media (max-width: 768px) {
-    #tab-tasks > div:last-child {
-      grid-template-columns: 1fr !important;
+    .kanban-board > .card {
+      min-width: 260px !important;
     }
   }
 </style>
@@ -906,7 +916,7 @@
     </div>
 
     <!-- Kanban Board -->
-    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 16px; overflow-x: auto;">
+    <div class="kanban-board" style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 16px;">
 
       <!-- TO DO -->
       <div class="card" style="min-height: 400px;">
