@@ -29,6 +29,9 @@
     --danger-light: #FEE2E2;
     --info: #6366F1;
     --info-light: #E0E7FF;
+    --violet: #8B5CF6;
+    --violet-light: #EDE9FE;
+    --violet-glow: rgba(139, 92, 246, 0.15);
     --shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
     --shadow-md: 0 4px 6px rgba(0,0,0,0.04), 0 2px 4px rgba(0,0,0,0.06);
     --shadow-lg: 0 10px 15px rgba(0,0,0,0.04), 0 4px 6px rgba(0,0,0,0.06);
@@ -666,6 +669,79 @@
     opacity: 0.5;
     font-style: italic;
   }
+
+  /* Kanban Board */
+  .kanban-col {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 300px;
+  }
+
+  .kanban-card {
+    background: var(--card);
+    border-radius: 10px;
+    padding: 14px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+  }
+
+  .kanban-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+  }
+
+  .kanban-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .kanban-card-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.3;
+  }
+
+  .kanban-card-sub {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+  }
+
+  .kanban-assignee {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-secondary);
+  }
+
+  .done-card {
+    opacity: 0.7;
+  }
+
+  .done-card .kanban-card-title {
+    text-decoration: line-through;
+    color: var(--text-secondary);
+  }
+
+  .tag-agents2go { background: var(--pink-light); color: var(--pink); }
+  .tag-einzel { background: var(--orange-light); color: var(--orange); }
+
+  @media (max-width: 1024px) {
+    #tab-tasks .card { min-height: auto !important; }
+    #tab-tasks > div:last-child {
+      grid-template-columns: 1fr 1fr !important;
+    }
+  }
+
+  @media (max-width: 768px) {
+    #tab-tasks > div:last-child {
+      grid-template-columns: 1fr !important;
+    }
+  }
 </style>
 </head>
 <body>
@@ -810,68 +886,193 @@
     </div>
   </div>
 
-  <!-- ====== TAB: TASKS ====== -->
+  <!-- ====== TAB: TASKS (KANBAN) ====== -->
   <div id="tab-tasks" class="tab-content">
-    <div class="grid-2">
-      <div class="card">
-        <div class="card-header">
-          <div class="card-title">🚀 Agents2Go Tasks</div>
-          <span class="card-badge badge-pink">Prio 1</span>
-        </div>
-        <div class="task-list" id="tasks-agents2go">
-          <div class="empty-state">
-            <div class="empty-state-icon">📋</div>
-            <div class="empty-state-text">Noch keine Tasks. Sag Jenny Bescheid!</div>
-          </div>
-        </div>
-      </div>
 
-      <div class="card">
-        <div class="card-header">
-          <div class="card-title">🏢 Einzelunternehmen Tasks</div>
-          <span class="card-badge badge-orange">Prio 2</span>
-        </div>
-        <div class="task-list" id="tasks-einzelunternehmen">
-          <div class="task-item">
-            <div class="priority-dot priority-medium"></div>
-            <div class="task-check"></div>
-            <div class="task-text">Konzept finalisieren</div>
-            <span class="task-tag tag-einzel">Konzept</span>
-          </div>
-          <div class="task-item">
-            <div class="priority-dot priority-medium"></div>
-            <div class="task-check"></div>
-            <div class="task-text">Finanzplan erstellen</div>
-            <span class="task-tag tag-einzel">Finanzen</span>
-          </div>
-          <div class="task-item">
-            <div class="priority-dot priority-low"></div>
-            <div class="task-check"></div>
-            <div class="task-text">Website & Marketingmaterialien</div>
-            <span class="task-tag tag-einzel">Marketing</span>
-          </div>
-          <div class="task-item">
-            <div class="priority-dot priority-low"></div>
-            <div class="task-check"></div>
-            <div class="task-text">Gründungsprogramm vorbereiten</div>
-            <span class="task-tag tag-einzel">Admin</span>
-          </div>
-        </div>
+    <!-- Legend -->
+    <div style="display: flex; gap: 20px; margin-bottom: 16px; flex-wrap: wrap;">
+      <div style="display: flex; align-items: center; gap: 6px; font-size: 13px;">
+        <div style="width: 14px; height: 14px; border-radius: 4px; background: var(--pink);"></div>
+        <span><strong>Agents2Go</strong> — Denise</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 6px; font-size: 13px;">
+        <div style="width: 14px; height: 14px; border-radius: 4px; background: var(--orange);"></div>
+        <span><strong>Einzelunternehmen</strong> — Denise</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 6px; font-size: 13px;">
+        <div style="width: 14px; height: 14px; border-radius: 4px; background: var(--violet);"></div>
+        <span><strong>Jenny</strong> — übernimmt</span>
       </div>
     </div>
 
-    <!-- Not Today -->
-    <div class="card" style="margin-top: 20px;">
-      <div class="card-header">
-        <div class="card-title">⛔ Nicht heute</div>
-        <span class="card-badge badge-warning">Geparkt</span>
-      </div>
-      <div class="task-list not-today" id="tasks-not-today">
-        <div class="empty-state">
-          <div class="empty-state-icon">✨</div>
-          <div class="empty-state-text">Nichts geparkt — alles klar!</div>
+    <!-- Kanban Board -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 16px; overflow-x: auto;">
+
+      <!-- BACKLOG -->
+      <div class="card" style="background: var(--bg); border: 2px dashed var(--border); min-height: 400px;">
+        <div class="card-header">
+          <div class="card-title">📋 Backlog</div>
+          <span class="card-badge" style="background: #f0f0f0; color: #888;">0</span>
+        </div>
+        <div class="kanban-col" id="kanban-backlog">
         </div>
       </div>
+
+      <!-- TO DO -->
+      <div class="card" style="min-height: 400px;">
+        <div class="card-header">
+          <div class="card-title">🎯 To Do</div>
+          <span class="card-badge badge-pink" id="count-todo">5</span>
+        </div>
+        <div class="kanban-col" id="kanban-todo">
+
+          <!-- Agents2Go Tasks -->
+          <div class="kanban-card" style="border-left: 4px solid var(--pink);">
+            <div class="kanban-card-header">
+              <span class="task-tag tag-agents2go">Agents2Go</span>
+              <span class="kanban-assignee">👩 Denise</span>
+            </div>
+            <div class="kanban-card-title">Ergebnisse Gründermesse aufarbeiten</div>
+            <div class="kanban-card-sub">Förderinfos, Kontakte, nächste Schritte</div>
+          </div>
+
+          <!-- Einzelunternehmen Tasks -->
+          <div class="kanban-card" style="border-left: 4px solid var(--orange);">
+            <div class="kanban-card-header">
+              <span class="task-tag tag-einzel">Einzelunternehmen</span>
+              <span class="kanban-assignee">👩 Denise</span>
+            </div>
+            <div class="kanban-card-title">Konzept finalisieren</div>
+            <div class="kanban-card-sub">Kurzkonzept überarbeiten & schärfen</div>
+          </div>
+
+          <div class="kanban-card" style="border-left: 4px solid var(--orange);">
+            <div class="kanban-card-header">
+              <span class="task-tag tag-einzel">Einzelunternehmen</span>
+              <span class="kanban-assignee">👩 Denise</span>
+            </div>
+            <div class="kanban-card-title">Finanzplan erstellen</div>
+            <div class="kanban-card-sub">Kosten, Einnahmen, Break-Even</div>
+          </div>
+
+          <div class="kanban-card" style="border-left: 4px solid var(--orange);">
+            <div class="kanban-card-header">
+              <span class="task-tag tag-einzel">Einzelunternehmen</span>
+              <span class="kanban-assignee">👩 Denise</span>
+            </div>
+            <div class="kanban-card-title">Gründungsprogramm vorbereiten</div>
+            <div class="kanban-card-sub">Unterlagen & Anforderungen klären</div>
+          </div>
+
+          <!-- Jenny Tasks -->
+          <div class="kanban-card" style="border-left: 4px solid var(--violet);">
+            <div class="kanban-card-header">
+              <span class="task-tag" style="background: var(--violet-light); color: var(--violet);">Jenny</span>
+              <span class="kanban-assignee">🔥 Jenny</span>
+            </div>
+            <div class="kanban-card-title">Server-Migration finalisieren</div>
+            <div class="kanban-card-sub">Telegram, API-Key, Workspace auf Hetzner</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- IN PROGRESS -->
+      <div class="card" style="min-height: 400px;">
+        <div class="card-header">
+          <div class="card-title">🔄 In Progress</div>
+          <span class="card-badge badge-orange" id="count-progress">2</span>
+        </div>
+        <div class="kanban-col" id="kanban-progress">
+
+          <div class="kanban-card" style="border-left: 4px solid var(--violet);">
+            <div class="kanban-card-header">
+              <span class="task-tag" style="background: var(--violet-light); color: var(--violet);">Jenny</span>
+              <span class="kanban-assignee">🔥 Jenny</span>
+            </div>
+            <div class="kanban-card-title">Whisper/Sprachnachrichten einrichten</div>
+            <div class="kanban-card-sub">Mit Server-Migration am Montag</div>
+          </div>
+
+          <div class="kanban-card" style="border-left: 4px solid var(--violet);">
+            <div class="kanban-card-header">
+              <span class="task-tag" style="background: var(--violet-light); color: var(--violet);">Jenny</span>
+              <span class="kanban-assignee">🔥 Jenny</span>
+            </div>
+            <div class="kanban-card-title">Dashboard weiterentwickeln</div>
+            <div class="kanban-card-sub">Kanban, Features, Design</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- DONE -->
+      <div class="card" style="min-height: 400px; opacity: 0.75;">
+        <div class="card-header">
+          <div class="card-title">✅ Done</div>
+          <span class="card-badge badge-success" id="count-done">8</span>
+        </div>
+        <div class="kanban-col" id="kanban-done">
+
+          <div class="kanban-card done-card" style="border-left: 4px solid var(--violet);">
+            <div class="kanban-card-header">
+              <span class="task-tag" style="background: var(--violet-light); color: var(--violet);">Jenny</span>
+            </div>
+            <div class="kanban-card-title">Jenny Setup komplett</div>
+          </div>
+
+          <div class="kanban-card done-card" style="border-left: 4px solid var(--violet);">
+            <div class="kanban-card-header">
+              <span class="task-tag" style="background: var(--violet-light); color: var(--violet);">Jenny</span>
+            </div>
+            <div class="kanban-card-title">Telegram verbinden</div>
+          </div>
+
+          <div class="kanban-card done-card" style="border-left: 4px solid var(--violet);">
+            <div class="kanban-card-header">
+              <span class="task-tag" style="background: var(--violet-light); color: var(--violet);">Jenny</span>
+            </div>
+            <div class="kanban-card-title">E-Mail einrichten (SMTP + IMAP)</div>
+          </div>
+
+          <div class="kanban-card done-card" style="border-left: 4px solid var(--violet);">
+            <div class="kanban-card-header">
+              <span class="task-tag" style="background: var(--violet-light); color: var(--violet);">Jenny</span>
+            </div>
+            <div class="kanban-card-title">Dashboard gebaut & online</div>
+          </div>
+
+          <div class="kanban-card done-card" style="border-left: 4px solid var(--violet);">
+            <div class="kanban-card-header">
+              <span class="task-tag" style="background: var(--violet-light); color: var(--violet);">Jenny</span>
+            </div>
+            <div class="kanban-card-title">Messeplan erstellt & per Mail geschickt</div>
+          </div>
+
+          <div class="kanban-card done-card" style="border-left: 4px solid var(--violet);">
+            <div class="kanban-card-header">
+              <span class="task-tag" style="background: var(--violet-light); color: var(--violet);">Jenny</span>
+            </div>
+            <div class="kanban-card-title">Hetzner Server aufgesetzt</div>
+          </div>
+
+          <div class="kanban-card done-card" style="border-left: 4px solid var(--violet);">
+            <div class="kanban-card-header">
+              <span class="task-tag" style="background: var(--violet-light); color: var(--violet);">Jenny</span>
+            </div>
+            <div class="kanban-card-title">GitHub Pages Deployment</div>
+          </div>
+
+          <div class="kanban-card done-card" style="border-left: 4px solid var(--violet);">
+            <div class="kanban-card-header">
+              <span class="task-tag" style="background: var(--violet-light); color: var(--violet);">Jenny</span>
+            </div>
+            <div class="kanban-card-title">Mail an Thomas (Vorstellung)</div>
+          </div>
+
+        </div>
+      </div>
+
     </div>
   </div>
 
