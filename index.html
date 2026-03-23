@@ -730,7 +730,7 @@
   .tag-agents2go { background: var(--pink-light); color: var(--pink); }
   .tag-einzel { background: var(--orange-light); color: var(--orange); }
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1200px) {
     #tab-tasks .card { min-height: 300px !important; }
     .kanban-board {
       display: flex !important;
@@ -751,6 +751,14 @@
     .kanban-board > .card {
       min-width: 260px !important;
     }
+  }
+
+  .kanban-card[draggable="true"] {
+    cursor: grab;
+  }
+
+  .kanban-card[draggable="true"]:active {
+    cursor: grabbing;
   }
 </style>
 </head>
@@ -900,324 +908,208 @@
   <div id="tab-tasks" class="tab-content">
 
     <!-- Legend -->
-    <div style="display: flex; gap: 20px; margin-bottom: 16px; flex-wrap: wrap;">
+    <div style="display: flex; gap: 20px; margin-bottom: 16px; flex-wrap: wrap; align-items: center;">
       <div style="display: flex; align-items: center; gap: 6px; font-size: 13px;">
         <div style="width: 14px; height: 14px; border-radius: 4px; background: var(--pink);"></div>
-        <span><strong>Agents2Go</strong> — Denise</span>
+        <span><strong>Agents2Go</strong></span>
       </div>
       <div style="display: flex; align-items: center; gap: 6px; font-size: 13px;">
         <div style="width: 14px; height: 14px; border-radius: 4px; background: var(--orange);"></div>
-        <span><strong>Einzelunternehmen</strong> — Denise</span>
+        <span><strong>Einzelunternehmen</strong></span>
       </div>
       <div style="display: flex; align-items: center; gap: 6px; font-size: 13px;">
         <div style="width: 14px; height: 14px; border-radius: 4px; background: var(--violet);"></div>
-        <span><strong>Jenny</strong> — übernimmt</span>
+        <span><strong>Jenny</strong></span>
       </div>
+      <div style="display: flex; align-items: center; gap: 6px; font-size: 13px;">
+        <div style="width: 14px; height: 14px; border-radius: 4px; background: var(--info);"></div>
+        <span><strong>Persönlich</strong></span>
+      </div>
+      <div style="margin-left: auto; font-size: 12px; color: var(--text-secondary);">↔️ Drag & Drop zum Verschieben</div>
     </div>
 
     <!-- Kanban Board -->
-    <div class="kanban-board" style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 16px;">
-
-      <!-- TO DO -->
-      <div class="card" style="min-height: 400px;">
-        <div class="card-header">
-          <div class="card-title">🎯 To Do</div>
-          <span class="card-badge badge-pink" id="count-todo">17</span>
-        </div>
-        <div class="kanban-col" id="kanban-todo">
-
-          <!-- Agents2Go — HOCH -->
-          <div class="kanban-card" style="border-left: 4px solid var(--pink);">
-            <div class="kanban-card-header">
-              <span class="task-tag tag-agents2go">Agents2Go</span>
-              <span class="kanban-assignee">👩 Alle GFs</span>
-            </div>
-            <div class="kanban-card-title">🔴 Anteilsverteilung besprechen</div>
-            <div class="kanban-card-sub">26/26/26/22% vs. 4x25% — SVS & Stimmrecht</div>
-          </div>
-
-          <div class="kanban-card" style="border-left: 4px solid var(--pink);">
-            <div class="kanban-card-header">
-              <span class="task-tag tag-agents2go">Agents2Go</span>
-              <span class="kanban-assignee">👩 Alle GFs</span>
-            </div>
-            <div class="kanban-card-title">🔴 Letter of Intent schreiben</div>
-            <div class="kanban-card-sub">Was ist jedem wichtig? Jetzt niederschreiben!</div>
-          </div>
-
-          <div class="kanban-card" style="border-left: 4px solid var(--pink);">
-            <div class="kanban-card-header">
-              <span class="task-tag tag-agents2go">Agents2Go</span>
-              <span class="kanban-assignee">👩 Alle GFs + Anwalt</span>
-            </div>
-            <div class="kanban-card-title">🔴 Gesellschaftsvertrag durchdenken</div>
-            <div class="kanban-card-sub">Austritt, Tod, Vorkaufsrecht, Bewertung</div>
-          </div>
-
-          <div class="kanban-card" style="border-left: 4px solid var(--pink);">
-            <div class="kanban-card-header">
-              <span class="task-tag tag-agents2go">Agents2Go</span>
-              <span class="kanban-assignee">👩 Alle GFs</span>
-            </div>
-            <div class="kanban-card-title">🔴 Handelsrechtliche GF klären</div>
-            <div class="kanban-card-sub">Alle 4 oder einer?</div>
-          </div>
-
-          <div class="kanban-card" style="border-left: 4px solid var(--pink);">
-            <div class="kanban-card-header">
-              <span class="task-tag tag-agents2go">Agents2Go</span>
-              <span class="kanban-assignee">👩 Denise</span>
-            </div>
-            <div class="kanban-card-title">🔴 SFG "Startklar" einreichen</div>
-            <div class="kanban-card-sub">Angebote sammeln, jetzt schon möglich!</div>
-          </div>
-
-          <div class="kanban-card" style="border-left: 4px solid var(--pink);">
-            <div class="kanban-card-header">
-              <span class="task-tag tag-agents2go">Agents2Go</span>
-              <span class="kanban-assignee">👩 Denise</span>
-            </div>
-            <div class="kanban-card-title">3.000€ Förderung Stadt Graz beantragen</div>
-            <div class="kanban-card-sub">wirtschaft.graz.at — Sitz in Graz nötig</div>
-          </div>
-
-          <div class="kanban-card" style="border-left: 4px solid var(--pink);">
-            <div class="kanban-card-header">
-              <span class="task-tag tag-agents2go">Agents2Go</span>
-              <span class="kanban-assignee">👩 Denise</span>
-            </div>
-            <div class="kanban-card-title">Gewerbeschein für FlexCo klären</div>
-            <div class="kanban-card-sub">Info einholen</div>
-          </div>
-
-          <div class="kanban-card" style="border-left: 4px solid var(--pink);">
-            <div class="kanban-card-header">
-              <span class="task-tag tag-agents2go">Agents2Go</span>
-              <span class="kanban-assignee">👩 Denise</span>
-            </div>
-            <div class="kanban-card-title">Mail an Markenrechtdame</div>
-            <div class="kanban-card-sub">Markenrecht für Agents2Go klären</div>
-          </div>
-
-          <div class="kanban-card" style="border-left: 4px solid var(--pink);">
-            <div class="kanban-card-header">
-              <span class="task-tag tag-agents2go">Agents2Go</span>
-              <span class="kanban-assignee">👩 Denise</span>
-            </div>
-            <div class="kanban-card-title">Tom fragen: Codex OpenAI</div>
-            <div class="kanban-card-sub">Technische Klärung</div>
-          </div>
-
-          <!-- Morgen -->
-          <div class="kanban-card" style="border-left: 4px solid var(--pink);">
-            <div class="kanban-card-header">
-              <span class="task-tag tag-agents2go">Agents2Go</span>
-              <span class="kanban-assignee">👩 Denise</span>
-            </div>
-            <div class="kanban-card-title">🔴 Domain kaufen — Mo 24.03.</div>
-            <div class="kanban-card-sub">Sobald Name feststeht → .com + .ai sichern</div>
-          </div>
-
-          <div class="kanban-card" style="border-left: 4px solid var(--info);">
-            <div class="kanban-card-header">
-              <span class="task-tag tag-personal">Persönlich</span>
-              <span class="kanban-assignee">👩 Denise</span>
-            </div>
-            <div class="kanban-card-title">Stage Manager für Mac ausprobieren</div>
-            <div class="kanban-card-sub">Mo 24.03.</div>
-          </div>
-
-          <!-- LinkedIn -->
-          <div class="kanban-card" style="border-left: 4px solid var(--pink);">
-            <div class="kanban-card-header">
-              <span class="task-tag tag-agents2go">LinkedIn</span>
-              <span class="kanban-assignee">👩 Denise</span>
-            </div>
-            <div class="kanban-card-title">🔴 Post 1 posten — Mo 24.03.</div>
-            <div class="kanban-card-sub">"Es war still..." — Bild + Text ready!</div>
-          </div>
-
-          <!-- Einzelunternehmen -->
-          <div class="kanban-card" style="border-left: 4px solid var(--orange);">
-            <div class="kanban-card-header">
-              <span class="task-tag tag-einzel">Einzelunternehmen</span>
-              <span class="kanban-assignee">👩 Denise</span>
-            </div>
-            <div class="kanban-card-title">🔴 Mail an Mag. Hofer</div>
-            <div class="kanban-card-sub">Ausbildungspraxis + freies/reglementiertes Gewerbe?</div>
-          </div>
-
-          <div class="kanban-card" style="border-left: 4px solid var(--orange);">
-            <div class="kanban-card-header">
-              <span class="task-tag tag-einzel">Einzelunternehmen</span>
-              <span class="kanban-assignee">👩 Denise</span>
-            </div>
-            <div class="kanban-card-title">Befähigungsantrag bei BH vorbereiten</div>
-            <div class="kanban-card-sub">Gilt ein Leben lang</div>
-          </div>
-
-          <div class="kanban-card" style="border-left: 4px solid var(--orange);">
-            <div class="kanban-card-header">
-              <span class="task-tag tag-einzel">Einzelunternehmen</span>
-              <span class="kanban-assignee">👩 Denise</span>
-            </div>
-            <div class="kanban-card-title">Konzept finalisieren</div>
-            <div class="kanban-card-sub">Kurzkonzept überarbeiten & schärfen</div>
-          </div>
-
-          <div class="kanban-card" style="border-left: 4px solid var(--orange);">
-            <div class="kanban-card-header">
-              <span class="task-tag tag-einzel">Einzelunternehmen</span>
-              <span class="kanban-assignee">👩 Denise</span>
-            </div>
-            <div class="kanban-card-title">Finanzplan erstellen</div>
-            <div class="kanban-card-sub">Kosten, Einnahmen, Break-Even</div>
-          </div>
-
-          <!-- Jenny Tasks -->
-          <div class="kanban-card" style="border-left: 4px solid var(--violet);">
-            <div class="kanban-card-header">
-              <span class="task-tag" style="background: var(--violet-light); color: var(--violet);">Jenny</span>
-              <span class="kanban-assignee">🔥 Jenny</span>
-            </div>
-            <div class="kanban-card-title">Server-Migration finalisieren</div>
-            <div class="kanban-card-sub">Telegram, API-Key, Workspace auf Hetzner</div>
-          </div>
-
-          <div class="kanban-card" style="border-left: 4px solid var(--violet);">
-            <div class="kanban-card-header">
-              <span class="task-tag" style="background: var(--violet-light); color: var(--violet);">Jenny</span>
-              <span class="kanban-assignee">🔥 Jenny</span>
-            </div>
-            <div class="kanban-card-title">KMU.DIGITAL nachfragen</div>
-            <div class="kanban-card-sub">A2G-Workshops als geförderte Beratung?</div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- IN PROGRESS -->
-      <div class="card" style="min-height: 400px;">
-        <div class="card-header">
-          <div class="card-title">🔄 In Progress</div>
-          <span class="card-badge badge-orange" id="count-progress">2</span>
-        </div>
-        <div class="kanban-col" id="kanban-progress">
-
-          <div class="kanban-card" style="border-left: 4px solid var(--violet);">
-            <div class="kanban-card-header">
-              <span class="task-tag" style="background: var(--violet-light); color: var(--violet);">Jenny</span>
-              <span class="kanban-assignee">🔥 Jenny</span>
-            </div>
-            <div class="kanban-card-title">Whisper/Sprachnachrichten einrichten</div>
-            <div class="kanban-card-sub">Mit Server-Migration am Montag</div>
-          </div>
-
-          <div class="kanban-card" style="border-left: 4px solid var(--violet);">
-            <div class="kanban-card-header">
-              <span class="task-tag" style="background: var(--violet-light); color: var(--violet);">Jenny</span>
-              <span class="kanban-assignee">🔥 Jenny</span>
-            </div>
-            <div class="kanban-card-title">Dashboard weiterentwickeln</div>
-            <div class="kanban-card-sub">Kanban, Features, Design</div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- DONE -->
-      <div class="card" style="min-height: 400px; opacity: 0.75;">
-        <div class="card-header">
-          <div class="card-title">✅ Done</div>
-          <span class="card-badge badge-success" id="count-done">10</span>
-        </div>
-        <div class="kanban-col" id="kanban-done">
-
-          <div class="kanban-card done-card" style="border-left: 4px solid var(--violet);">
-            <div class="kanban-card-header">
-              <span class="task-tag" style="background: var(--violet-light); color: var(--violet);">Jenny</span>
-            </div>
-            <div class="kanban-card-title">Jenny Setup komplett</div>
-          </div>
-
-          <div class="kanban-card done-card" style="border-left: 4px solid var(--violet);">
-            <div class="kanban-card-header">
-              <span class="task-tag" style="background: var(--violet-light); color: var(--violet);">Jenny</span>
-            </div>
-            <div class="kanban-card-title">Telegram verbinden</div>
-          </div>
-
-          <div class="kanban-card done-card" style="border-left: 4px solid var(--violet);">
-            <div class="kanban-card-header">
-              <span class="task-tag" style="background: var(--violet-light); color: var(--violet);">Jenny</span>
-            </div>
-            <div class="kanban-card-title">E-Mail einrichten (SMTP + IMAP)</div>
-          </div>
-
-          <div class="kanban-card done-card" style="border-left: 4px solid var(--violet);">
-            <div class="kanban-card-header">
-              <span class="task-tag" style="background: var(--violet-light); color: var(--violet);">Jenny</span>
-            </div>
-            <div class="kanban-card-title">Dashboard gebaut & online</div>
-          </div>
-
-          <div class="kanban-card done-card" style="border-left: 4px solid var(--violet);">
-            <div class="kanban-card-header">
-              <span class="task-tag" style="background: var(--violet-light); color: var(--violet);">Jenny</span>
-            </div>
-            <div class="kanban-card-title">Messeplan erstellt & per Mail geschickt</div>
-          </div>
-
-          <div class="kanban-card done-card" style="border-left: 4px solid var(--violet);">
-            <div class="kanban-card-header">
-              <span class="task-tag" style="background: var(--violet-light); color: var(--violet);">Jenny</span>
-            </div>
-            <div class="kanban-card-title">Hetzner Server aufgesetzt</div>
-          </div>
-
-          <div class="kanban-card done-card" style="border-left: 4px solid var(--violet);">
-            <div class="kanban-card-header">
-              <span class="task-tag" style="background: var(--violet-light); color: var(--violet);">Jenny</span>
-            </div>
-            <div class="kanban-card-title">GitHub Pages Deployment</div>
-          </div>
-
-          <div class="kanban-card done-card" style="border-left: 4px solid var(--violet);">
-            <div class="kanban-card-header">
-              <span class="task-tag" style="background: var(--violet-light); color: var(--violet);">Jenny</span>
-            </div>
-            <div class="kanban-card-title">Mail an Thomas (Vorstellung)</div>
-          </div>
-
-          <div class="kanban-card done-card" style="border-left: 4px solid var(--violet);">
-            <div class="kanban-card-header">
-              <span class="task-tag" style="background: var(--violet-light); color: var(--violet);">Jenny</span>
-            </div>
-            <div class="kanban-card-title">Gründermesse-Protokoll erstellt</div>
-          </div>
-
-          <div class="kanban-card done-card" style="border-left: 4px solid var(--violet);">
-            <div class="kanban-card-header">
-              <span class="task-tag" style="background: var(--violet-light); color: var(--violet);">Jenny</span>
-            </div>
-            <div class="kanban-card-title">Kanban-Board gebaut</div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- BACKLOG -->
-      <div class="card" style="background: var(--bg); border: 2px dashed var(--border); min-height: 400px;">
-        <div class="card-header">
-          <div class="card-title">📋 Backlog</div>
-          <span class="card-badge" style="background: #f0f0f0; color: #888;">0</span>
-        </div>
-        <div class="kanban-col" id="kanban-backlog">
-        </div>
-      </div>
-
-    </div>
+    <div class="kanban-board" id="kanban-board"></div>
   </div>
+
+  <script>
+  // ===== KANBAN DATA (source of truth) =====
+  const KANBAN_STORAGE_KEY = 'jenny-kanban-state';
+
+  const defaultKanbanData = {
+    columns: ['todo','progress','discuss','done','backlog'],
+    columnNames: {
+      todo: '🎯 To Do',
+      progress: '🔄 In Progress',
+      discuss: '💬 Zu Besprechen',
+      done: '✅ Done',
+      backlog: '📋 Backlog'
+    },
+    cards: [
+      // Agents2Go
+      {id:'a1', col:'todo', cat:'pink', tag:'Agents2Go', assignee:'👩 Alle GFs', title:'🔴 Anteilsverteilung besprechen', sub:'26/26/26/22% vs. 4x25% — SVS & Stimmrecht'},
+      {id:'a2', col:'todo', cat:'pink', tag:'Agents2Go', assignee:'👩 Alle GFs', title:'🔴 Letter of Intent schreiben', sub:'Was ist jedem wichtig? Jetzt niederschreiben!'},
+      {id:'a3', col:'todo', cat:'pink', tag:'Agents2Go', assignee:'👩 Alle GFs + Anwalt', title:'🔴 Gesellschaftsvertrag durchdenken', sub:'Austritt, Tod, Vorkaufsrecht, Bewertung'},
+      {id:'a4', col:'todo', cat:'pink', tag:'Agents2Go', assignee:'👩 Alle GFs', title:'🔴 Handelsrechtliche GF klären', sub:'Alle 4 oder einer?'},
+      {id:'a5', col:'todo', cat:'pink', tag:'Agents2Go', assignee:'👩 Denise', title:'🔴 SFG "Startklar" einreichen', sub:'Angebote sammeln, jetzt schon möglich!'},
+      {id:'a6', col:'todo', cat:'pink', tag:'Agents2Go', assignee:'👩 Denise', title:'3.000€ Förderung Stadt Graz', sub:'wirtschaft.graz.at — Sitz in Graz nötig'},
+      {id:'a7', col:'todo', cat:'pink', tag:'Agents2Go', assignee:'👩 Denise', title:'Gewerbeschein FlexCo klären', sub:'Info einholen'},
+      {id:'a8', col:'todo', cat:'pink', tag:'Agents2Go', assignee:'👩 Denise', title:'Mail an Markenrechtdame', sub:'Markenrecht klären'},
+      {id:'a9', col:'todo', cat:'pink', tag:'Agents2Go', assignee:'👩 Denise', title:'Tom fragen: Codex OpenAI', sub:'Technische Klärung'},
+      {id:'a10', col:'todo', cat:'pink', tag:'Agents2Go', assignee:'👩 Denise', title:'🔴 Domain kaufen', sub:'Sobald Name feststeht → .com + .ai sichern'},
+      {id:'a11', col:'todo', cat:'pink', tag:'LinkedIn', assignee:'👩 Denise', title:'🔴 Post 1 posten — Mo 24.03.', sub:'"Es war still..." — Bild + Text ready!'},
+      // Einzelunternehmen
+      {id:'e1', col:'todo', cat:'orange', tag:'Einzelunternehmen', assignee:'👩 Denise', title:'🔴 Mail an Mag. Hofer', sub:'Ausbildungspraxis + freies/reglementiertes Gewerbe?'},
+      {id:'e2', col:'todo', cat:'orange', tag:'Einzelunternehmen', assignee:'👩 Denise', title:'Befähigungsantrag BH', sub:'Gilt ein Leben lang'},
+      {id:'e3', col:'todo', cat:'orange', tag:'Einzelunternehmen', assignee:'👩 Denise', title:'Konzept finalisieren', sub:'Kurzkonzept überarbeiten & schärfen'},
+      {id:'e4', col:'todo', cat:'orange', tag:'Einzelunternehmen', assignee:'👩 Denise', title:'Finanzplan erstellen', sub:'Kosten, Einnahmen, Break-Even'},
+      // Persönlich
+      {id:'p1', col:'todo', cat:'info', tag:'Persönlich', assignee:'👩 Denise', title:'Stage Manager Mac ausprobieren', sub:'Mo 24.03.'},
+      // Jenny
+      {id:'j1', col:'todo', cat:'violet', tag:'Jenny', assignee:'🔥 Jenny', title:'Server-Migration finalisieren', sub:'Telegram, API-Key, Workspace auf Hetzner'},
+      {id:'j2', col:'todo', cat:'violet', tag:'Jenny', assignee:'🔥 Jenny', title:'KMU.DIGITAL nachfragen', sub:'A2G-Workshops als geförderte Beratung?'},
+      // In Progress
+      {id:'j3', col:'progress', cat:'violet', tag:'Jenny', assignee:'🔥 Jenny', title:'Whisper einrichten', sub:'Sprachnachrichten transkribieren'},
+      {id:'j4', col:'progress', cat:'violet', tag:'Jenny', assignee:'🔥 Jenny', title:'Dashboard weiterentwickeln', sub:'Kanban, Features, Design'},
+      // Done
+      {id:'d1', col:'done', cat:'violet', tag:'Jenny', title:'Jenny Setup komplett'},
+      {id:'d2', col:'done', cat:'violet', tag:'Jenny', title:'Telegram verbinden'},
+      {id:'d3', col:'done', cat:'violet', tag:'Jenny', title:'E-Mail einrichten (SMTP + IMAP)'},
+      {id:'d4', col:'done', cat:'violet', tag:'Jenny', title:'Dashboard gebaut & online'},
+      {id:'d5', col:'done', cat:'violet', tag:'Jenny', title:'Messeplan erstellt & per Mail geschickt'},
+      {id:'d6', col:'done', cat:'violet', tag:'Jenny', title:'Hetzner Server aufgesetzt'},
+      {id:'d7', col:'done', cat:'violet', tag:'Jenny', title:'GitHub Pages Deployment'},
+      {id:'d8', col:'done', cat:'violet', tag:'Jenny', title:'Mail an Thomas (Vorstellung)'},
+      {id:'d9', col:'done', cat:'violet', tag:'Jenny', title:'Gründermesse-Protokoll erstellt'},
+      {id:'d10', col:'done', cat:'violet', tag:'Jenny', title:'Kanban-Board gebaut'},
+    ]
+  };
+
+  function loadKanban() {
+    try {
+      const saved = localStorage.getItem(KANBAN_STORAGE_KEY);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        // Merge: keep user column assignments but add any new cards from default
+        const savedIds = new Set(parsed.cards.map(c => c.id));
+        defaultKanbanData.cards.forEach(dc => {
+          if (!savedIds.has(dc.id)) parsed.cards.push(dc);
+        });
+        parsed.columns = defaultKanbanData.columns;
+        parsed.columnNames = defaultKanbanData.columnNames;
+        return parsed;
+      }
+    } catch(e) {}
+    return JSON.parse(JSON.stringify(defaultKanbanData));
+  }
+
+  function saveKanban(data) {
+    localStorage.setItem(KANBAN_STORAGE_KEY, JSON.stringify(data));
+  }
+
+  function getCatColor(cat) {
+    const colors = {pink:'var(--pink)',orange:'var(--orange)',violet:'var(--violet)',info:'var(--info)'};
+    return colors[cat] || 'var(--text-secondary)';
+  }
+
+  function getCatTagClass(cat) {
+    if (cat === 'pink') return 'tag-agents2go';
+    if (cat === 'orange') return 'tag-einzel';
+    return '';
+  }
+
+  function getCatTagStyle(cat) {
+    if (cat === 'violet') return 'background:var(--violet-light);color:var(--violet)';
+    if (cat === 'info') return 'background:var(--info-light);color:var(--info)';
+    return '';
+  }
+
+  function renderKanban() {
+    const data = loadKanban();
+    const board = document.getElementById('kanban-board');
+    board.innerHTML = '';
+    board.style.cssText = 'display:grid;grid-template-columns:repeat('+data.columns.length+',1fr);gap:16px;';
+
+    data.columns.forEach(colId => {
+      const colCards = data.cards.filter(c => c.col === colId);
+      const isDone = colId === 'done';
+      const isBacklog = colId === 'backlog';
+      const isDiscuss = colId === 'discuss';
+
+      const col = document.createElement('div');
+      col.className = 'card';
+      col.style.minHeight = '400px';
+      if (isDone) col.style.opacity = '0.75';
+      if (isBacklog) { col.style.background = 'var(--bg)'; col.style.border = '2px dashed var(--border)'; }
+      if (isDiscuss) { col.style.borderTop = '3px solid var(--warning)'; }
+
+      const badgeClass = colId === 'todo' ? 'badge-pink' : colId === 'progress' ? 'badge-orange' : colId === 'discuss' ? 'badge-warning' : colId === 'done' ? 'badge-success' : '';
+      const badgeStyle = isBacklog ? 'background:#f0f0f0;color:#888' : '';
+
+      col.innerHTML = '<div class="card-header"><div class="card-title">'+data.columnNames[colId]+'</div><span class="card-badge '+badgeClass+'" style="'+badgeStyle+'">'+colCards.length+'</span></div>';
+
+      const dropZone = document.createElement('div');
+      dropZone.className = 'kanban-col';
+      dropZone.id = 'kanban-' + colId;
+      dropZone.dataset.col = colId;
+
+      // Drop events
+      dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.style.background='var(--pink-glow)'; });
+      dropZone.addEventListener('dragleave', e => { dropZone.style.background=''; });
+      dropZone.addEventListener('drop', e => {
+        e.preventDefault();
+        dropZone.style.background = '';
+        const cardId = e.dataTransfer.getData('text/plain');
+        const d = loadKanban();
+        const card = d.cards.find(c => c.id === cardId);
+        if (card) { card.col = colId; saveKanban(d); renderKanban(); }
+      });
+
+      colCards.forEach(card => {
+        const el = document.createElement('div');
+        el.className = 'kanban-card' + (isDone ? ' done-card' : '');
+        el.style.borderLeft = '4px solid ' + getCatColor(card.cat);
+        el.draggable = true;
+        el.dataset.id = card.id;
+
+        el.addEventListener('dragstart', e => { e.dataTransfer.setData('text/plain', card.id); el.style.opacity='0.4'; });
+        el.addEventListener('dragend', e => { el.style.opacity='1'; });
+
+        const tagClass = getCatTagClass(card.cat);
+        const tagStyle = getCatTagStyle(card.cat);
+        const tagAttr = tagClass ? 'class="task-tag '+tagClass+'"' : 'class="task-tag" style="'+tagStyle+'"';
+
+        let html = '<div class="kanban-card-header"><span '+tagAttr+'>'+card.tag+'</span>';
+        if (card.assignee && !isDone) html += '<span class="kanban-assignee">'+card.assignee+'</span>';
+        html += '</div><div class="kanban-card-title">'+card.title+'</div>';
+        if (card.sub && !isDone) html += '<div class="kanban-card-sub">'+card.sub+'</div>';
+        el.innerHTML = html;
+
+        // Touch drag support
+        let touchStartX, touchStartY, dragClone;
+        el.addEventListener('touchstart', e => {
+          const touch = e.touches[0];
+          touchStartX = touch.clientX; touchStartY = touch.clientY;
+        }, {passive: true});
+
+        dropZone.appendChild(el);
+      });
+
+      if (colCards.length === 0) {
+        dropZone.innerHTML = '<div style="text-align:center;padding:32px 12px;color:var(--text-secondary);font-size:13px;">Karten hierher ziehen</div>';
+      }
+
+      col.appendChild(dropZone);
+      board.appendChild(col);
+    });
+  }
+
+  // Reset button (hidden, for Jenny)
+  function resetKanban() { localStorage.removeItem(KANBAN_STORAGE_KEY); renderKanban(); }
+
+  // Init on tab show
+  document.addEventListener('DOMContentLoaded', () => { renderKanban(); });
+  </script>
 
   <!-- ====== TAB: AGENTS2GO ====== -->
   <div id="tab-agents2go" class="tab-content">
@@ -1679,6 +1571,7 @@ Das erzähle ich euch, wenn der richtige Zeitpunkt gekommen ist. 😊
     document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
     document.getElementById('tab-' + tabName).classList.add('active');
     event.target.classList.add('active');
+    if (tabName === 'tasks') renderKanban();
   }
 
   // Task Toggle
