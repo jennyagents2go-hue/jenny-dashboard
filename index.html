@@ -1039,6 +1039,7 @@
       const col = document.createElement('div');
       col.className = 'card';
       col.style.minHeight = '400px';
+      col.dataset.col = colId; // Make entire column a drop target
       if (isDone) col.style.opacity = '0.75';
       if (isBacklog) { col.style.background = 'var(--bg)'; col.style.border = '2px dashed var(--border)'; }
       if (isDiscuss) { col.style.borderTop = '3px solid var(--warning)'; }
@@ -1046,23 +1047,23 @@
       const badgeClass = colId === 'todo' ? 'badge-pink' : colId === 'progress' ? 'badge-orange' : colId === 'discuss' ? 'badge-warning' : colId === 'done' ? 'badge-success' : '';
       const badgeStyle = isBacklog ? 'background:#f0f0f0;color:#888' : '';
 
+      col.setAttribute('ondragover', 'kanbanDragOver(event)');
+      col.setAttribute('ondrop', 'kanbanDrop(event)');
       col.innerHTML = '<div class="card-header"><div class="card-title">'+data.columnNames[colId]+'</div><span class="card-badge '+badgeClass+'" style="'+badgeStyle+'">'+colCards.length+'</span></div>';
 
       const dropZone = document.createElement('div');
       dropZone.className = 'kanban-col';
       dropZone.id = 'kanban-' + colId;
       dropZone.dataset.col = colId;
-
-      // Drop events — use col-level delegation
       dropZone.style.minHeight = '80px';
-      dropZone.setAttribute('data-col', colId);
+      dropZone.style.flexGrow = '1';
 
       colCards.forEach(card => {
         const tagClass = getCatTagClass(card.cat);
         const tagStyle = getCatTagStyle(card.cat);
         const tagAttr = tagClass ? 'class="task-tag '+tagClass+'"' : 'class="task-tag" style="'+tagStyle+'"';
 
-        let cardHTML = '<div class="kanban-card' + (isDone ? ' done-card' : '') + '" draggable="true" data-card-id="'+card.id+'" style="border-left:4px solid '+getCatColor(card.cat)+'">';
+        let cardHTML = '<div class="kanban-card' + (isDone ? ' done-card' : '') + '" draggable="true" data-card-id="'+card.id+'" ondragstart="kanbanDragStart(event)" style="border-left:4px solid '+getCatColor(card.cat)+'">';
         cardHTML += '<div class="kanban-card-header"><span '+tagAttr+'>'+card.tag+'</span>';
         if (card.assignee && !isDone) cardHTML += '<span class="kanban-assignee">'+card.assignee+'</span>';
         cardHTML += '</div><div class="kanban-card-title">'+card.title+'</div>';
@@ -1081,70 +1082,57 @@
     });
   }
 
-  let dragCardId = null;
+  var dragCardId = null;
 
-  function findDropCol(el) {
+  function kanbanDragStart(e) {
+    var el = e.target;
+    while (el && !el.dataset.cardId) el = el.parentElement;
+    if (!el) return;
+    dragCardId = el.dataset.cardId;
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/plain', dragCardId);
+    setTimeout(function() { el.style.opacity = '0.4'; }, 0);
+  }
+
+  function kanbanDragOver(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    return false;
+  }
+
+  function kanbanDrop(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    // Find the column
+    var el = e.target;
+    var targetCol = null;
     while (el) {
-      if (el.dataset && el.dataset.col) return el;
+      if (el.dataset && el.dataset.col) { targetCol = el.dataset.col; break; }
       el = el.parentElement;
     }
-    return null;
-  }
-
-  function initDragDrop() {
-    document.onmousedown = null;
-    
-    document.ondragstart = function(e) {
-      var t = e.target;
-      while (t && !t.dataset.cardId) t = t.parentElement;
-      if (!t) return;
-      dragCardId = t.dataset.cardId;
-      e.dataTransfer.effectAllowed = 'move';
-      e.dataTransfer.setData('text', dragCardId);
-      t.style.opacity = '0.4';
-    };
-
-    document.ondragover = function(e) {
-      var col = findDropCol(e.target);
-      if (col) {
-        e.preventDefault();
-        document.querySelectorAll('[data-col]').forEach(function(c) { c.style.background = ''; });
-        col.style.background = 'rgba(230,0,126,0.1)';
-      }
-    };
-
-    document.ondragend = function(e) {
-      var t = e.target;
-      while (t && !t.dataset.cardId) t = t.parentElement;
-      if (t) t.style.opacity = '1';
-      document.querySelectorAll('[data-col]').forEach(function(c) { c.style.background = ''; });
-      dragCardId = null;
-    };
-
-    document.ondrop = function(e) {
-      e.preventDefault();
-      var col = findDropCol(e.target);
-      if (!col) return;
-      col.style.background = '';
-      var cid = e.dataTransfer.getData('text') || dragCardId;
-      var targetCol = col.dataset.col;
-      if (cid && targetCol) {
-        var d = loadKanban();
-        for (var i = 0; i < d.cards.length; i++) {
-          if (d.cards[i].id === cid && d.cards[i].col !== targetCol) {
-            d.cards[i].col = targetCol;
-            saveKanban(d);
-            renderKanban();
-            break;
-          }
+    var cid = e.dataTransfer.getData('text/plain') || dragCardId;
+    if (cid && targetCol) {
+      var d = loadKanban();
+      for (var i = 0; i < d.cards.length; i++) {
+        if (d.cards[i].id === cid) {
+          d.cards[i].col = targetCol;
+          saveKanban(d);
+          renderKanban();
+          break;
         }
       }
-    };
+    }
+    dragCardId = null;
   }
+
+  // Clean up opacity on dragend
+  document.addEventListener('dragend', function() {
+    document.querySelectorAll('.kanban-card').forEach(function(c) { c.style.opacity = '1'; });
+    dragCardId = null;
+  });
 
   function resetKanban() { localStorage.removeItem(KANBAN_STORAGE_KEY); renderKanban(); }
 
-  initDragDrop();
   document.addEventListener('DOMContentLoaded', function() { renderKanban(); });
 
   window.renderKanban = renderKanban;
