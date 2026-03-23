@@ -1058,33 +1058,18 @@
       dropZone.setAttribute('data-col', colId);
 
       colCards.forEach(card => {
-        const el = document.createElement('div');
-        el.className = 'kanban-card' + (isDone ? ' done-card' : '');
-        el.style.borderLeft = '4px solid ' + getCatColor(card.cat);
-        el.draggable = true;
-        el.dataset.id = card.id;
-
-        el.addEventListener('dragstart', e => { e.dataTransfer.setData('text/plain', card.id); el.style.opacity='0.4'; });
-        el.addEventListener('dragend', e => { el.style.opacity='1'; });
-
         const tagClass = getCatTagClass(card.cat);
         const tagStyle = getCatTagStyle(card.cat);
         const tagAttr = tagClass ? 'class="task-tag '+tagClass+'"' : 'class="task-tag" style="'+tagStyle+'"';
 
-        let html = '<div class="kanban-card-header"><span '+tagAttr+'>'+card.tag+'</span>';
-        if (card.assignee && !isDone) html += '<span class="kanban-assignee">'+card.assignee+'</span>';
-        html += '</div><div class="kanban-card-title">'+card.title+'</div>';
-        if (card.sub && !isDone) html += '<div class="kanban-card-sub">'+card.sub+'</div>';
-        el.innerHTML = html;
+        let cardHTML = '<div class="kanban-card' + (isDone ? ' done-card' : '') + '" draggable="true" data-card-id="'+card.id+'" style="border-left:4px solid '+getCatColor(card.cat)+'">';
+        cardHTML += '<div class="kanban-card-header"><span '+tagAttr+'>'+card.tag+'</span>';
+        if (card.assignee && !isDone) cardHTML += '<span class="kanban-assignee">'+card.assignee+'</span>';
+        cardHTML += '</div><div class="kanban-card-title">'+card.title+'</div>';
+        if (card.sub && !isDone) cardHTML += '<div class="kanban-card-sub">'+card.sub+'</div>';
+        cardHTML += '</div>';
 
-        // Touch drag support
-        let touchStartX, touchStartY, dragClone;
-        el.addEventListener('touchstart', e => {
-          const touch = e.touches[0];
-          touchStartX = touch.clientX; touchStartY = touch.clientY;
-        }, {passive: true});
-
-        dropZone.appendChild(el);
+        dropZone.insertAdjacentHTML('beforeend', cardHTML);
       });
 
       if (colCards.length === 0) {
@@ -1094,64 +1079,67 @@
       col.appendChild(dropZone);
       board.appendChild(col);
     });
-    attachBoardListeners();
   }
 
-  // Board-level drag & drop delegation (survives re-renders)
-  let boardListenersAttached = false;
-  function attachBoardListeners() {
-    if (boardListenersAttached) return;
-    const board = document.getElementById('kanban-board');
-    if (!board) return;
-    
-    board.addEventListener('dragover', e => {
-      e.preventDefault();
-      const col = e.target.closest('.kanban-col');
-      if (col) col.style.background = 'var(--pink-glow)';
-    });
-    
-    board.addEventListener('dragleave', e => {
-      const col = e.target.closest('.kanban-col');
-      if (col && !col.contains(e.relatedTarget)) col.style.background = '';
-    });
-    
-    board.addEventListener('drop', e => {
-      e.preventDefault();
-      const col = e.target.closest('.kanban-col');
-      if (!col) return;
-      col.style.background = '';
-      const cardId = e.dataTransfer.getData('text/plain');
-      const targetCol = col.getAttribute('data-col');
-      if (cardId && targetCol) {
-        const d = loadKanban();
-        const card = d.cards.find(c => c.id === cardId);
-        if (card && card.col !== targetCol) {
-          card.col = targetCol;
-          saveKanban(d);
-          renderKanban();
-        }
-      }
-    });
-    
-    boardListenersAttached = true;
-  }
+  // Drag state
+  let currentDragId = null;
 
   // Reset button (hidden, for Jenny)
   function resetKanban() { localStorage.removeItem(KANBAN_STORAGE_KEY); renderKanban(); }
 
   // Init on tab show
-  document.addEventListener('DOMContentLoaded', () => { 
-    renderKanban();
-    // Re-render when tab becomes visible
-    const observer = new MutationObserver(() => {
-      const tasksTab = document.getElementById('tab-tasks');
-      if (tasksTab && tasksTab.classList.contains('active')) renderKanban();
-    });
-    const tabContents = document.querySelectorAll('.tab-content');
-    tabContents.forEach(tc => observer.observe(tc, {attributes: true, attributeFilter: ['class']}));
+  // Global drag & drop via document delegation — never lost
+  document.addEventListener('dragstart', e => {
+    const card = e.target.closest('[data-card-id]');
+    if (!card) return;
+    currentDragId = card.dataset.cardId;
+    e.dataTransfer.setData('text/plain', currentDragId);
+    e.dataTransfer.effectAllowed = 'move';
+    setTimeout(() => { card.style.opacity = '0.4'; }, 0);
   });
 
-  // Make renderKanban global
+  document.addEventListener('dragend', e => {
+    const card = e.target.closest('[data-card-id]');
+    if (card) card.style.opacity = '1';
+    currentDragId = null;
+    document.querySelectorAll('.kanban-col').forEach(c => c.style.background = '');
+  });
+
+  document.addEventListener('dragover', e => {
+    const col = e.target.closest('.kanban-col');
+    if (!col) return;
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+    col.style.background = 'var(--pink-glow)';
+  });
+
+  document.addEventListener('dragleave', e => {
+    const col = e.target.closest('.kanban-col');
+    if (col && !col.contains(e.relatedTarget)) {
+      col.style.background = '';
+    }
+  });
+
+  document.addEventListener('drop', e => {
+    e.preventDefault();
+    const col = e.target.closest('.kanban-col');
+    if (!col) return;
+    col.style.background = '';
+    const cardId = e.dataTransfer.getData('text/plain') || currentDragId;
+    const targetCol = col.dataset.col;
+    if (cardId && targetCol) {
+      const d = loadKanban();
+      const card = d.cards.find(c => c.id === cardId);
+      if (card && card.col !== targetCol) {
+        card.col = targetCol;
+        saveKanban(d);
+        renderKanban();
+      }
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded', () => { renderKanban(); });
+
   window.renderKanban = renderKanban;
   window.resetKanban = resetKanban;
   </script>
