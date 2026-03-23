@@ -1081,64 +1081,71 @@
     });
   }
 
-  // Drag state
-  let currentDragId = null;
+  let dragCardId = null;
 
-  // Reset button (hidden, for Jenny)
+  function findDropCol(el) {
+    while (el) {
+      if (el.dataset && el.dataset.col) return el;
+      el = el.parentElement;
+    }
+    return null;
+  }
+
+  function initDragDrop() {
+    document.onmousedown = null;
+    
+    document.ondragstart = function(e) {
+      var t = e.target;
+      while (t && !t.dataset.cardId) t = t.parentElement;
+      if (!t) return;
+      dragCardId = t.dataset.cardId;
+      e.dataTransfer.effectAllowed = 'move';
+      e.dataTransfer.setData('text', dragCardId);
+      t.style.opacity = '0.4';
+    };
+
+    document.ondragover = function(e) {
+      var col = findDropCol(e.target);
+      if (col) {
+        e.preventDefault();
+        document.querySelectorAll('[data-col]').forEach(function(c) { c.style.background = ''; });
+        col.style.background = 'rgba(230,0,126,0.1)';
+      }
+    };
+
+    document.ondragend = function(e) {
+      var t = e.target;
+      while (t && !t.dataset.cardId) t = t.parentElement;
+      if (t) t.style.opacity = '1';
+      document.querySelectorAll('[data-col]').forEach(function(c) { c.style.background = ''; });
+      dragCardId = null;
+    };
+
+    document.ondrop = function(e) {
+      e.preventDefault();
+      var col = findDropCol(e.target);
+      if (!col) return;
+      col.style.background = '';
+      var cid = e.dataTransfer.getData('text') || dragCardId;
+      var targetCol = col.dataset.col;
+      if (cid && targetCol) {
+        var d = loadKanban();
+        for (var i = 0; i < d.cards.length; i++) {
+          if (d.cards[i].id === cid && d.cards[i].col !== targetCol) {
+            d.cards[i].col = targetCol;
+            saveKanban(d);
+            renderKanban();
+            break;
+          }
+        }
+      }
+    };
+  }
+
   function resetKanban() { localStorage.removeItem(KANBAN_STORAGE_KEY); renderKanban(); }
 
-  // Init on tab show
-  // Global drag & drop via document delegation — never lost
-  document.addEventListener('dragstart', e => {
-    const card = e.target.closest('[data-card-id]');
-    if (!card) return;
-    currentDragId = card.dataset.cardId;
-    e.dataTransfer.setData('text/plain', currentDragId);
-    e.dataTransfer.effectAllowed = 'move';
-    setTimeout(() => { card.style.opacity = '0.4'; }, 0);
-  });
-
-  document.addEventListener('dragend', e => {
-    const card = e.target.closest('[data-card-id]');
-    if (card) card.style.opacity = '1';
-    currentDragId = null;
-    document.querySelectorAll('.kanban-col').forEach(c => c.style.background = '');
-  });
-
-  document.addEventListener('dragover', e => {
-    const col = e.target.closest('.kanban-col');
-    if (!col) return;
-    e.preventDefault();
-    e.dataTransfer.dropEffect = 'move';
-    col.style.background = 'var(--pink-glow)';
-  });
-
-  document.addEventListener('dragleave', e => {
-    const col = e.target.closest('.kanban-col');
-    if (col && !col.contains(e.relatedTarget)) {
-      col.style.background = '';
-    }
-  });
-
-  document.addEventListener('drop', e => {
-    e.preventDefault();
-    const col = e.target.closest('.kanban-col');
-    if (!col) return;
-    col.style.background = '';
-    const cardId = e.dataTransfer.getData('text/plain') || currentDragId;
-    const targetCol = col.dataset.col;
-    if (cardId && targetCol) {
-      const d = loadKanban();
-      const card = d.cards.find(c => c.id === cardId);
-      if (card && card.col !== targetCol) {
-        card.col = targetCol;
-        saveKanban(d);
-        renderKanban();
-      }
-    }
-  });
-
-  document.addEventListener('DOMContentLoaded', () => { renderKanban(); });
+  initDragDrop();
+  document.addEventListener('DOMContentLoaded', function() { renderKanban(); });
 
   window.renderKanban = renderKanban;
   window.resetKanban = resetKanban;
