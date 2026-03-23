@@ -1,0 +1,1656 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jenny Dashboard — Denise Stadtegger</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+  :root {
+    --pink: #E6007E;
+    --pink-light: #FFE0F0;
+    --pink-glow: rgba(230, 0, 126, 0.15);
+    --orange: #F5A623;
+    --orange-light: #FFF3E0;
+    --orange-glow: rgba(245, 166, 35, 0.15);
+    --gradient: linear-gradient(135deg, #E6007E, #F5A623);
+    --gradient-soft: linear-gradient(135deg, rgba(230,0,126,0.08), rgba(245,166,35,0.08));
+    --bg: #FAFAFA;
+    --card: #FFFFFF;
+    --text: #1A1A2E;
+    --text-secondary: #6B7280;
+    --border: #F0F0F0;
+    --success: #10B981;
+    --success-light: #D1FAE5;
+    --warning: #F59E0B;
+    --warning-light: #FEF3C7;
+    --danger: #EF4444;
+    --danger-light: #FEE2E2;
+    --info: #6366F1;
+    --info-light: #E0E7FF;
+    --violet: #8B5CF6;
+    --violet-light: #EDE9FE;
+    --violet-glow: rgba(139, 92, 246, 0.15);
+    --shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.04), 0 2px 4px rgba(0,0,0,0.06);
+    --shadow-lg: 0 10px 15px rgba(0,0,0,0.04), 0 4px 6px rgba(0,0,0,0.06);
+    --radius: 16px;
+    --radius-sm: 10px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* Header */
+  .header {
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 32px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(20px);
+  }
+
+  .header-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .logo-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--gradient);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: white;
+  }
+
+  .logo-text {
+    font-size: 20px;
+    font-weight: 700;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .logo-sub {
+    font-size: 12px;
+    color: var(--text-secondary);
+    font-weight: 400;
+  }
+
+  .header-date {
+    font-size: 14px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* Navigation Tabs */
+  .nav-tabs {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 16px 32px 0;
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+  }
+
+  .nav-tab {
+    padding: 10px 20px;
+    border-radius: 10px 10px 0 0;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .nav-tab:hover {
+    background: var(--pink-glow);
+    color: var(--pink);
+  }
+
+  .nav-tab.active {
+    background: var(--card);
+    color: var(--pink);
+    font-weight: 600;
+    box-shadow: var(--shadow);
+  }
+
+  /* Main Content */
+  .main {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 24px 32px;
+  }
+
+  .tab-content {
+    display: none;
+  }
+
+  .tab-content.active {
+    display: block;
+  }
+
+  /* Grid Layouts */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+
+  .grid-1-2 {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+  }
+
+  .full-width {
+    grid-column: 1 / -1;
+  }
+
+  /* Cards */
+  .card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+  }
+
+  .card:hover {
+    box-shadow: var(--shadow-md);
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+
+  .card-title {
+    font-size: 16px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .card-badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* Status Badges */
+  .badge-pink { background: var(--pink-light); color: var(--pink); }
+  .badge-orange { background: var(--orange-light); color: var(--orange); }
+  .badge-success { background: var(--success-light); color: var(--success); }
+  .badge-warning { background: var(--warning-light); color: var(--warning); }
+  .badge-danger { background: var(--danger-light); color: var(--danger); }
+  .badge-info { background: var(--info-light); color: var(--info); }
+
+  /* Focus Banner */
+  .focus-banner {
+    background: var(--gradient);
+    border-radius: var(--radius);
+    padding: 28px 32px;
+    color: white;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .focus-banner::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 300px;
+    height: 300px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+  }
+
+  .focus-banner h2 {
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.9;
+    margin-bottom: 8px;
+  }
+
+  .focus-banner p {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .focus-banner .focus-sub {
+    font-size: 14px;
+    opacity: 0.85;
+    margin-top: 8px;
+    font-weight: 400;
+  }
+
+  /* Task Items */
+  .task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .task-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: var(--radius-sm);
+    background: var(--bg);
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+
+  .task-item:hover {
+    background: var(--pink-glow);
+  }
+
+  .task-check {
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    border: 2px solid #D1D5DB;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+
+  .task-check.checked {
+    background: var(--gradient);
+    border-color: var(--pink);
+    color: white;
+    font-size: 12px;
+  }
+
+  .task-check.checked::after {
+    content: '✓';
+    color: white;
+    font-weight: 700;
+  }
+
+  .task-item.done .task-text {
+    text-decoration: line-through;
+    color: var(--text-secondary);
+  }
+
+  .task-text {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .task-tag {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 6px;
+  }
+
+  .tag-agents2go { background: var(--pink-light); color: var(--pink); }
+  .tag-einzel { background: var(--orange-light); color: var(--orange); }
+  .tag-personal { background: var(--info-light); color: var(--info); }
+
+  /* Priority Indicator */
+  .priority-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .priority-high { background: var(--pink); }
+  .priority-medium { background: var(--orange); }
+  .priority-low { background: #D1D5DB; }
+
+  /* Progress Bar */
+  .progress-container {
+    margin-top: 12px;
+  }
+
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+  }
+
+  .progress-bar {
+    height: 8px;
+    background: var(--bg);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--gradient);
+    border-radius: 4px;
+    transition: width 0.5s ease;
+  }
+
+  /* Stats */
+  .stat-card {
+    text-align: center;
+    padding: 20px;
+  }
+
+  .stat-number {
+    font-size: 32px;
+    font-weight: 800;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    margin-top: 4px;
+  }
+
+  /* Business Section */
+  .business-card {
+    border-left: 4px solid;
+    padding-left: 20px;
+  }
+
+  .business-card.agents2go { border-color: var(--pink); }
+  .business-card.einzelunternehmen { border-color: var(--orange); }
+
+  /* Workflow Items */
+  .workflow-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    border-radius: var(--radius-sm);
+    background: var(--bg);
+    margin-bottom: 8px;
+  }
+
+  .workflow-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .workflow-icon.pink { background: var(--pink-light); }
+  .workflow-icon.orange { background: var(--orange-light); }
+
+  .workflow-info { flex: 1; }
+
+  .workflow-name {
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .workflow-desc {
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+
+  .workflow-status {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+
+  /* Timeline */
+  .timeline {
+    position: relative;
+    padding-left: 24px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--border);
+  }
+
+  .timeline-item {
+    position: relative;
+    padding-bottom: 20px;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--gradient);
+    border: 2px solid var(--card);
+  }
+
+  .timeline-date {
+    font-size: 11px;
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  .timeline-text {
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 2px;
+  }
+
+  /* Content Plan Table */
+  .content-plan {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 6px;
+  }
+
+  .content-plan th {
+    text-align: left;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 8px 12px;
+  }
+
+  .content-plan td {
+    padding: 12px;
+    font-size: 14px;
+    background: var(--bg);
+  }
+
+  .content-plan tr td:first-child {
+    border-radius: 8px 0 0 8px;
+  }
+
+  .content-plan tr td:last-child {
+    border-radius: 0 8px 8px 0;
+  }
+
+  /* Notes Area */
+  .note-area {
+    width: 100%;
+    min-height: 120px;
+    border: 2px dashed var(--border);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    font-family: inherit;
+    font-size: 14px;
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .note-area:focus {
+    border-color: var(--pink);
+  }
+
+  /* Business Concept Sections */
+  .concept-section {
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+  }
+
+  .concept-section h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .concept-content {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--text);
+  }
+
+  .concept-content ul {
+    padding-left: 20px;
+  }
+
+  .concept-content li {
+    margin-bottom: 6px;
+  }
+
+  .concept-highlight {
+    background: var(--gradient-soft);
+    border-left: 3px solid var(--pink);
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    margin: 12px 0;
+    font-size: 14px;
+  }
+
+  /* Empty State */
+  .empty-state {
+    text-align: center;
+    padding: 48px 24px;
+    color: var(--text-secondary);
+  }
+
+  .empty-state-icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+  }
+
+  .empty-state-text {
+    font-size: 14px;
+  }
+
+  /* Buttons */
+  .btn {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .btn-pink {
+    background: var(--gradient);
+    color: white;
+  }
+
+  .btn-pink:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--pink);
+    color: var(--pink);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .grid-2, .grid-3, .grid-1-2 {
+      grid-template-columns: 1fr;
+    }
+    .main { padding: 16px; }
+    .header { padding: 16px; }
+    .nav-tabs { padding: 12px 16px 0; }
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #D1D5DB; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--pink); }
+
+  /* Animations */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .card { animation: fadeIn 0.3s ease; }
+
+  /* Not-today list */
+  .not-today {
+    opacity: 0.5;
+    font-style: italic;
+  }
+
+  /* Kanban Board */
+  .kanban-col {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 300px;
+  }
+
+  .kanban-card {
+    background: var(--card);
+    border-radius: 10px;
+    padding: 14px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+  }
+
+  .kanban-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+  }
+
+  .kanban-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .kanban-card-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.3;
+  }
+
+  .kanban-card-sub {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+  }
+
+  .kanban-assignee {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-secondary);
+  }
+
+  .done-card {
+    opacity: 0.7;
+  }
+
+  .done-card .kanban-card-title {
+    text-decoration: line-through;
+    color: var(--text-secondary);
+  }
+
+  .tag-agents2go { background: var(--pink-light); color: var(--pink); }
+  .tag-einzel { background: var(--orange-light); color: var(--orange); }
+
+  @media (max-width: 1200px) {
+    #tab-tasks .card { min-height: 300px !important; }
+    .kanban-board {
+      display: flex !important;
+      overflow-x: auto !important;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      gap: 12px !important;
+      padding-bottom: 8px;
+    }
+    .kanban-board > .card {
+      min-width: 280px !important;
+      flex-shrink: 0;
+      scroll-snap-align: start;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .kanban-board > .card {
+      min-width: 260px !important;
+    }
+  }
+
+  .kanban-card[draggable="true"] {
+    cursor: grab;
+  }
+
+  .kanban-card[draggable="true"]:active {
+    cursor: grabbing;
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-inner">
+    <div class="logo">
+      <div class="logo-icon">🔥</div>
+      <div>
+        <div class="logo-text">Jenny Dashboard</div>
+        <div class="logo-sub">Chief Operating Officer — Denise Stadtegger</div>
+      </div>
+    </div>
+    <div class="header-date">
+      <span id="current-date">📅 Freitag, 20. März 2026</span>
+    </div>
+  </div>
+</div>
+
+<!-- NAVIGATION -->
+<div class="nav-tabs">
+  <button class="nav-tab active" onclick="showTab('overview')">🏠 Übersicht</button>
+  <button class="nav-tab" onclick="showTab('tasks')">✅ Tasks</button>
+  <button class="nav-tab" onclick="showTab('agents2go')">🚀 Agents2Go</button>
+  <button class="nav-tab" onclick="showTab('business')">🏢 Einzelunternehmen</button>
+  <button class="nav-tab" onclick="showTab('social')">📣 Social Media</button>
+  <button class="nav-tab" onclick="showTab('workflows')">⚡ Workflows</button>
+  <button class="nav-tab" onclick="showTab('notes')">📝 Notizen</button>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main">
+
+  <!-- ====== TAB: ÜBERSICHT ====== -->
+  <div id="tab-overview" class="tab-content active">
+
+    <!-- Focus Banner -->
+    <div class="focus-banner">
+      <h2>🎯 Fokus heute</h2>
+      <p id="focus-text">Setup abgeschlossen — Jenny ist einsatzbereit!</p>
+      <div class="focus-sub" id="focus-sub">Skills, Workflows und Guardrails sind konfiguriert. Bereit für den ersten Arbeitstag.</div>
+    </div>
+
+    <!-- Stats -->
+    <div class="grid-3" style="margin-bottom: 20px;">
+      <div class="card stat-card">
+        <div class="stat-number" id="stat-open">0</div>
+        <div class="stat-label">Offene Tasks</div>
+      </div>
+      <div class="card stat-card">
+        <div class="stat-number" id="stat-done">0</div>
+        <div class="stat-label">Erledigt diese Woche</div>
+      </div>
+      <div class="card stat-card">
+        <div class="stat-number" id="stat-streak">1</div>
+        <div class="stat-label">Tage aktiv</div>
+      </div>
+    </div>
+
+    <!-- Two Column -->
+    <div class="grid-2">
+      <!-- Top 3 Heute -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">🔥 Top 3 Heute</div>
+          <span class="card-badge badge-pink">Priorität</span>
+        </div>
+        <div class="task-list" id="top3-today">
+          <div class="empty-state">
+            <div class="empty-state-icon">🌟</div>
+            <div class="empty-state-text">Noch keine Tasks für heute definiert.<br>Frag Jenny nach dem Daily Planning!</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Businesses Overview -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">📊 Business-Übersicht</div>
+        </div>
+
+        <div class="business-card agents2go" style="margin-bottom: 16px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <div style="font-weight: 700; font-size: 15px;">🚀 Agents2Go</div>
+              <div style="font-size: 12px; color: var(--text-secondary);">Startup FlexCo — Digitale Mitarbeiter für KMUs</div>
+            </div>
+            <span class="card-badge badge-pink">Prio 1</span>
+          </div>
+          <div class="progress-container">
+            <div class="progress-label">
+              <span>Phase: Pre-Launch</span>
+              <span>Gründung: 1. Juli 2026</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 15%"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="business-card einzelunternehmen">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <div style="font-weight: 700; font-size: 15px;">🏢 Einzelunternehmen</div>
+              <div style="font-size: 12px; color: var(--text-secondary);">Strategische Marketingberatung mit KI</div>
+            </div>
+            <span class="card-badge badge-orange">Prio 2</span>
+          </div>
+          <div class="progress-container">
+            <div class="progress-label">
+              <span>Phase: Konzeptphase</span>
+              <span>Gründung: spätestens 1. Aug 2026</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 10%; background: var(--orange);"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="card" style="margin-top: 20px;">
+      <div class="card-header">
+        <div class="card-title">📅 Meilensteine</div>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">20. März 2026</div>
+          <div class="timeline-text">✅ Jenny Setup abgeschlossen — Skills, Workflows, Guardrails konfiguriert</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">1. Juli 2026</div>
+          <div class="timeline-text">🚀 Agents2Go Gründung</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">1. August 2026</div>
+          <div class="timeline-text">🏢 Einzelunternehmen Gründung (spätestens)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== TAB: TASKS (KANBAN) ====== -->
+  <div id="tab-tasks" class="tab-content">
+
+    <!-- Legend -->
+    <div style="display: flex; gap: 20px; margin-bottom: 16px; flex-wrap: wrap; align-items: center;">
+      <div style="display: flex; align-items: center; gap: 6px; font-size: 13px;">
+        <div style="width: 14px; height: 14px; border-radius: 4px; background: var(--pink);"></div>
+        <span><strong>Agents2Go</strong></span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 6px; font-size: 13px;">
+        <div style="width: 14px; height: 14px; border-radius: 4px; background: var(--orange);"></div>
+        <span><strong>Einzelunternehmen</strong></span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 6px; font-size: 13px;">
+        <div style="width: 14px; height: 14px; border-radius: 4px; background: var(--violet);"></div>
+        <span><strong>Jenny</strong></span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 6px; font-size: 13px;">
+        <div style="width: 14px; height: 14px; border-radius: 4px; background: var(--info);"></div>
+        <span><strong>Persönlich</strong></span>
+      </div>
+      <div style="margin-left: auto; font-size: 12px; color: var(--text-secondary);">↔️ Drag & Drop zum Verschieben</div>
+    </div>
+
+    <!-- Kanban Board -->
+    <div class="kanban-board" id="kanban-board"></div>
+  </div>
+
+  <script>
+  // ===== KANBAN DATA (source of truth) =====
+  const KANBAN_STORAGE_KEY = 'jenny-kanban-state';
+
+  const defaultKanbanData = {
+    columns: ['todo','progress','discuss','done','backlog'],
+    columnNames: {
+      todo: '🎯 To Do',
+      progress: '🔄 In Progress',
+      discuss: '💬 Zu Besprechen',
+      done: '✅ Done',
+      backlog: '📋 Backlog'
+    },
+    cards: [
+      // Agents2Go
+      {id:'a1', col:'todo', cat:'pink', tag:'Agents2Go', assignee:'👩 Alle GFs', title:'🔴 Anteilsverteilung besprechen', sub:'26/26/26/22% vs. 4x25% — SVS & Stimmrecht'},
+      {id:'a2', col:'todo', cat:'pink', tag:'Agents2Go', assignee:'👩 Alle GFs', title:'🔴 Letter of Intent schreiben', sub:'Was ist jedem wichtig? Jetzt niederschreiben!'},
+      {id:'a3', col:'todo', cat:'pink', tag:'Agents2Go', assignee:'👩 Alle GFs + Anwalt', title:'🔴 Gesellschaftsvertrag durchdenken', sub:'Austritt, Tod, Vorkaufsrecht, Bewertung'},
+      {id:'a4', col:'todo', cat:'pink', tag:'Agents2Go', assignee:'👩 Alle GFs', title:'🔴 Handelsrechtliche GF klären', sub:'Alle 4 oder einer?'},
+      {id:'a5', col:'todo', cat:'pink', tag:'Agents2Go', assignee:'👩 Denise', title:'🔴 SFG "Startklar" einreichen', sub:'Angebote sammeln, jetzt schon möglich!'},
+      {id:'a6', col:'todo', cat:'pink', tag:'Agents2Go', assignee:'👩 Denise', title:'3.000€ Förderung Stadt Graz', sub:'wirtschaft.graz.at — Sitz in Graz nötig'},
+      {id:'a7', col:'todo', cat:'pink', tag:'Agents2Go', assignee:'👩 Denise', title:'Gewerbeschein FlexCo klären', sub:'Info einholen'},
+      {id:'a8', col:'todo', cat:'pink', tag:'Agents2Go', assignee:'👩 Denise', title:'Mail an Markenrechtdame', sub:'Markenrecht klären'},
+      {id:'a9', col:'todo', cat:'pink', tag:'Agents2Go', assignee:'👩 Denise', title:'Tom fragen: Codex OpenAI', sub:'Technische Klärung'},
+      {id:'a10', col:'todo', cat:'pink', tag:'Agents2Go', assignee:'👩 Denise', title:'🔴 Domain kaufen', sub:'Sobald Name feststeht → .com + .ai sichern'},
+      {id:'a11', col:'todo', cat:'pink', tag:'LinkedIn', assignee:'👩 Denise', title:'🔴 Post 1 posten — Mo 24.03.', sub:'"Es war still..." — Bild + Text ready!'},
+      // Einzelunternehmen
+      {id:'e1', col:'todo', cat:'orange', tag:'Einzelunternehmen', assignee:'👩 Denise', title:'🔴 Mail an Mag. Hofer', sub:'Ausbildungspraxis + freies/reglementiertes Gewerbe?'},
+      {id:'e2', col:'todo', cat:'orange', tag:'Einzelunternehmen', assignee:'👩 Denise', title:'Befähigungsantrag BH', sub:'Gilt ein Leben lang'},
+      {id:'e3', col:'todo', cat:'orange', tag:'Einzelunternehmen', assignee:'👩 Denise', title:'Konzept finalisieren', sub:'Kurzkonzept überarbeiten & schärfen'},
+      {id:'e4', col:'todo', cat:'orange', tag:'Einzelunternehmen', assignee:'👩 Denise', title:'Finanzplan erstellen', sub:'Kosten, Einnahmen, Break-Even'},
+      // Persönlich
+      {id:'p1', col:'todo', cat:'info', tag:'Persönlich', assignee:'👩 Denise', title:'Stage Manager Mac ausprobieren', sub:'Mo 24.03.'},
+      // Jenny
+      {id:'j1', col:'todo', cat:'violet', tag:'Jenny', assignee:'🔥 Jenny', title:'Server-Migration finalisieren', sub:'Telegram, API-Key, Workspace auf Hetzner'},
+      {id:'j2', col:'todo', cat:'violet', tag:'Jenny', assignee:'🔥 Jenny', title:'KMU.DIGITAL nachfragen', sub:'A2G-Workshops als geförderte Beratung?'},
+      // In Progress
+      {id:'j3', col:'progress', cat:'violet', tag:'Jenny', assignee:'🔥 Jenny', title:'Whisper einrichten', sub:'Sprachnachrichten transkribieren'},
+      {id:'j4', col:'progress', cat:'violet', tag:'Jenny', assignee:'🔥 Jenny', title:'Dashboard weiterentwickeln', sub:'Kanban, Features, Design'},
+      // Done
+      {id:'d1', col:'done', cat:'violet', tag:'Jenny', title:'Jenny Setup komplett'},
+      {id:'d2', col:'done', cat:'violet', tag:'Jenny', title:'Telegram verbinden'},
+      {id:'d3', col:'done', cat:'violet', tag:'Jenny', title:'E-Mail einrichten (SMTP + IMAP)'},
+      {id:'d4', col:'done', cat:'violet', tag:'Jenny', title:'Dashboard gebaut & online'},
+      {id:'d5', col:'done', cat:'violet', tag:'Jenny', title:'Messeplan erstellt & per Mail geschickt'},
+      {id:'d6', col:'done', cat:'violet', tag:'Jenny', title:'Hetzner Server aufgesetzt'},
+      {id:'d7', col:'done', cat:'violet', tag:'Jenny', title:'GitHub Pages Deployment'},
+      {id:'d8', col:'done', cat:'violet', tag:'Jenny', title:'Mail an Thomas (Vorstellung)'},
+      {id:'d9', col:'done', cat:'violet', tag:'Jenny', title:'Gründermesse-Protokoll erstellt'},
+      {id:'d10', col:'done', cat:'violet', tag:'Jenny', title:'Kanban-Board gebaut'},
+    ]
+  };
+
+  function loadKanban() {
+    try {
+      const saved = localStorage.getItem(KANBAN_STORAGE_KEY);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        // Merge: keep user column assignments but add any new cards from default
+        const savedIds = new Set(parsed.cards.map(c => c.id));
+        defaultKanbanData.cards.forEach(dc => {
+          if (!savedIds.has(dc.id)) parsed.cards.push(dc);
+        });
+        parsed.columns = defaultKanbanData.columns;
+        parsed.columnNames = defaultKanbanData.columnNames;
+        return parsed;
+      }
+    } catch(e) {}
+    return JSON.parse(JSON.stringify(defaultKanbanData));
+  }
+
+  function saveKanban(data) {
+    localStorage.setItem(KANBAN_STORAGE_KEY, JSON.stringify(data));
+  }
+
+  function getCatColor(cat) {
+    const colors = {pink:'var(--pink)',orange:'var(--orange)',violet:'var(--violet)',info:'var(--info)'};
+    return colors[cat] || 'var(--text-secondary)';
+  }
+
+  function getCatTagClass(cat) {
+    if (cat === 'pink') return 'tag-agents2go';
+    if (cat === 'orange') return 'tag-einzel';
+    return '';
+  }
+
+  function getCatTagStyle(cat) {
+    if (cat === 'violet') return 'background:var(--violet-light);color:var(--violet)';
+    if (cat === 'info') return 'background:var(--info-light);color:var(--info)';
+    return '';
+  }
+
+  function renderKanban() {
+    const data = loadKanban();
+    const board = document.getElementById('kanban-board');
+    board.innerHTML = '';
+    board.style.cssText = 'display:grid;grid-template-columns:repeat('+data.columns.length+',1fr);gap:16px;';
+
+    data.columns.forEach(colId => {
+      const colCards = data.cards.filter(c => c.col === colId);
+      const isDone = colId === 'done';
+      const isBacklog = colId === 'backlog';
+      const isDiscuss = colId === 'discuss';
+
+      const col = document.createElement('div');
+      col.className = 'card';
+      col.style.minHeight = '400px';
+      col.dataset.col = colId; // Make entire column a drop target
+      if (isDone) col.style.opacity = '0.75';
+      if (isBacklog) { col.style.background = 'var(--bg)'; col.style.border = '2px dashed var(--border)'; }
+      if (isDiscuss) { col.style.borderTop = '3px solid var(--warning)'; }
+
+      const badgeClass = colId === 'todo' ? 'badge-pink' : colId === 'progress' ? 'badge-orange' : colId === 'discuss' ? 'badge-warning' : colId === 'done' ? 'badge-success' : '';
+      const badgeStyle = isBacklog ? 'background:#f0f0f0;color:#888' : '';
+
+      col.setAttribute('ondragover', 'kanbanDragOver(event)');
+      col.setAttribute('ondrop', 'kanbanDrop(event)');
+      col.innerHTML = '<div class="card-header"><div class="card-title">'+data.columnNames[colId]+'</div><span class="card-badge '+badgeClass+'" style="'+badgeStyle+'">'+colCards.length+'</span></div>';
+
+      const dropZone = document.createElement('div');
+      dropZone.className = 'kanban-col';
+      dropZone.id = 'kanban-' + colId;
+      dropZone.dataset.col = colId;
+      dropZone.style.minHeight = '80px';
+      dropZone.style.flexGrow = '1';
+
+      colCards.forEach(card => {
+        const tagClass = getCatTagClass(card.cat);
+        const tagStyle = getCatTagStyle(card.cat);
+        const tagAttr = tagClass ? 'class="task-tag '+tagClass+'"' : 'class="task-tag" style="'+tagStyle+'"';
+
+        let cardHTML = '<div class="kanban-card' + (isDone ? ' done-card' : '') + '" draggable="true" data-card-id="'+card.id+'" ondragstart="kanbanDragStart(event)" style="border-left:4px solid '+getCatColor(card.cat)+'">';
+        cardHTML += '<div class="kanban-card-header"><span '+tagAttr+'>'+card.tag+'</span>';
+        if (card.assignee && !isDone) cardHTML += '<span class="kanban-assignee">'+card.assignee+'</span>';
+        cardHTML += '</div><div class="kanban-card-title">'+card.title+'</div>';
+        if (card.sub && !isDone) cardHTML += '<div class="kanban-card-sub">'+card.sub+'</div>';
+        cardHTML += '</div>';
+
+        dropZone.insertAdjacentHTML('beforeend', cardHTML);
+      });
+
+      if (colCards.length === 0) {
+        dropZone.innerHTML = '<div style="text-align:center;padding:32px 12px;color:var(--text-secondary);font-size:13px;">Karten hierher ziehen</div>';
+      }
+
+      col.appendChild(dropZone);
+      board.appendChild(col);
+    });
+  }
+
+  var dragCardId = null;
+
+  function kanbanDragStart(e) {
+    var el = e.target;
+    while (el && !el.dataset.cardId) el = el.parentElement;
+    if (!el) return;
+    dragCardId = el.dataset.cardId;
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/plain', dragCardId);
+    setTimeout(function() { el.style.opacity = '0.4'; }, 0);
+  }
+
+  function kanbanDragOver(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    return false;
+  }
+
+  function kanbanDrop(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    // Find the column
+    var el = e.target;
+    var targetCol = null;
+    while (el) {
+      if (el.dataset && el.dataset.col) { targetCol = el.dataset.col; break; }
+      el = el.parentElement;
+    }
+    var cid = e.dataTransfer.getData('text/plain') || dragCardId;
+    if (cid && targetCol) {
+      var d = loadKanban();
+      for (var i = 0; i < d.cards.length; i++) {
+        if (d.cards[i].id === cid) {
+          d.cards[i].col = targetCol;
+          saveKanban(d);
+          renderKanban();
+          break;
+        }
+      }
+    }
+    dragCardId = null;
+  }
+
+  // Clean up opacity on dragend
+  document.addEventListener('dragend', function() {
+    document.querySelectorAll('.kanban-card').forEach(function(c) { c.style.opacity = '1'; });
+    dragCardId = null;
+  });
+
+  function resetKanban() { localStorage.removeItem(KANBAN_STORAGE_KEY); renderKanban(); }
+
+  document.addEventListener('DOMContentLoaded', function() { renderKanban(); });
+
+  window.renderKanban = renderKanban;
+  window.resetKanban = resetKanban;
+  </script>
+
+  <!-- ====== TAB: AGENTS2GO ====== -->
+  <div id="tab-agents2go" class="tab-content">
+    <div class="focus-banner">
+      <h2>🚀 Agents2Go</h2>
+      <p>Digitale Mitarbeiter für KMUs</p>
+      <div class="focus-sub">Startup FlexCo — Co-Founder: Manuel (CFO), Thomas (CTO), Denise (CMO)</div>
+    </div>
+
+    <div class="grid-3" style="margin-bottom: 20px;">
+      <div class="card stat-card">
+        <div class="stat-number">6</div>
+        <div class="stat-label">Digitale Mitarbeiter</div>
+      </div>
+      <div class="card stat-card">
+        <div class="stat-number">~60</div>
+        <div class="stat-label">Skills in Bibliothek</div>
+      </div>
+      <div class="card stat-card">
+        <div class="stat-number">1. Juli</div>
+        <div class="stat-label">Gründungsdatum</div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">💰 Revenue Streams</div>
+        </div>
+        <div class="task-list">
+          <div class="task-item">
+            <div class="task-text"><strong>Workshop:</strong> 2.000 € (nach Förderung ~1.000 €)</div>
+          </div>
+          <div class="task-item">
+            <div class="task-text"><strong>Setup:</strong> 7.500 € einmalig pro Mitarbeiter</div>
+          </div>
+          <div class="task-item">
+            <div class="task-text"><strong>Monatlich:</strong> 1.800 €/Monat laufend</div>
+          </div>
+          <div class="task-item">
+            <div class="task-text"><strong>Skills:</strong> 300 € pro zusätzlichem Skill</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">👥 Team</div>
+        </div>
+        <div class="task-list">
+          <div class="task-item">
+            <div style="width: 36px; height: 36px; border-radius: 10px; background: var(--pink-light); display: flex; align-items: center; justify-content: center;">👩</div>
+            <div>
+              <div class="task-text">Denise Stadtegger</div>
+              <div style="font-size: 12px; color: var(--text-secondary);">CMO — Wachstum & Marktstrategie</div>
+            </div>
+          </div>
+          <div class="task-item">
+            <div style="width: 36px; height: 36px; border-radius: 10px; background: var(--orange-light); display: flex; align-items: center; justify-content: center;">👨</div>
+            <div>
+              <div class="task-text">Manuel Feier</div>
+              <div style="font-size: 12px; color: var(--text-secondary);">CFO — Produkt & Umsetzung</div>
+            </div>
+          </div>
+          <div class="task-item">
+            <div style="width: 36px; height: 36px; border-radius: 10px; background: var(--info-light); display: flex; align-items: center; justify-content: center;">👨</div>
+            <div>
+              <div class="task-text">Thomas Kriebernig</div>
+              <div style="font-size: 12px; color: var(--text-secondary);">CTO — Technologie</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Personal Tasks for A2G -->
+    <div class="card" style="margin-top: 20px;">
+      <div class="card-header">
+        <div class="card-title">📋 Meine Agents2Go Tasks</div>
+        <span class="card-badge badge-pink">Persönlich</span>
+      </div>
+      <div class="task-list" id="tasks-a2g-personal">
+        <div class="empty-state">
+          <div class="empty-state-icon">📋</div>
+          <div class="empty-state-text">Noch keine persönlichen Tasks. Was steht bei dir an?</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== TAB: EINZELUNTERNEHMEN / BUSINESS CONCEPT ====== -->
+  <div id="tab-business" class="tab-content">
+    <div class="focus-banner" style="background: linear-gradient(135deg, #F5A623, #E6007E);">
+      <h2>🏢 Einzelunternehmen</h2>
+      <p>Strategische Marketingberatung mit KI-Einsatz</p>
+      <div class="focus-sub">Hier erarbeiten wir gemeinsam dein komplettes Businesskonzept.</div>
+    </div>
+
+    <div class="grid-3" style="margin-bottom: 20px;">
+      <div class="card stat-card">
+        <div class="stat-number">Aug '26</div>
+        <div class="stat-label">Gründung spätestens</div>
+      </div>
+      <div class="card stat-card">
+        <div class="stat-number">~350€</div>
+        <div class="stat-label">Monatl. Fixkosten</div>
+      </div>
+      <div class="card stat-card">
+        <div class="stat-number">3</div>
+        <div class="stat-label">Phasen-Modell</div>
+      </div>
+    </div>
+
+    <!-- Concept Sections -->
+    <div class="concept-section">
+      <h3>🎯 Angebot & Positionierung</h3>
+      <div class="concept-content">
+        <div class="concept-highlight">
+          Strategische Marketingberatung mit integriertem KI-Einsatz — Marketing neu ausrichten, Strukturen schaffen, Umsetzungskraft verankern.
+        </div>
+        <p><strong>3-Phasen-Modell:</strong></p>
+        <ul>
+          <li><strong>Workshops:</strong> Analyse, Potenziale, strategische Ausrichtung</li>
+          <li><strong>Roadmap:</strong> Maßnahmen, Priorisierung, Umsetzungsplanung</li>
+          <li><strong>Begleitung:</strong> Umsetzung, Sparring, nachhaltige Verankerung</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="concept-section">
+      <h3>👥 Zielgruppe</h3>
+      <div class="concept-content">
+        <ul>
+          <li>Mittelständische und größere Unternehmen in Transformationsphase</li>
+          <li>Geschäftsführungen, C-Level, Marketing-Leitung</li>
+          <li>Unternehmen mit etabliertem Marketing, das weiterentwickelt werden soll</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="concept-section">
+      <h3>💎 Differenzierung</h3>
+      <div class="concept-content">
+        <div class="concept-highlight">
+          Senior-Level Strategieberatung + fundiertes KI-Verständnis + konsequenter Umsetzungsfokus = einzigartige Kombination am Markt.
+        </div>
+        <ul>
+          <li>Kein Tool-Aktionismus, sondern systematische KI-Integration</li>
+          <li>Teams aktiv in Veränderungsprozess einbezogen</li>
+          <li>Internationale CMO-Erfahrung (50+ Länder)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="concept-section">
+      <h3>📢 Go-to-Market</h3>
+      <div class="concept-content">
+        <ul>
+          <li>Bestehendes Netzwerk aktivieren</li>
+          <li>LinkedIn als Hauptplattform</li>
+          <li>Vorträge, Workshops, Events</li>
+          <li>Gezielte Direktansprache</li>
+          <li>Langfristig: strategische Partnerschaften</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="concept-section">
+      <h3>💰 Finanzen</h3>
+      <div class="concept-content">
+        <ul>
+          <li><strong>Monatliche Fixkosten:</strong> ca. 300–400 €</li>
+          <li>Software/KI-Tools: ~200 €</li>
+          <li>Steuerberatung: ~100–150 €</li>
+          <li>Website/Tools: ~20–50 €</li>
+        </ul>
+        <div class="concept-highlight">
+          Finanzierung: Rücklagen + erste Umsätze. Geringe Fixkosten = niedriges Risiko.
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-section">
+      <h3>⚖️ Rechtliches</h3>
+      <div class="concept-content">
+        <ul>
+          <li><strong>Rechtsform:</strong> Einzelunternehmen (Österreich)</li>
+          <li><strong>Gewerbe:</strong> Freies Gewerbe — Unternehmensberatung</li>
+          <li><strong>Standort:</strong> Homeoffice, digitale Leistungserbringung</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top: 20px;">
+      <div class="card-header">
+        <div class="card-title">📝 Konzept-Notizen</div>
+        <span class="card-badge badge-orange">Work in Progress</span>
+      </div>
+      <textarea class="note-area" placeholder="Hier können wir gemeinsam am Konzept arbeiten. Ideen, Änderungen, offene Fragen..."></textarea>
+    </div>
+  </div>
+
+  <!-- ====== TAB: SOCIAL MEDIA ====== -->
+  <div id="tab-social" class="tab-content">
+    <div class="focus-banner">
+      <h2>📣 LinkedIn Comeback — "Das Comeback"</h2>
+      <p>Von der Stille zur Nominierung. Von der Nominierung zur Gründung.</p>
+      <div class="focus-sub">Storyline aktiv — Post 1 diese Woche!</div>
+    </div>
+
+    <!-- STORYLINE -->
+    <div class="card" style="margin-bottom: 20px;">
+      <div class="card-header">
+        <div class="card-title">🎬 Storyline — 4 Akte</div>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date" style="color: var(--pink); font-weight: 700;">AKT 1 — "Ich bin zurück" (März–April)</div>
+          <div class="timeline-text">Neugier wecken → Nominierung verkünden → Auskosten</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date" style="color: var(--orange); font-weight: 700;">AKT 2 — "Neue Perspektiven" (April–Mai)</div>
+          <div class="timeline-text">KI-Expertise zeigen, Branchenkommentare, kryptische Hints</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date" style="color: var(--violet); font-weight: 700;">AKT 3 — "Something is coming" (Mai–Juni)</div>
+          <div class="timeline-text">Unternehmerische Themen, Cannes, Spannung aufbauen</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date" style="color: var(--success); font-weight: 700;">AKT 4 — "The Big Reveal" (Gründungsprogramm)</div>
+          <div class="timeline-text">"Ich gründe." — wenn die Bühne steht</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4-WOCHEN CONTENT PLAN -->
+    <div class="card" style="margin-bottom: 20px;">
+      <div class="card-header">
+        <div class="card-title">📅 Content-Plan — Nächste 4 Wochen</div>
+        <span class="card-badge badge-pink">Akt 1</span>
+      </div>
+      <table class="content-plan">
+        <thead>
+          <tr>
+            <th>Datum</th>
+            <th>Post</th>
+            <th>Ziel</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight: 700; color: var(--pink);">Mo 24.03.</td>
+            <td><strong>Post 1:</strong> "Es war still — aber alles hat sich verändert"</td>
+            <td>Neugier, Comeback</td>
+            <td><span class="card-badge badge-success">✅ Ready</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700;">Do 27.03.</td>
+            <td><strong>Post 2:</strong> CMO-Nominierung verkünden</td>
+            <td>Credibility-Explosion</td>
+            <td><span class="card-badge badge-success">✅ Ready</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700;">Mo 31.03.</td>
+            <td><strong>Post 3:</strong> "Was ich in der Stille gelernt habe"</td>
+            <td>Transformation, Learnings</td>
+            <td><span class="card-badge" style="background: #f0f0f0; color: #888;">Geplant</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700;">Do 03.04.</td>
+            <td><strong>Post 4:</strong> KI im Marketing — erster Expertise-Post</td>
+            <td>Positionierung</td>
+            <td><span class="card-badge" style="background: #f0f0f0; color: #888;">Geplant</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700;">Mo 07.04.</td>
+            <td><strong>Post 5:</strong> KI-Trend-Kommentar mit Meinung</td>
+            <td>Thought Leadership</td>
+            <td><span class="card-badge" style="background: #f0f0f0; color: #888;">Geplant</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700; color: var(--pink);">Mi 09.04.</td>
+            <td><strong>Post 6:</strong> "Was die Nominierung für mich bedeutet" ⭐</td>
+            <td>Vor Top-30! Auskosten</td>
+            <td><span class="card-badge" style="background: #f0f0f0; color: #888;">Geplant</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700;">Mo 14.04.</td>
+            <td><strong>Post 7:</strong> "Cannes, ich komme" — Vorfreude</td>
+            <td>Momentum</td>
+            <td><span class="card-badge" style="background: #f0f0f0; color: #888;">Geplant</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700;">Do 17.04.</td>
+            <td><strong>Post 8:</strong> Kryptischer Hint — "Ich arbeite an etwas..."</td>
+            <td>Teaser, Spannung</td>
+            <td><span class="card-badge" style="background: #f0f0f0; color: #888;">Geplant</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- FERTIGER POST -->
+    <div class="card" style="margin-bottom: 20px;">
+      <div class="card-header">
+        <div class="card-title">✍️ Post 1 — READY</div>
+        <span class="card-badge badge-pink">23. März</span>
+      </div>
+      <div style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
+      <img src="post1-image.jpg" style="width: 120px; height: 150px; object-fit: cover; border-radius: 10px; flex-shrink: 0;" alt="Post 1 Bild">
+      <div style="flex: 1; min-width: 200px; background: var(--bg); border-radius: var(--radius-sm); padding: 20px; font-size: 14px; line-height: 1.9; white-space: pre-line;">Es war still hier.
+
+Lange still.
+
+Aber hinter der Stille ist viel passiert.
+
+Ich habe an mir gearbeitet. Viele Fragen gestellt.
+Mir selbst. Dem Markt. Den Menschen um mich herum.
+
+Und dann hat sich eins ins andere gefügt.
+
+Die richtigen Menschen. Der richtige Moment.
+Eine Idee, die zur nächsten geführt hat.
+Bis ich wusste: Das ist mein Weg.
+
+Ich werde mich dem Thema Marketing & KI widmen.
+Nicht als Beobachterin. Nicht als Theoretikerin.
+Sondern richtig.
+
+Wie genau — und mit wem?
+Das erzähle ich euch, wenn der richtige Zeitpunkt gekommen ist. 😊
+
+#comeback #marketing #ki #neuanfang #nächsteskapitel</div>
+      </div>
+    </div>
+
+    <!-- FERTIGER POST 2 -->
+    <div class="card" style="margin-bottom: 20px;">
+      <div class="card-header">
+        <div class="card-title">✍️ Post 2 — READY</div>
+        <span class="card-badge badge-pink">27. März</span>
+      </div>
+      <div style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
+      <img src="post2-image.jpg" style="width: 120px; height: 150px; object-fit: cover; border-radius: 10px; flex-shrink: 0;" alt="Post 2 Bild">
+      <div style="flex: 1; min-width: 200px; background: var(--bg); border-radius: var(--radius-sm); padding: 20px; font-size: 14px; line-height: 1.9; white-space: pre-line;">Manchmal passieren Dinge, mit denen man nicht rechnet.
+
+Rund um den Jahreswechsel war ich an einem Punkt, an dem ich alles in Frage gestellt habe.
+Meine Karriere. Meine Richtung. Mich selbst.
+
+Dann habe ich angefangen.
+Weiterbildungen. Neue Themen. Neue Perspektiven.
+Ich habe die richtigen Menschen getroffen.
+Und plötzlich war da wieder Klarheit. Fokus. Energie.
+
+Letzte Woche kam eine E-Mail von Yvonne Wicht,
+Chairwoman des CMO of the Year Council.
+
+Ich bin nominiert.
+European CMO of the Year 2026.
+Die Verleihung ist im Juni. In Cannes.
+
+Ich bin ehrlich — ich kann es noch nicht ganz fassen.
+
+Aber ich weiß eins:
+Das ist erst der Anfang von dem, was kommt.
+
+Stay tuned. 😊
+
+#ECMO26 #CMOoftheYear #Cannes2026 #Comeback #Marketing #KI #Transformation</div>
+      </div>
+    </div>
+
+    <!-- STIL-GUIDE -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">🎨 Denises LinkedIn-Stil</div>
+      </div>
+      <div style="font-size: 13px; color: var(--text-secondary); line-height: 1.8;">
+        <strong>Struktur:</strong> Kurze Sätze, viel Weißraum, kein Fließtext<br>
+        <strong>Ton:</strong> Persönlich, verletzlich aber stark, selbstbewusst nicht arrogant<br>
+        <strong>Stilmittel:</strong> Rhetorische Fragen, Gegensätze, Wiederholungen, Power-Closings<br>
+        <strong>Emojis:</strong> Sparsam und gezielt<br>
+        <strong>Hashtags:</strong> 5-8 am Ende<br>
+        <strong>Sprache:</strong> Deutsch (neuere Posts), gelegentlich Englisch
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== TAB: WORKFLOWS ====== -->
+  <div id="tab-workflows" class="tab-content">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">⚡ Aktive Workflows</div>
+      </div>
+
+      <div class="workflow-item">
+        <div class="workflow-icon pink">🌤</div>
+        <div class="workflow-info">
+          <div class="workflow-name">Daily Morning Routine</div>
+          <div class="workflow-desc">Tagesstart mit Brief, Terminen, News und Fokus</div>
+        </div>
+        <span class="workflow-status badge-success">Täglich</span>
+      </div>
+
+      <div class="workflow-item">
+        <div class="workflow-icon orange">🔥</div>
+        <div class="workflow-info">
+          <div class="workflow-name">Daily Planning</div>
+          <div class="workflow-desc">Realistischer Tagesplan, max. 3 Hauptaufgaben</div>
+        </div>
+        <span class="workflow-status badge-success">Täglich</span>
+      </div>
+
+      <div class="workflow-item">
+        <div class="workflow-icon pink">🎯</div>
+        <div class="workflow-info">
+          <div class="workflow-name">Task Execution Support</div>
+          <div class="workflow-desc">Aufgaben in Schritte zerlegen, Blocker identifizieren</div>
+        </div>
+        <span class="workflow-status badge-info">Bei Bedarf</span>
+      </div>
+
+      <div class="workflow-item">
+        <div class="workflow-icon orange">⚠️</div>
+        <div class="workflow-info">
+          <div class="workflow-name">Focus Correction</div>
+          <div class="workflow-desc">Eingreifen bei Verzettelung oder Überladung</div>
+        </div>
+        <span class="workflow-status badge-warning">Automatisch</span>
+      </div>
+
+      <div class="workflow-item">
+        <div class="workflow-icon pink">🏗</div>
+        <div class="workflow-info">
+          <div class="workflow-name">Business Builder Mode</div>
+          <div class="workflow-desc">Strukturierter Aufbau des Einzelunternehmens</div>
+        </div>
+        <span class="workflow-status badge-info">Bei Bedarf</span>
+      </div>
+
+      <div class="workflow-item">
+        <div class="workflow-icon orange">📅</div>
+        <div class="workflow-info">
+          <div class="workflow-name">Social Media System</div>
+          <div class="workflow-desc">Wochenplan erstellen, Content planen</div>
+        </div>
+        <span class="workflow-status badge-pink">Wöchentlich</span>
+      </div>
+
+      <div class="workflow-item">
+        <div class="workflow-icon pink">✍️</div>
+        <div class="workflow-info">
+          <div class="workflow-name">Social Media Content Mode</div>
+          <div class="workflow-desc">Fertige Posts + Image Prompts erstellen</div>
+        </div>
+        <span class="workflow-status badge-info">Bei Bedarf</span>
+      </div>
+
+      <div class="workflow-item">
+        <div class="workflow-icon orange">🔄</div>
+        <div class="workflow-info">
+          <div class="workflow-name">Weekly Reset & Planning</div>
+          <div class="workflow-desc">Woche reflektieren, nächste planen</div>
+        </div>
+        <span class="workflow-status badge-orange">Wöchentlich</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== TAB: NOTIZEN ====== -->
+  <div id="tab-notes" class="tab-content">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">📝 Schnelle Notizen</div>
+      </div>
+      <textarea class="note-area" style="min-height: 200px;" placeholder="Schreib hier alles rein, was dir gerade durch den Kopf geht. Jenny sortiert es für dich."></textarea>
+    </div>
+
+    <div class="card" style="margin-top: 20px;">
+      <div class="card-header">
+        <div class="card-title">💡 Ideen-Parkplatz</div>
+        <span class="card-badge badge-orange">Sammeln</span>
+      </div>
+      <textarea class="note-area" placeholder="Ideen die noch nicht dran sind, aber nicht verloren gehen sollen..."></textarea>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Tab Navigation
+  function showTab(tabName) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('tab-' + tabName).classList.add('active');
+    event.target.classList.add('active');
+    if (tabName === 'tasks') renderKanban();
+  }
+
+  // Task Toggle
+  document.querySelectorAll('.task-check').forEach(check => {
+    check.addEventListener('click', function() {
+      this.classList.toggle('checked');
+      this.closest('.task-item').classList.toggle('done');
+    });
+  });
+
+  // Date Update
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  const today = new Date().toLocaleDateString('de-AT', options);
+  document.getElementById('current-date').textContent = '📅 ' + today;
+</script>
+
+</body>
+</html>
