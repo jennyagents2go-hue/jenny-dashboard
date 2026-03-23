@@ -1108,7 +1108,20 @@
   function resetKanban() { localStorage.removeItem(KANBAN_STORAGE_KEY); renderKanban(); }
 
   // Init on tab show
-  document.addEventListener('DOMContentLoaded', () => { renderKanban(); });
+  document.addEventListener('DOMContentLoaded', () => { 
+    renderKanban();
+    // Re-render when tab becomes visible
+    const observer = new MutationObserver(() => {
+      const tasksTab = document.getElementById('tab-tasks');
+      if (tasksTab && tasksTab.classList.contains('active')) renderKanban();
+    });
+    const tabContents = document.querySelectorAll('.tab-content');
+    tabContents.forEach(tc => observer.observe(tc, {attributes: true, attributeFilter: ['class']}));
+  });
+
+  // Make renderKanban global
+  window.renderKanban = renderKanban;
+  window.resetKanban = resetKanban;
   </script>
 
   <!-- ====== TAB: AGENTS2GO ====== -->
