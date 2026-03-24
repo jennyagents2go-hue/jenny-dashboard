@@ -165,7 +165,7 @@ body { font-family:'Inter',-apple-system,sans-serif; background:var(--bg); color
 <!-- SIDEBAR -->
 <div class="sidebar">
   <div class="sidebar-logo">
-    <div class="sidebar-logo-icon">🔥</div>
+    <img src="jenny-avatar.jpg" style="width:48px;height:48px;border-radius:12px;object-fit:cover;margin-bottom:6px" alt="Jenny">
     <div class="sidebar-logo-text">Jenny Dashboard</div>
     <div class="sidebar-logo-sub">COO — Denise Stadtegger</div>
   </div>
@@ -197,9 +197,9 @@ body { font-family:'Inter',-apple-system,sans-serif; background:var(--bg); color
     <div class="focus-sub">Post 1 ✅ Live · Post 2 ✅ Ready (Mi 26.03.) · Post 3 ✅ Ready (Fr 28.03.)</div>
   </div>
   <div class="grid-3" style="margin-bottom:16px">
-    <div class="card stat-card"><div class="stat-number" id="stat-open">0</div><div class="stat-label">Offene Tasks</div></div>
+    <div class="card stat-card" style="cursor:pointer" onclick="showTab('tasks',document.querySelectorAll('.nav-item')[1])"><div class="stat-number" id="stat-open">0</div><div class="stat-label">Offene Tasks →</div></div>
     <div class="card stat-card"><div class="stat-number" id="stat-done">0</div><div class="stat-label">Erledigt</div></div>
-    <div class="card stat-card"><div class="stat-number">3/10</div><div class="stat-label">Posts ready</div></div>
+    <div class="card stat-card" style="cursor:pointer" onclick="showTab('social',document.querySelectorAll('.nav-item')[2])"><div class="stat-number">3/10</div><div class="stat-label">Posts ready →</div></div>
   </div>
   <div class="grid-2">
     <div class="card">
@@ -224,6 +224,18 @@ body { font-family:'Inter',-apple-system,sans-serif; background:var(--bg); color
       </div>
     </div>
   </div>
+  <!-- LinkedIn Sneak Peak -->
+  <div class="card" style="cursor:pointer" onclick="showTab('social',document.querySelectorAll('.nav-item')[2])">
+    <div class="card-header"><div class="card-title">📊 LinkedIn Fortschritt</div><span class="card-badge badge-pink">Akt 1</span></div>
+    <div class="grid-4">
+      <div style="text-align:center"><div style="font-size:24px;font-weight:800;color:var(--success)">1</div><div style="font-size:11px;color:var(--text-sec)">Live</div></div>
+      <div style="text-align:center"><div style="font-size:24px;font-weight:800;color:var(--pink)">2</div><div style="font-size:11px;color:var(--text-sec)">Ready</div></div>
+      <div style="text-align:center"><div style="font-size:24px;font-weight:800;color:#888">7</div><div style="font-size:11px;color:var(--text-sec)">Geplant</div></div>
+      <div style="text-align:center"><div style="font-size:24px;font-weight:800;color:var(--text-sec)">—</div><div style="font-size:11px;color:var(--text-sec)">Reach Rate</div></div>
+    </div>
+    <div style="font-size:11px;color:var(--text-sec);margin-top:10px;text-align:center">Klicken für Details →</div>
+  </div>
+
   <div class="card">
     <div class="card-header"><div class="card-title">📅 Meilensteine</div></div>
     <div class="timeline">
@@ -245,6 +257,19 @@ body { font-family:'Inter',-apple-system,sans-serif; background:var(--bg); color
     <div style="margin-left:auto;color:var(--text-sec)">↔️ Drag & Drop</div>
   </div>
   <div class="kanban-board" id="kanban-board"></div>
+  <!-- Backlog (collapsible) -->
+  <div class="card" style="margin-top:12px">
+    <div style="cursor:pointer;font-weight:700;font-size:14px" id="backlog-toggle" onclick="toggleBacklog()">📋 Backlog ▶</div>
+    <div id="backlog-content" style="display:none;margin-top:12px">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+        <div class="kanban-card" style="border-left:4px solid var(--pink)"><div class="kanban-card-title">Gewerbeschein FlexCo klären</div><div class="kanban-card-sub">Info einholen</div></div>
+        <div class="kanban-card" style="border-left:4px solid var(--pink)"><div class="kanban-card-title">KMU.DIGITAL nachfragen</div><div class="kanban-card-sub">A2G-Workshops als geförderte Beratung?</div></div>
+        <div class="kanban-card" style="border-left:4px solid var(--orange)"><div class="kanban-card-title">Befähigungsantrag BH</div><div class="kanban-card-sub">Gilt ein Leben lang</div></div>
+        <div class="kanban-card" style="border-left:4px solid var(--orange)"><div class="kanban-card-title">Website erstellen</div><div class="kanban-card-sub">Marketingmaterialien</div></div>
+        <div class="kanban-card" style="border-left:4px solid var(--violet)"><div class="kanban-card-title">GitHub Credentials fixen</div><div class="kanban-card-sub">Dashboard auto-deploy</div></div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- ====== SOCIAL MEDIA ====== -->
@@ -312,6 +337,20 @@ body { font-family:'Inter',-apple-system,sans-serif; background:var(--bg); color
         <div style="font-size:11px;color:var(--text-sec);margin-top:4px">(Interaktionen ÷ Impressionen) × 100</div>
       </div>
     </div>
+    <!-- Post-by-Post tracking -->
+    <div style="margin-top:16px;margin-bottom:16px">
+      <div style="font-weight:600;font-size:13px;margin-bottom:8px">📈 Post-Performance</div>
+      <table class="content-plan" style="font-size:12px">
+        <thead><tr><th>Post</th><th>Impressionen</th><th>Likes</th><th>Comments</th><th>Shares</th><th>Reach Rate</th><th>Eng. Rate</th><th>Bewertung</th></tr></thead>
+        <tbody>
+          <tr><td style="font-weight:600">Post 1 (24.03.)</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span style="font-size:11px;color:var(--text-sec)">Daten ausstehend</span></td></tr>
+        </tbody>
+      </table>
+      <div style="font-size:11px;color:var(--text-sec);margin-top:8px">💡 Denise schickt Jenny die Zahlen → Jenny berechnet + interpretiert automatisch</div>
+    </div>
+    <!-- Interpretation -->
+    <div style="font-weight:600;font-size:13px;margin-bottom:8px">🧠 Interpretation</div>
+    </div>
     <div class="interpretation-grid">
       <div class="interp-cell interp-good">✅ <strong>Hohe Reichweite + Hohes Engagement</strong><br>Alles richtig! Content relevant.</div>
       <div class="interp-cell interp-warn">⚠️ <strong>Hohe Reichweite + Niedriges Engagement</strong><br>Zielgruppe prüfen, Content anpassen.</div>
@@ -331,15 +370,28 @@ body { font-family:'Inter',-apple-system,sans-serif; background:var(--bg); color
     </div>
   </div>
 
-  <!-- CONTENT PLAN TABLE -->
+  <!-- CONTENT PLAN with expandable posts -->
   <div class="card">
-    <div class="card-header"><div class="card-title">📋 Content-Plan Detail</div></div>
+    <div class="card-header"><div class="card-title">📋 Content-Plan</div><div style="font-size:11px;color:var(--text-sec)">Klick auf einen Post für Details</div></div>
     <table class="content-plan">
       <thead><tr><th>Datum</th><th>Post</th><th>Typ</th><th>Status</th></tr></thead>
       <tbody>
-        <tr><td style="font-weight:700;color:var(--pink)">Mo 24.03.</td><td><strong>Post 1:</strong> Comeback</td><td>Personal</td><td><span class="card-badge badge-success">✅ Live</span></td></tr>
-        <tr><td style="font-weight:700;color:var(--pink)">Mi 26.03.</td><td><strong>Post 2:</strong> CMO-Nominierung</td><td>CMO</td><td><span class="card-badge badge-success">✅ Ready</span></td></tr>
-        <tr><td style="font-weight:700">Fr 28.03.</td><td><strong>Post 3:</strong> Mein Weg als CMO 🎬</td><td>CMO</td><td><span class="card-badge badge-success">✅ Ready</span></td></tr>
+        <tr style="cursor:pointer" onclick="togglePost('p1')"><td style="font-weight:700;color:var(--pink)">Mo 24.03.</td><td><strong>Post 1:</strong> Comeback</td><td>Personal</td><td><span class="card-badge badge-success">✅ Live</span></td></tr>
+        <tr id="p1" style="display:none"><td colspan="4"><div style="display:flex;gap:14px;padding:10px;align-items:flex-start"><img src="post1-image.jpg" style="width:80px;height:100px;object-fit:cover;border-radius:8px" alt=""><div class="post-preview" style="flex:1;font-size:12px">Es war still hier. Lange still. Aber hinter der Stille ist viel passiert...
+
+#comeback #marketing #ki #neuanfang #nächsteskapitel</div></div></td></tr>
+        <tr style="cursor:pointer" onclick="togglePost('p2')"><td style="font-weight:700;color:var(--pink)">Mi 26.03.</td><td><strong>Post 2:</strong> CMO-Nominierung</td><td>CMO</td><td><span class="card-badge badge-success">✅ Ready</span></td></tr>
+        <tr id="p2" style="display:none"><td colspan="4"><div style="display:flex;gap:14px;padding:10px;align-items:flex-start"><img src="post2-image.jpg" style="width:80px;height:100px;object-fit:cover;border-radius:8px" alt=""><div class="post-preview" style="flex:1;font-size:12px">Ich bin nominiert. European CMO of the Year. 🏆
+
+Als die Nachricht kam, musste ich sie dreimal lesen...
+
+#ECMO26 #CMOoftheYear #Marketing #KI #Grateful #NeverGiveUp</div></div></td></tr>
+        <tr style="cursor:pointer" onclick="togglePost('p3')"><td style="font-weight:700;color:var(--pink)">Fr 28.03.</td><td><strong>Post 3:</strong> Mein Weg als CMO 🎬</td><td>CMO</td><td><span class="card-badge badge-success">✅ Ready</span></td></tr>
+        <tr id="p3" style="display:none"><td colspan="4"><div style="padding:10px"><div class="post-preview" style="font-size:12px">Von der großen Bühne in die Stille. Und zurück...
+
+Stärker als je zuvor — nominiert für den CMO of the Year.
+
+#Marketing #CMO #Leadership #Stage #ECMO26 #Comeback</div><div style="margin-top:6px;font-size:11px;color:var(--text-sec)">📎 Video: 34 Sek (Google Drive)</div></div></td></tr>
         <tr><td style="font-weight:700">Mo 31.03.</td><td><strong>Post 4:</strong> Was Marketing bedeutet</td><td>CMO</td><td><span class="card-badge" style="background:#f0f0f0;color:#888">Geplant</span></td></tr>
         <tr><td style="font-weight:700">Do 03.04.</td><td><strong>Post 5:</strong> KI × Marketing</td><td>Content</td><td><span class="card-badge" style="background:#f0f0f0;color:#888">Geplant</span></td></tr>
         <tr><td style="font-weight:700">Mo 07.04.</td><td><strong>Post 6:</strong> Learnings</td><td>Personal</td><td><span class="card-badge" style="background:#f0f0f0;color:#888">Geplant</span></td></tr>
@@ -349,71 +401,8 @@ body { font-family:'Inter',-apple-system,sans-serif; background:var(--bg); color
         <tr><td style="font-weight:700">Do 17.04.</td><td><strong>Post 10:</strong> Cannes / Expertise</td><td>Mix</td><td><span class="card-badge" style="background:#f0f0f0;color:#888">Geplant</span></td></tr>
       </tbody>
     </table>
+    <div style="margin-top:10px;font-size:11px;color:var(--text-sec)">🩷 Pink = Freigegeben · 🟠 Orange = Vorschlag vorhanden · Grau = Geplant</div>
   </div>
-
-  <!-- READY POSTS -->
-  <div class="card"><div class="card-header"><div class="card-title">✍️ Post 1 — LIVE</div><span class="card-badge badge-success">24. März</span></div>
-    <div style="display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap">
-      <img src="post1-image.jpg" style="width:100px;height:125px;object-fit:cover;border-radius:10px" alt="">
-      <div class="post-preview" style="flex:1;min-width:200px">Es war still hier.
-
-Lange still.
-
-Aber hinter der Stille ist viel passiert.
-
-Ich habe an mir gearbeitet. Viele Fragen gestellt.
-Mir selbst. Dem Markt. Den Menschen um mich herum.
-
-Und dann hat sich eins ins andere gefügt.
-
-Die richtigen Menschen. Der richtige Moment.
-Eine Idee, die zur nächsten geführt hat.
-Bis ich wusste: Das ist mein Weg.
-
-Ich werde mich dem Thema Marketing & KI widmen.
-Nicht als Beobachterin. Nicht als Theoretikerin.
-Sondern richtig.
-
-Wie genau — und mit wem?
-Das erzähle ich euch, wenn der richtige Zeitpunkt gekommen ist. 😊
-
-#comeback #marketing #ki #neuanfang #nächsteskapitel</div></div></div>
-
-  <div class="card"><div class="card-header"><div class="card-title">✍️ Post 2 — READY</div><span class="card-badge badge-pink">26. März</span></div>
-    <div style="display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap">
-      <img src="post2-image.jpg" style="width:100px;height:125px;object-fit:cover;border-radius:10px" alt="">
-      <div class="post-preview" style="flex:1;min-width:200px">Ich bin nominiert.
-
-European CMO of the Year. 🏆
-
-Als die Nachricht kam, musste ich sie dreimal lesen.
-
-Ich freue mich unglaublich und bin zutiefst dankbar.
-Für diesen Weg. Für die Menschen, die daran glauben.
-Und für alles, was noch kommt.
-
-Man sagt, wer nie am Boden war, weiß nicht wie hoch man fliegen kann.
-
-Das hier ist mein Beweis.
-
-#ECMO26 #CMOoftheYear #Marketing #KI #Grateful #NeverGiveUp</div></div></div>
-
-  <div class="card"><div class="card-header"><div class="card-title">✍️ Post 3 — READY 🎬</div><span class="card-badge badge-pink">28. März</span></div>
-    <div class="post-preview">Von der großen Bühne in die Stille. Und zurück.
-
-Ich durfte vor tausenden Menschen sprechen.
-Keynotes. Panels. Internationale Stages.
-
-Das waren die Momente, in denen ich wusste:
-Marketing ist mehr als Kampagnen.
-Es ist Haltung. Wirkung. Verantwortung.
-
-Und genau deshalb bin ich zurück.
-
-Stärker als je zuvor — nominiert für den CMO of the Year.
-
-#Marketing #CMO #Leadership #Stage #ECMO26 #Comeback</div>
-    <div style="margin-top:8px;font-size:12px;color:var(--text-sec)">📎 Video: 34 Sek Montage (Google Drive)</div></div>
 
   <!-- STIL-GUIDE -->
   <div class="card"><div class="card-header"><div class="card-title">🎨 Posting-Stil</div></div>
@@ -522,8 +511,8 @@ var defaultCards=[
   {id:'d4',col:'done',cat:'violet',tag:'Jenny',title:'✅ Sprachnachrichten'},
   {id:'d5',col:'done',cat:'violet',tag:'Jenny',title:'✅ Memory Architektur v3'},
 ];
-var columns=['todo','progress','done'];
-var colNames={todo:'🎯 To Do',progress:'🔄 In Progress',done:'✅ Done'};
+var columns=['todo','progress','discuss','done'];
+var colNames={todo:'🎯 To Do',progress:'🔄 In Progress',discuss:'💬 Zu Besprechen',done:'✅ Done'};
 
 function loadK(){try{var s=localStorage.getItem(KANBAN_KEY);if(s){var p=JSON.parse(s);var ids=new Set(p.map(c=>c.id));defaultCards.forEach(d=>{if(!ids.has(d.id))p.push(d)});return p;}}catch(e){}return JSON.parse(JSON.stringify(defaultCards));}
 function saveK(d){localStorage.setItem(KANBAN_KEY,JSON.stringify(d));}
@@ -565,6 +554,14 @@ var id=e.dataTransfer.getData('text/plain')||dragId;if(id&&col){var d=loadK();d.
 document.addEventListener('dragend',()=>{document.querySelectorAll('.kanban-card').forEach(c=>c.style.opacity='1');dragId=null;});
 function resetKanban(){localStorage.removeItem(KANBAN_KEY);renderKanban();}
 document.addEventListener('DOMContentLoaded',renderKanban);
+
+// Toggle post details
+function togglePost(id){var el=document.getElementById(id);el.style.display=el.style.display==='none'?'table-row':'none';}
+
+// Backlog toggle
+function toggleBacklog(){var el=document.getElementById('backlog-content');var btn=document.getElementById('backlog-toggle');
+if(el.style.display==='none'){el.style.display='block';btn.textContent='📋 Backlog ▼';}else{el.style.display='none';btn.textContent='📋 Backlog ▶';}}
+
 </script>
 </body>
 </html>
