@@ -215,28 +215,15 @@ body { font-family:'Inter',-apple-system,sans-serif; background:var(--bg); color
   <div class="sidebar-footer">Jenny 🔥 v2.0 — powered by OpenClaw</div>
 </div>
 
-<!-- MOBILE HEADER -->
+<!-- MAIN -->
+<div class="main-wrap">
+<!-- MOBILE HEADER (inside main-wrap) -->
 <div class="mobile-header">
   <div class="mobile-header-inner">
     <img src="jenny-avatar.jpg" alt="Jenny">
     <div class="mobile-header-text">Jenny Dashboard</div>
   </div>
 </div>
-
-<!-- MOBILE BOTTOM NAV -->
-<div class="mobile-nav">
-  <div class="mobile-nav-inner">
-    <button class="mob-item active" onclick="mobileNav('overview',this)"><span class="mob-icon">🏠</span>Home</button>
-    <button class="mob-item" onclick="mobileNav('tasks',this)"><span class="mob-icon">✅</span>Tasks</button>
-    <button class="mob-item" onclick="mobileNav('social',this)"><span class="mob-icon">📣</span>Social</button>
-    <button class="mob-item" onclick="mobileNav('calendar',this)"><span class="mob-icon">📅</span>Kalender</button>
-    <button class="mob-item" onclick="mobileNav('agents2go',this)"><span class="mob-icon">🚀</span>A2G</button>
-    <button class="mob-item" onclick="mobileNav('notes',this)"><span class="mob-icon">📝</span>Notizen</button>
-  </div>
-</div>
-
-<!-- MAIN -->
-<div class="main-wrap">
 <div class="top-bar">
   <div class="top-bar-title" id="page-title">🏠 Übersicht</div>
   <div class="top-bar-date" id="current-date"></div>
@@ -684,5 +671,16 @@ function toggleBacklog(){var el=document.getElementById('backlog-content');var b
 if(el.style.display==='none'){el.style.display='block';btn.textContent='📋 Backlog ▼';}else{el.style.display='none';btn.textContent='📋 Backlog ▶';}}
 
 </script>
+<!-- MOBILE BOTTOM NAV (at end of body) -->
+<div class="mobile-nav">
+  <div class="mobile-nav-inner">
+    <button class="mob-item active" onclick="mobileNav('overview',this)"><span class="mob-icon">🏠</span>Home</button>
+    <button class="mob-item" onclick="mobileNav('tasks',this)"><span class="mob-icon">✅</span>Tasks</button>
+    <button class="mob-item" onclick="mobileNav('social',this)"><span class="mob-icon">📣</span>Social</button>
+    <button class="mob-item" onclick="mobileNav('calendar',this)"><span class="mob-icon">📅</span>Kalender</button>
+    <button class="mob-item" onclick="mobileNav('agents2go',this)"><span class="mob-icon">🚀</span>A2G</button>
+    <button class="mob-item" onclick="mobileNav('notes',this)"><span class="mob-icon">📝</span>Notizen</button>
+  </div>
+</div>
 </body>
 </html>
