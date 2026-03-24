@@ -161,11 +161,12 @@ body { font-family:'Inter',-apple-system,sans-serif; background:var(--bg); color
 .mobile-header-text { font-size:16px; font-weight:700; background:var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
 
 @media (max-width:768px) {
-  .sidebar { display:none !important; }
+  .sidebar { display:none !important; width:0 !important; position:absolute !important; }
   .top-bar { display:none !important; }
   .mobile-nav { display:block; }
   .mobile-header { display:block; }
-  .main-wrap { margin-left:0; padding-bottom:70px; }
+  .main-wrap { margin-left:0 !important; padding-bottom:70px; }
+  body { display:block; }
   .main { padding:12px; }
   .grid-2,.grid-3,.grid-4 { grid-template-columns:1fr; }
   .kanban-board { grid-template-columns:1fr !important; overflow-x:visible; }
