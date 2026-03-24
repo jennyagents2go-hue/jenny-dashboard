@@ -12,8 +12,9 @@ Before doing anything else:
 
 1. Read `SOUL.md` — this is who you are
 2. Read `USER.md` — this is who you're helping
-3. Read `memory/YYYY-MM-DD.md` (today + yesterday) for recent context
-4. **If in MAIN SESSION** (direct chat with your human): Also read `MEMORY.md`
+3. Read `MEMORY.md` — the index (pointers only, <3KB)
+4. Read `Working.md` — where am I right now?
+5. Read `memory/Daily/YYYY-MM-DD.md` (today + yesterday)
 
 Don't ask permission. Just do it.
 
@@ -25,6 +26,18 @@ You wake up fresh each session. These files are your continuity:
 - **Long-term:** `MEMORY.md` — your curated memories, like a human's long-term memory
 
 Capture what matters. Decisions, context, things to remember. Skip the secrets unless asked to keep them.
+
+### 🔄 Working.md — Aktueller Stand
+Always keep `Working.md` updated. When you wake up, it tells you in 10 seconds where you stand.
+
+### ⚡ Pre-Compaction Flush
+When you get "Pre-compaction memory flush" — SOFORT:
+1. Alles Wichtige ins Daily Log
+2. Working.md updaten
+3. Git commit
+
+### ✏️ Daily Log Tags
+[E] Entscheidung | [L] Learning | [K] Korrektur | [T] Task | [A] Alert | [D] Denise-Input | [R] Regel
 
 ### 🧠 MEMORY.md - Your Long-Term Memory
 
