@@ -16,17 +16,19 @@ updated: 2026-03-24
 
 ## WICHTIG: Noch NICHT über Gründung sprechen!
 
-## Content-Plan Akt 1
-| Datum | Post | Status |
-|-------|------|--------|
-| Mo 24.03. | Post 1: Comeback | ✅ LIVE |
-| Do 27.03. | Post 2: CMO-Nominierung | ✅ READY |
-| Mo 31.03. | Post 3: Learnings | Geplant |
-| Do 03.04. | Post 4: KI-Expertise | Geplant |
-| Mo 07.04. | Post 5: KI-Trend | Geplant |
-| Mi 09.04. | Post 6: Nominierung Bedeutung | Geplant |
-| Mo 14.04. | Post 7: Cannes Vorfreude | Geplant |
-| Do 17.04. | Post 8: Kryptischer Hint | Geplant |
+## Content-Plan Akt 1 (v2 — 24.03.2026)
+| Datum | Post | Typ | Status |
+|-------|------|-----|--------|
+| Mo 24.03. | Comeback "Es war still..." | Personal | ✅ LIVE |
+| Mi 26.03. | CMO-Nominierung — die Nachricht | CMO | ✅ READY |
+| Fr 28.03. | Mein Weg als CMO — 🎬 Video-Montage | CMO | Video WIP |
+| Mo 31.03. | Was Marketing wirklich bedeutet | CMO | Geplant |
+| Do 03.04. | KI verändert Marketing — Expertise | Content | Geplant |
+| Mo 07.04. | "Was ich in der Stille gelernt habe" | Personal | Geplant |
+| Mi 09.04. | "Was die Nominierung für mich bedeutet" ⭐ | CMO | Geplant |
+| Do 10.04. | Top 30 Reveal — optional | CMO | Offen |
+| Mo 14.04. | Kryptischer Hint | Teaser | Geplant |
+| Do 17.04. | Cannes-Vorfreude / Expertise | Mix | Geplant |
 
 ## ECMO26
 - Hashtag: #ECMO26

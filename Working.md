@@ -6,8 +6,9 @@ updated: 2026-03-24
 # Working State — 2026-03-24
 
 ## Active Right Now
-- Memory-Architektur implementieren (Alex' Findings)
-- LinkedIn Post 2 (CMO-Nominierung) — Text final, Video überarbeiten
+- LinkedIn Content-Plan v2 umsetzen
+- Post 2 (Mi 26.03. CMO-Nominierung) — Text final, Bild final
+- Post 3 (Fr 28.03. CMO-Weg Video) — Video überarbeiten
 
 ## Blocked
 - GitHub Push für Dashboard — Credentials fehlen

@@ -13,6 +13,13 @@ created: 2026-03-24
 | 🆓 Tier 3 | Gemini 2.5 Flash | YouTube, Recherche, Zusammenfassungen, Bildanalyse |
 | 🆓 Tier 4 | Groq Whisper | Sprachnachrichten |
 
+## Was läuft auf was
+- **Opus:** Direkte Chats mit Denise, Strategie, komplexe Texte
+- **Sonnet:** Cron-Jobs, Heartbeat, Sub-Agents, Datei-Operationen, Google Drive
+- **Gemini:** YouTube, Recherche, Zusammenfassungen, Bildanalyse
+- **Groq:** Sprachnachrichten (Whisper)
+- **Kein LLM:** ImageMagick, ffmpeg, Git (braucht kein Modell)
+
 ## Regel
 Immer das günstigste Modell wählen das die Aufgabe gut erledigt.
 Opus NUR wenn nötig. Sonnet für alles was Routine ist.
