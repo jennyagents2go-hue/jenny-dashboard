@@ -149,14 +149,46 @@ body { font-family:'Inter',-apple-system,sans-serif; background:var(--bg); color
 .note-area { width:100%; min-height:100px; border:2px dashed var(--border); border-radius:var(--radius-sm); padding:14px; font-family:inherit; font-size:13px; resize:vertical; outline:none; }
 .note-area:focus { border-color:var(--pink); }
 
-/* MOBILE */
+/* MOBILE NAV */
+.mobile-nav { display:none; position:fixed; bottom:0; left:0; right:0; background:var(--sidebar-bg); z-index:200; padding:6px 0 env(safe-area-inset-bottom,6px); border-top:1px solid rgba(255,255,255,0.1); }
+.mobile-nav-inner { display:flex; justify-content:space-around; }
+.mob-item { display:flex; flex-direction:column; align-items:center; gap:2px; padding:6px 4px; font-size:9px; color:var(--sidebar-text); cursor:pointer; border:none; background:none; -webkit-tap-highlight-color:transparent; }
+.mob-item.active { color:var(--pink); }
+.mob-item .mob-icon { font-size:20px; }
+.mobile-header { display:none; background:var(--card); border-bottom:1px solid var(--border); padding:12px 16px; position:sticky; top:0; z-index:150; }
+.mobile-header-inner { display:flex; align-items:center; gap:10px; }
+.mobile-header img { width:32px; height:32px; border-radius:8px; object-fit:cover; }
+.mobile-header-text { font-size:16px; font-weight:700; background:var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+
 @media (max-width:768px) {
-  .sidebar { display:none; }
-  .main-wrap { margin-left:0; }
+  .sidebar { display:none !important; }
+  .top-bar { display:none !important; }
+  .mobile-nav { display:block; }
+  .mobile-header { display:block; }
+  .main-wrap { margin-left:0; padding-bottom:70px; }
+  .main { padding:12px; }
   .grid-2,.grid-3,.grid-4 { grid-template-columns:1fr; }
-  .kanban-board { grid-template-columns:1fr; }
-  .cal-grid { grid-template-columns:repeat(7,1fr); }
-  .main { padding:16px; }
+  .kanban-board { grid-template-columns:1fr !important; overflow-x:visible; }
+  .cal-grid { grid-template-columns:repeat(7,1fr); gap:2px; }
+  .cal-day { min-height:50px; padding:4px; }
+  .cal-day .cal-date { font-size:10px; }
+  .cal-post { font-size:8px !important; padding:2px 3px !important; }
+  .cal-header { font-size:9px; padding:4px 2px; }
+  .focus-banner { padding:16px; }
+  .focus-banner p { font-size:16px; }
+  .card { padding:14px; margin-bottom:12px; }
+  .card-title { font-size:14px; }
+  .stat-number { font-size:22px; }
+  .content-plan td { padding:8px 6px; font-size:12px; }
+  .content-plan th { font-size:9px; padding:4px 6px; }
+  .analytics-value { font-size:24px; }
+  .interpretation-grid { grid-template-columns:1fr; }
+  .concept-section { padding:14px; }
+  .workflow-item { padding:10px; gap:10px; }
+  .workflow-icon { width:34px; height:34px; font-size:16px; }
+  .post-preview { padding:12px; font-size:12px; }
+  .timeline { padding-left:20px; }
+  .business-card { padding:12px; }
 }
 </style>
 </head>
@@ -180,6 +212,26 @@ body { font-family:'Inter',-apple-system,sans-serif; background:var(--bg); color
     <div class="nav-item" onclick="showTab('notes',this)"><span class="nav-icon">📝</span>Notizen</div>
   </div>
   <div class="sidebar-footer">Jenny 🔥 v2.0 — powered by OpenClaw</div>
+</div>
+
+<!-- MOBILE HEADER -->
+<div class="mobile-header">
+  <div class="mobile-header-inner">
+    <img src="jenny-avatar.jpg" alt="Jenny">
+    <div class="mobile-header-text">Jenny Dashboard</div>
+  </div>
+</div>
+
+<!-- MOBILE BOTTOM NAV -->
+<div class="mobile-nav">
+  <div class="mobile-nav-inner">
+    <button class="mob-item active" onclick="mobileNav('overview',this)"><span class="mob-icon">🏠</span>Home</button>
+    <button class="mob-item" onclick="mobileNav('tasks',this)"><span class="mob-icon">✅</span>Tasks</button>
+    <button class="mob-item" onclick="mobileNav('social',this)"><span class="mob-icon">📣</span>Social</button>
+    <button class="mob-item" onclick="mobileNav('calendar',this)"><span class="mob-icon">📅</span>Kalender</button>
+    <button class="mob-item" onclick="mobileNav('agents2go',this)"><span class="mob-icon">🚀</span>A2G</button>
+    <button class="mob-item" onclick="mobileNav('notes',this)"><span class="mob-icon">📝</span>Notizen</button>
+  </div>
 </div>
 
 <!-- MAIN -->
@@ -611,6 +663,17 @@ var id=e.dataTransfer.getData('text/plain')||dragId;if(id&&col){var d=loadK();d.
 document.addEventListener('dragend',()=>{document.querySelectorAll('.kanban-card').forEach(c=>c.style.opacity='1');dragId=null;});
 function resetKanban(){localStorage.removeItem(KANBAN_KEY);renderKanban();}
 document.addEventListener('DOMContentLoaded',renderKanban);
+
+// Mobile nav
+function mobileNav(name,el){
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.mob-item').forEach(n=>n.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+  if(el)el.classList.add('active');
+  window.scrollTo(0,0);
+  if(name==='tasks')renderKanban();
+}
 
 // Toggle post details
 function togglePost(id){var el=document.getElementById(id);el.style.display=el.style.display==='none'?'table-row':'none';}
