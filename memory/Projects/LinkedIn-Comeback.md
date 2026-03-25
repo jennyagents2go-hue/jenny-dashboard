@@ -20,15 +20,15 @@ updated: 2026-03-24
 | Datum | Post | Typ | Status |
 |-------|------|-----|--------|
 | Mo 24.03. | Comeback "Es war still..." | Personal | ✅ LIVE |
-| Mi 26.03. | CMO-Nominierung — die Nachricht | CMO | ✅ READY |
-| Fr 28.03. | Mein Weg als CMO — 🎬 Video-Montage | CMO | ✅ READY |
+| Do 26.03. | CMO-Nominierung — die Nachricht | CMO | ✅ READY |
+| Sa 28.03. | Mein Weg als CMO — 🎬 Video-Montage | CMO | ✅ READY |
 | Mo 31.03. | Was Marketing wirklich bedeutet | CMO | Geplant |
-| Do 03.04. | KI verändert Marketing — Expertise | Content | Geplant |
-| Mo 07.04. | "Was ich in der Stille gelernt habe" | Personal | Geplant |
-| Mi 09.04. | "Was die Nominierung für mich bedeutet" ⭐ | CMO | Geplant |
+| Fr 03.04. | KI verändert Marketing — Expertise | Content | Geplant |
+| Di 07.04. | "Was ich in der Stille gelernt habe" | Personal | Geplant |
+| Do 09.04. | "Was die Nominierung für mich bedeutet" ⭐ | CMO | Geplant |
 | Do 10.04. | Top 30 Reveal — optional | CMO | Offen |
-| Mo 14.04. | Kryptischer Hint | Teaser | Geplant |
-| Do 17.04. | Cannes-Vorfreude / Expertise | Mix | Geplant |
+| Di 14.04. | Kryptischer Hint | Teaser | Geplant |
+| Fr 17.04. | Cannes-Vorfreude / Expertise | Mix | Geplant |
 
 ## ECMO26
 - Hashtag: #ECMO26
