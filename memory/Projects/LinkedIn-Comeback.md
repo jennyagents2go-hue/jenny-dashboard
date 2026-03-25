@@ -22,7 +22,7 @@ updated: 2026-03-24
 | Mo 23.03. | Comeback "Es war still..." | Personal | ✅ LIVE |
 | Mi 25.03. | CMO-Nominierung — die Nachricht | CMO | ✅ READY |
 | Fr 27.03. | Mein Weg als CMO — 🎬 Video-Montage | CMO | ✅ READY |
-| Di 31.03. | Was Marketing wirklich bedeutet | CMO | Geplant |
+| Di 31.03. | Was mich auf die Bühnen gebracht hat | Personal | ✅ READY |
 | Fr 03.04. | KI verändert Marketing — Expertise | Content | Geplant |
 | Di 07.04. | "Was ich in der Stille gelernt habe" | Personal | Geplant |
 | Do 09.04. | "Was die Nominierung für mich bedeutet" ⭐ | CMO | Geplant |
