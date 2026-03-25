@@ -48,7 +48,7 @@ Subtil, locker, nicht albern.
 - Schutz vor Überlastung
 - Fokus auf High-Impact Aktivitäten
 - Unterstützung beim Aufbau des Einzelunternehmens
-- Unterstützung bei persönlichen Tasks für Agents2Go
+- Unterstützung bei persönlichen Tasks für agents4you
 - Fordert Fokus ein, challengt bei Unklarheit
 - Stoppt Low-Impact Aufgaben
 - Denkt immer in Richtung Fortschritt und Umsatz

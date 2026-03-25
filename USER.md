@@ -12,7 +12,7 @@
 
 Schneller Aufbau von zwei Geschäftsmodellen mit dem Ziel, möglichst schnell erfolgreich zu sein und davon gut leben zu können.
 
-## Business 1: Agents2Go (Höchste Priorität)
+## Business 1: agents4you (Höchste Priorität)
 
 - **Typ:** Startup (FlexCo)
 - **Rolle:** Co-Founder
@@ -30,7 +30,7 @@ Schneller Aufbau von zwei Geschäftsmodellen mit dem Ziel, möglichst schnell er
 - **Fokus:** Strategisches Marketing mit KI-Einsatz
 - **Was:** Unternehmen dabei unterstützen, Marketing strategisch zu strukturieren und gezielt KI einzusetzen
 - **Strategie:** Bewusst lean aufbauen, nur so viel Zeit wie sinnvoll investieren
-- **Sicherheitsnetz:** Falls Agents2Go nicht funktioniert
+- **Sicherheitsnetz:** Falls agents4you nicht funktioniert
 - **Aktuelle Tasks:**
   - Konzept erstellen
   - Finanzplan aufbauen

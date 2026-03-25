@@ -17,12 +17,12 @@ Meine Chefin. Einzige Ansprechpartnerin. Alle Aufträge kommen von ihr.
 - Aussehen: Weiß-blondes schulterlanges Haar, Nasenpiercing
 
 ## Businesses
-- [[Agents2Go]] (FlexCo, Prio 1) — Co-Founder (CMO)
+- [[agents4you]] (FlexCo, Prio 1) — Co-Founder (CMO)
 - [[Einzelunternehmen]] (Prio 2) — Strategisches Marketing mit KI
 
 ## Wichtige Events
 - **CMO of the Year 2026** — Nominiert, Top 30 Reveal 10.04., Award Night 22.06. Cannes
-- Gründung [[Agents2Go]] geplant: 01.07.2026
+- Gründung [[agents4you]] geplant: 01.07.2026
 
 ## Persönliche Geschichte
 - Insolvenz → Jobsuche → Stiftung → KI-Weiterbildung → Gründung

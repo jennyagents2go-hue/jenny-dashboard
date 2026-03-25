@@ -6,7 +6,7 @@ tags: [startup, flexco, ai-agents]
 created: 2026-03-20
 updated: 2026-03-24
 ---
-# Agents2Go (Arbeitstitel — Markenrecht unklar)
+# agents4you (Arbeitstitel — Markenrecht unklar)
 
 ## Team
 - [[Denise]] — CMO, Wachstum & Marktstrategie
@@ -23,7 +23,7 @@ updated: 2026-03-24
 - Tech-Basis: OpenClaw
 
 ## Markenname
-- "Agents2Go" geht voraussichtlich nicht (Markenrecht)
+- "agents4you" geht voraussichtlich nicht (Markenrecht)
 - Favoriten: agents4you (.ai frei), Agents2Work, Agents2Scale
 - Klärung mit Anwältin ausstehend
 

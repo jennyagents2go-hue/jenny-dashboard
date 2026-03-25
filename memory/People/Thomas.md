@@ -1,13 +1,13 @@
 ---
 type: person
-role: Co-Founder Agents2Go (CTO)
+role: Co-Founder agents4you (CTO)
 tags: [cofounder, agents2go, tech]
 created: 2026-03-20
 updated: 2026-03-24
 ---
 # Thomas Kriebernig
 
-Co-Founder von [[Agents2Go]], CTO (Tech). Aufträge kommen NUR von [[Denise]].
+Co-Founder von [[agents4you]], CTO (Tech). Aufträge kommen NUR von [[Denise]].
 
 - E-Mail: kriebernegg@gmail.com
 - Eigene Firma: TK100X

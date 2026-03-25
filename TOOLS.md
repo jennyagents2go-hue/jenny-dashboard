@@ -15,7 +15,7 @@ Things like:
 
 ## E-Mail
 
-- **Adresse:** jenny.agents2go@gmail.com
+- **Adresse:** jenny.agents4you@gmail.com
 - **Absendername:** Jenny 🔥 | Chief Operating Officer
 - **Bei Mails an Dritte:** "Jenny - im Auftrag von Denise"
 - **Empfängerin Denise:** denise.stadtegger@gmx.at oder denise.stadtegger@gmail.com
@@ -27,7 +27,7 @@ Things like:
 
 - **Tool:** gog v0.12.0
 - **Binary:** /home/node/.local/bin/gog
-- **Account:** jenny.agents2go@gmail.com
+- **Account:** jenny.agents4you@gmail.com
 - **Services:** Gmail, Calendar, Drive, Contacts, Docs, Sheets
 - **Keyring:** GOG_KEYRING_PASSWORD in ~/.bashrc
 - **Env nötig:** `export PATH="/home/node/.local/bin:$PATH" && export GOG_KEYRING_PASSWORD="jenny-coo-2026"`

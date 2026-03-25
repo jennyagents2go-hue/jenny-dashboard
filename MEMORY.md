@@ -5,7 +5,7 @@
 [[Denise]] zur erfolgreichen Gründerin machen (2 Businesses parallel)
 
 ## 📁 Projekte → memory/Projects/
-- **[[Agents2Go]]** (Prio 1, pre-founding) → Projects/Agents2Go.md
+- **[[agents4you]]** (Prio 1, pre-founding) → Projects/agents4you.md
 - **[[Einzelunternehmen]]** (Prio 2, planning) → Projects/Einzelunternehmen.md
 - **[[LinkedIn-Comeback]]** (Prio 1, active) → Projects/LinkedIn-Comeback.md
 
@@ -15,7 +15,7 @@
 - **[[Manuel]]** — Co-Founder CFO
 
 ## 🏢 Firmen → memory/Companies/
-- **[[Agents2Go]]** — FlexCo, Gründung 01.07.2026
+- **[[agents4you]]** — FlexCo, Gründung 01.07.2026
 
 ## 📋 Regeln → memory/Knowledge/Rules/
 - communication.md — Nie löschen, nie senden ohne Go, immer Bescheid geben
