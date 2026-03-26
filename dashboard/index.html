@@ -821,7 +821,33 @@ function showTab(name,el){
 document.getElementById('current-date').textContent='📅 '+new Date().toLocaleDateString('de-AT',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
 
 // KANBAN
-var KANBAN_KEY='jenny-kanban-v2';
+var KANBAN_KEY='jenny-kanban-v3';
+var KANBAN_SHEET='1ey8EdzYgeiokS8CIR4P6ot4bNjKYsCKlz2qjBpG6qQ4';
+
+// Load from Google Sheet (source of truth)
+function loadFromSheet(){
+  return fetch('https://docs.google.com/spreadsheets/d/'+KANBAN_SHEET+'/gviz/tq?tqx=out:csv')
+    .then(r=>r.text())
+    .then(csv=>{
+      var lines=csv.split('\n').slice(1);
+      var cards=[];
+      var catMap={'agents4you':'pink','Einzelunternehmen':'orange','Jenny':'violet','LinkedIn':'info'};
+      lines.forEach(line=>{
+        if(!line.trim())return;
+        var m=line.match(/"([^"]*)"/g);
+        if(m&&m.length>=6){
+          var vals=m.map(v=>v.replace(/"/g,''));
+          cards.push({id:vals[0],title:vals[1],sub:vals[2],tag:vals[3],who:vals[4],col:vals[5],cat:catMap[vals[3]]||'violet'});
+        }
+      });
+      if(cards.length>0){
+        localStorage.setItem(KANBAN_KEY,JSON.stringify(cards));
+      }
+      return cards;
+    })
+    .catch(e=>{console.log('Sheet load failed, using local',e); return null;});
+}
+
 var defaultCards=[
   {id:'a1',col:'todo',cat:'pink',tag:'agents4you',who:'👩 Alle',title:'🔴 Anteilsverteilung besprechen',sub:'26/26/26/22% — SVS & Stimmrecht'},
   {id:'a2',col:'todo',cat:'pink',tag:'agents4you',who:'👩 Alle',title:'🔴 Letter of Intent',sub:'Was ist jedem wichtig?'},
@@ -870,6 +896,7 @@ function renderKanban(){
       if(card.who&&!isDone)h+='<span style="color:var(--text-sec)">'+card.who+'</span>';
       h+='</div><div class="kanban-card-title">'+card.title+'</div>';
       if(card.sub&&!isDone)h+='<div class="kanban-card-sub">'+card.sub+'</div>';
+      if(!isDone)h+='<div style="margin-top:6px;display:flex;gap:6px"><button onclick="event.stopPropagation();editCard(\''+card.id+'\')" style="font-size:10px;padding:2px 8px;border:1px solid var(--border);border-radius:4px;background:white;cursor:pointer">✏️</button><button onclick="event.stopPropagation();deleteCard(\''+card.id+'\')" style="font-size:10px;padding:2px 8px;border:1px solid var(--border);border-radius:4px;background:white;cursor:pointer;color:var(--danger)">🗑</button></div>';
       h+='</div>';zone.insertAdjacentHTML('beforeend',h);
     });
     if(!cc.length)zone.innerHTML='<div style="text-align:center;padding:32px;color:var(--text-sec);font-size:12px">Karten hierher ziehen</div>';
@@ -887,7 +914,12 @@ function kanbanDrop(e){e.preventDefault();var el=e.target,col=null;while(el){if(
 var id=e.dataTransfer.getData('text/plain')||dragId;if(id&&col){var d=loadK();d.forEach(c=>{if(c.id===id)c.col=col;});saveK(d);renderKanban();}dragId=null;}
 document.addEventListener('dragend',()=>{document.querySelectorAll('.kanban-card').forEach(c=>c.style.opacity='1');dragId=null;});
 function resetKanban(){localStorage.removeItem(KANBAN_KEY);renderKanban();}
-document.addEventListener('DOMContentLoaded',renderKanban);
+document.addEventListener('DOMContentLoaded',function(){
+  loadFromSheet().then(function(cards){
+    if(cards&&cards.length>0){console.log('Loaded '+cards.length+' cards from Sheet');}
+    renderKanban();
+  });
+});
 
 // Mobile nav
 function mobileNav(name,el){
@@ -902,6 +934,24 @@ function mobileNav(name,el){
 
 // Toggle post details
 function togglePost(id){var el=document.getElementById(id);el.style.display=el.style.display==='none'?'table-row':'none';}
+
+// Edit/Delete Kanban card
+function editCard(id){
+  var d=loadK();
+  var card=d.find(c=>c.id===id);
+  if(!card)return;
+  var newTitle=prompt('Titel bearbeiten:',card.title);
+  if(newTitle!==null){card.title=newTitle;}
+  var newSub=prompt('Beschreibung bearbeiten:',card.sub||'');
+  if(newSub!==null){card.sub=newSub;}
+  saveK(d);renderKanban();
+}
+function deleteCard(id){
+  if(!confirm('Karte wirklich löschen?'))return;
+  var d=loadK();
+  d=d.filter(c=>c.id!==id);
+  saveK(d);renderKanban();
+}
 
 // Backlog toggle
 function toggleBacklog(){var el=document.getElementById('backlog-content');var btn=document.getElementById('backlog-toggle');
