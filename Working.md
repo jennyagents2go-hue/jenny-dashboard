@@ -1,19 +1,24 @@
 ---
 type: working
 tags: [system]
-updated: 2026-03-25 EOD
+updated: 2026-03-26
 ---
-# Working State — 2026-03-25 (End of Day)
+# Working State — 2026-03-26
 
 ## Tomorrow's Priority
 - Video Post 2 überarbeiten (mehr Abwechslung, kein Pixeln)
 - LinkedIn Content-Plan Akt 1 fortsetzen (Post 3-8)
 - Dashboard Updates verarbeiten
 
+## Current Focus
+- Dashboard um interaktive Add-Buttons für Kanban, Abos und Termine erweitert
+- Root-`index.html` Kopie und Deploy nachziehen
+
 ## Today Completed
 - ✅ End-of-Day Cron Job erfolgreich ausgeführt
 - ✅ Daily Memory System läuft stabil
 - ✅ Working.md State Management optimiert
+- ✅ Dashboard `dashboard/index.html` additiv erweitert (Kanban, Abos, Terminliste)
 
 ## Blocked
 - GitHub Push für Dashboard — Credentials fehlen

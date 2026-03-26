@@ -331,7 +331,7 @@ body { font-family:'Inter',-apple-system,sans-serif; background:var(--bg); color
 
   <!-- ABOS -->
   <div class="card">
-    <div class="card-header"><div class="card-title">💳 Laufende Abos <button class="add-btn" onclick="addAbo()" aria-label="Abo hinzufügen">+</button></div><div class="card-header-actions"><span class="card-badge badge-pink" id="abo-total">161,59 €/Monat</span></div></div>
+    <div class="card-header"><div class="card-title">💳 Laufende Abos</div><div class="card-header-actions"><span class="card-badge badge-pink" id="abo-total">161,59 €/Monat</span></div></div>
     <table class="content-plan" style="font-size:12px">
       <thead><tr><th>Dienst</th><th>Account</th><th>Seit</th><th>Kosten</th><th>Status</th></tr></thead>
       <tbody id="abo-table-body">
@@ -340,7 +340,9 @@ body { font-family:'Inter',-apple-system,sans-serif; background:var(--bg); color
         <tr style="background:#FEE2E2"><td style="font-weight:600;color:var(--danger)">⚠️ Renderforest</td><td style="font-size:11px">jenny.agents2go@gmail.com</td><td>25.03.2026</td><td style="font-weight:700">22,80 €</td><td><span class="card-badge" style="background:#FEE2E2;color:var(--danger)">🔴 Kündigen 23.04!</span></td></tr>
         <tr><td style="font-weight:600">Hetzner Server</td><td style="font-size:11px">jenny.agents2go@gmail.com</td><td>20.03.2026</td><td style="font-weight:700">7,79 €</td><td><span class="card-badge badge-success">Aktiv</span></td></tr>
       </tbody>
+      <tbody id="custom-abos"></tbody>
     </table>
+    <div style="margin-top:10px;text-align:center"><button onclick="addAbo()" style="width:28px;height:28px;border-radius:50%;background:#EA087A;color:white;border:none;cursor:pointer;font-size:16px;font-weight:700">+</button></div>
   </div>
 
   <div class="card">
@@ -771,6 +773,8 @@ Was hat euch dahin gebracht, wo ihr heute steht?
       <div>🏆 <strong>22.06.2026</strong> — CMO Award Night, Cannes</div>
       <div>🚀 <strong>01.07.2026</strong> — agents4you Gründung</div>
     </div>
+    <div id="custom-termine"></div>
+    <div style="margin-top:10px;text-align:center"><button onclick="addTermin()" style="width:28px;height:28px;border-radius:50%;background:#EA087A;color:white;border:none;cursor:pointer;font-size:16px;font-weight:700">+</button></div>
     <div id="calendar-custom-list" class="custom-list"></div>
     <div style="font-size:11px;color:var(--text-sec);margin-top:12px">💡 Sag Jenny einen Termin → wird hier + im Google Calendar eingetragen</div>
   </div>
@@ -912,7 +916,7 @@ function renderKanban(){
     col.dataset.col=colId;col.setAttribute('ondragover','event.preventDefault()');col.setAttribute('ondrop','kanbanDrop(event)');
     if(colId==='done')col.style.opacity='0.75';
     var badge=colId==='todo'?'badge-pink':colId==='progress'?'badge-orange':'badge-success';
-    col.innerHTML='<div class="card-header"><div class="card-title">'+colNames[colId]+'</div><div class="card-header-actions"><button class="add-btn" onclick="addKanbanCard(\''+colId+'\')" aria-label="Karte hinzufügen">+</button><span class="card-badge '+badge+'">'+cc.length+'</span></div></div>';
+    col.innerHTML='<div class="card-header"><div class="card-title">'+colNames[colId]+'</div><div class="card-header-actions"><button onclick="addCard(\''+colId+'\')" aria-label="Karte hinzufügen" style="width:28px;height:28px;border-radius:50%;background:#EA087A;color:white;border:none;cursor:pointer;font-size:16px;font-weight:700">+</button><span class="card-badge '+badge+'">'+cc.length+'</span></div></div>';
     var zone=document.createElement('div');zone.className='kanban-col';zone.dataset.col=colId;
     cc.forEach(function(card){
       var isDone=colId==='done';
@@ -940,6 +944,21 @@ var id=e.dataTransfer.getData('text/plain')||dragId;if(id&&col){var d=loadK();d.
 document.addEventListener('dragend',()=>{document.querySelectorAll('.kanban-card').forEach(c=>c.style.opacity='1');dragId=null;});
 function resetKanban(){localStorage.removeItem(KANBAN_KEY);renderKanban();}
 function addKanbanCard(colId){
+  addCard(colId);
+}
+function addCard(col){
+  var title=prompt('Titel:');
+  if(!title)return;
+  var sub=prompt('Beschreibung:');
+  var cats=['agents4you','Einzelunternehmen','Jenny','LinkedIn'];
+  var catIdx=prompt('Kategorie:\n1=agents4you\n2=Einzelunternehmen\n3=Jenny\n4=LinkedIn');
+  var tag=cats[(parseInt(catIdx)||1)-1];
+  var who=prompt('Zuständig (z.B. Denise, Jenny):');
+  var d=loadK();
+  d.push({id:'c'+Date.now(),title:title,sub:sub||'',tag:tag,who:who||'',col:col,cat:{agents4you:'pink',Einzelunternehmen:'orange',Jenny:'violet',LinkedIn:'info'}[tag]||'violet'});
+  saveK(d);renderKanban();
+}
+function legacyAddKanbanCard(colId){
   var title=promptRequired('Title:');
   if(title===null)return;
   var description=promptRequired('Description:');
@@ -971,6 +990,7 @@ document.addEventListener('DOMContentLoaded',function(){
   renderCustomCrm();
   renderCustomCalendar();
   renderCustomAbos();
+  renderCustomTermine();
 });
 
 // Mobile nav
@@ -986,6 +1006,84 @@ function mobileNav(name,el){
 
 // Toggle post details
 function togglePost(id){var el=document.getElementById(id);el.style.display=el.style.display==='none'?'table-row':'none';}
+
+// Add new Kanban card
+function addCard(col){
+  var title=prompt('Titel:');if(!title)return;
+  var sub=prompt('Beschreibung:')||'';
+  var catIdx=prompt('Kategorie:\n1=agents4you\n2=Einzelunternehmen\n3=Jenny\n4=LinkedIn');
+  var cats=['agents4you','Einzelunternehmen','Jenny','LinkedIn'];
+  var catColors={agents4you:'pink',Einzelunternehmen:'orange',Jenny:'violet',LinkedIn:'info'};
+  var tag=cats[(parseInt(catIdx)||1)-1];
+  var who=prompt('Zuständig (z.B. Denise, Jenny):')||'';
+  var d=loadK();
+  d.push({id:'c'+Date.now(),title:title,sub:sub,tag:tag,who:who,col:col,cat:catColors[tag]||'violet'});
+  saveK(d);renderKanban();
+}
+
+// Add Abo
+function addAbo(){
+  var name=prompt('Dienst-Name:');if(!name)return;
+  var email=prompt('Account-Email:')||'';
+  var date=prompt('Seit (TT.MM.JJJJ):')||'';
+  var cost=prompt('Monatliche Kosten (€):')||'0';
+  var status=prompt('Status (aktiv/kündigen):')||'aktiv';
+  var abos=JSON.parse(localStorage.getItem('jenny-custom-abos')||'[]');
+  abos.push({name:name,email:email,date:date,cost:cost,status:status});
+  localStorage.setItem('jenny-custom-abos',JSON.stringify(abos));
+  renderCustomAbos();
+}
+function renderCustomAbos(){
+  var c=document.getElementById('custom-abos');if(!c)return;c.innerHTML='';
+  JSON.parse(localStorage.getItem('jenny-custom-abos')||'[]').forEach(function(a){
+    var cancel=a.status==='kündigen';
+    c.insertAdjacentHTML('beforeend','<tr'+(cancel?' style="background:#FEE2E2"':'')+'><td style="font-weight:600;'+(cancel?'color:#EF4444':'')+'">'+(cancel?'⚠️ ':'')+a.name+'</td><td style="font-size:11px">'+a.email+'</td><td>'+a.date+'</td><td style="font-weight:700">'+a.cost+' €</td><td><span class="card-badge '+(cancel?'" style="background:#FEE2E2;color:#EF4444">🔴 Kündigen':'badge-success">Aktiv')+'</span></td></tr>');
+  });
+}
+
+// Add Termin
+function addTermin(){
+  var title=prompt('Termin-Titel:');if(!title)return;
+  var date=prompt('Datum (TT.MM.JJJJ):')||'';
+  var time=prompt('Uhrzeit (HH:MM):')||'';
+  var catIdx=prompt('Kategorie:\n1=agents4you\n2=Einzelunternehmen\n3=Privat');
+  var cats=['agents4you','Einzelunternehmen','Privat'];
+  var cat=cats[(parseInt(catIdx)||1)-1];
+  var termine=JSON.parse(localStorage.getItem('jenny-custom-calendar')||'[]');
+  termine.push({title:title,date:date,time:time,cat:cat});
+  localStorage.setItem('jenny-custom-calendar',JSON.stringify(termine));
+  renderCustomTermine();
+}
+function renderCustomTermine(){
+  var c=document.getElementById('custom-termine');if(!c)return;c.innerHTML='';
+  var badges={agents4you:'badge-pink',Einzelunternehmen:'badge-orange',Privat:'badge-info'};
+  JSON.parse(localStorage.getItem('jenny-custom-calendar')||'[]').forEach(function(t){
+    c.insertAdjacentHTML('beforeend','<div>📌 <strong>'+t.date+' '+t.time+'</strong> — '+t.title+' <span class="card-badge '+(badges[t.cat]||'')+'">'+t.cat+'</span></div>');
+  });
+}
+
+// Add CRM Kunde
+function addCRM(){
+  var name=prompt('Firmenname:');if(!name)return;
+  var url=prompt('Website-URL:')||'';
+  var contact=prompt('Ansprechpartner:')||'';
+  var statusIdx=prompt('Status:\n1=Pot. Kunde\n2=Erstgespräch\n3=Workshop\n4=Kunde');
+  var statuses=['potential','erstgespraech','workshop','kunde'];
+  var status=statuses[(parseInt(statusIdx)||1)-1];
+  var crm=JSON.parse(localStorage.getItem('jenny-custom-crm')||'[]');
+  crm.push({name:name,url:url,contact:contact,status:status});
+  localStorage.setItem('jenny-custom-crm',JSON.stringify(crm));
+  renderCustomCRM();
+}
+function renderCustomCRM(){
+  var crm=JSON.parse(localStorage.getItem('jenny-custom-crm')||'[]');
+  ['potential','erstgespraech','workshop','kunde'].forEach(function(s){
+    var c=document.getElementById('custom-crm-'+s);if(!c)return;c.innerHTML='';
+    crm.filter(function(k){return k.status===s}).forEach(function(k){
+      c.insertAdjacentHTML('beforeend','<div class="kanban-card" style="border-left:4px solid var(--text-sec);margin-top:6px"><div style="font-size:12px;font-weight:700">'+k.name+'</div><div style="font-size:10px;color:var(--text-sec)">'+k.contact+'</div>'+(k.url?'<div style="font-size:9px"><a href="'+k.url+'" target="_blank">'+k.url+'</a></div>':'')+'</div>');
+    });
+  });
+}
 
 // Edit/Delete Kanban card
 function editCard(id){
@@ -1111,19 +1209,14 @@ function renderCustomCalendar(){
 }
 
 function addAbo(){
-  var service=promptRequired('Service Name:');
-  if(service===null)return;
-  var email=promptRequired('Account Email:');
-  if(email===null)return;
-  var startDate=promptRequired('Start Date:');
-  if(startDate===null)return;
-  var monthlyCost=promptRequired('Monthly Cost:');
-  if(monthlyCost===null)return;
-  var status=promptRequired('Status (active/cancel):','active');
-  if(status===null)return;
-  var abos=loadCustom(CUSTOM_ABOS_KEY);
-  abos.push({id:makeId('abo'),service:service,email:email,startDate:startDate,monthlyCost:monthlyCost,status:status});
-  saveCustom(CUSTOM_ABOS_KEY,abos);
+  var name=prompt('Dienst-Name:');if(!name)return;
+  var email=prompt('Account-Email:');
+  var date=prompt('Abgeschlossen am (TT.MM.JJJJ):');
+  var cost=prompt('Monatliche Kosten (€):');
+  var status=prompt('Status (aktiv/kündigen):');
+  var abos=JSON.parse(localStorage.getItem('jenny-custom-abos')||'[]');
+  abos.push({name:name,email:email||'',date:date||'',cost:cost||'0',status:status||'aktiv'});
+  localStorage.setItem('jenny-custom-abos',JSON.stringify(abos));
   renderCustomAbos();
 }
 function parseEuroAmount(value){
@@ -1135,19 +1228,42 @@ function formatEuroAmount(value){
   return value.toLocaleString('de-AT',{minimumFractionDigits:2,maximumFractionDigits:2})+' €/Monat';
 }
 function renderCustomAbos(){
-  var body=document.getElementById('abo-table-body');
-  if(!body)return;
-  body.querySelectorAll('.custom-abo-row').forEach(function(row){row.remove();});
-  loadCustom(CUSTOM_ABOS_KEY).forEach(function(abo){
-    var row=document.createElement('tr');
-    row.className='custom-abo-row';
-    row.innerHTML='<td style="font-weight:600">'+escapeHtml(abo.service)+'</td><td style="font-size:11px">'+escapeHtml(abo.email)+'</td><td>'+escapeHtml(abo.startDate)+'</td><td style="font-weight:700">'+escapeHtml(abo.monthlyCost)+'</td><td><span class="card-badge '+(abo.status==='cancel'?'badge-warning':'badge-success')+'">'+escapeHtml(abo.status)+'</span></td>';
-    body.appendChild(row);
+  var abos=JSON.parse(localStorage.getItem('jenny-custom-abos')||'[]');
+  var container=document.getElementById('custom-abos');
+  if(!container)return;
+  container.innerHTML='';
+  abos.forEach(function(a,i){
+    var isCancel=a.status==='kündigen';
+    var row='<tr'+(isCancel?' style="background:#FEE2E2"':'')+'><td style="font-weight:600;'+(isCancel?'color:#EF4444':'')+'">'+escapeHtml(a.name)+'</td><td style="font-size:11px">'+escapeHtml(a.email)+'</td><td>'+escapeHtml(a.date)+'</td><td style="font-weight:700">'+escapeHtml(a.cost)+' €</td><td><span class="card-badge '+(isCancel?'" style="background:#FEE2E2;color:#EF4444">🔴 Kündigen':'badge-success">Aktiv')+'</span></td></tr>';
+    container.insertAdjacentHTML('beforeend',row);
   });
   var total=0;
-  body.querySelectorAll('tr td:nth-child(4)').forEach(function(cell){total+=parseEuroAmount(cell.textContent);});
+  document.querySelectorAll('#abo-table-body tr td:nth-child(4), #custom-abos tr td:nth-child(4)').forEach(function(cell){total+=parseEuroAmount(cell.textContent);});
   var totalEl=document.getElementById('abo-total');
   if(totalEl)totalEl.textContent=formatEuroAmount(total);
+}
+
+function addTermin(){
+  var title=prompt('Termin-Titel:');if(!title)return;
+  var date=prompt('Datum (TT.MM.JJJJ):');
+  var time=prompt('Uhrzeit (HH:MM):');
+  var cats=['agents4you','Einzelunternehmen','Privat'];
+  var catIdx=prompt('Kategorie:\n1=agents4you\n2=Einzelunternehmen\n3=Privat');
+  var cat=cats[(parseInt(catIdx)||1)-1];
+  var termine=JSON.parse(localStorage.getItem('jenny-custom-calendar')||'[]');
+  termine.push({title:title,date:date||'',time:time||'',cat:cat});
+  localStorage.setItem('jenny-custom-calendar',JSON.stringify(termine));
+  renderCustomTermine();
+}
+function renderCustomTermine(){
+  var termine=JSON.parse(localStorage.getItem('jenny-custom-calendar')||'[]');
+  var container=document.getElementById('custom-termine');
+  if(!container)return;
+  container.innerHTML='';
+  var badges={agents4you:'badge-pink',Einzelunternehmen:'badge-orange',Privat:'badge-info'};
+  termine.forEach(function(t){
+    container.insertAdjacentHTML('beforeend','<div>📌 <strong>'+escapeHtml(t.date)+' '+escapeHtml(t.time)+'</strong> — '+escapeHtml(t.title)+' <span class="card-badge '+(badges[t.cat]||'')+'">'+escapeHtml(t.cat)+'</span></div>');
+  });
 }
 
 // Backlog toggle
