@@ -340,9 +340,8 @@ body { font-family:'Inter',-apple-system,sans-serif; background:var(--bg); color
         <tr style="background:#FEE2E2"><td style="font-weight:600;color:var(--danger)">⚠️ Renderforest</td><td style="font-size:11px">jenny.agents2go@gmail.com</td><td>25.03.2026</td><td style="font-weight:700">22,80 €</td><td><span class="card-badge" style="background:#FEE2E2;color:var(--danger)">🔴 Kündigen 23.04!</span></td></tr>
         <tr><td style="font-weight:600">Hetzner Server</td><td style="font-size:11px">jenny.agents2go@gmail.com</td><td>20.03.2026</td><td style="font-weight:700">7,79 €</td><td><span class="card-badge badge-success">Aktiv</span></td></tr>
       </tbody>
-      <tbody id="custom-abos"></tbody>
+      <tbody id="custom-abos"></tbody><div style="margin-top:8px;text-align:center"><button onclick="addAbo()" style="width:28px;height:28px;border-radius:50%;background:#EA087A;color:white;border:none;cursor:pointer;font-size:16px;font-weight:700">+</button></div>
     </table>
-    <div style="margin-top:10px;text-align:center"><button onclick="addAbo()" style="width:28px;height:28px;border-radius:50%;background:#EA087A;color:white;border:none;cursor:pointer;font-size:16px;font-weight:700">+</button></div>
   </div>
 
   <div class="card">
@@ -585,7 +584,7 @@ Was hat euch dahin gebracht, wo ihr heute steht?
 
   <!-- CRM / KUNDENKARTEI -->
   <div class="card">
-    <div class="card-header"><div class="card-title">📇 Kundenkartei</div><button class="add-btn" onclick="addCrmCard()" aria-label="Kundenkarte hinzufügen">+</button></div>
+    <div class="card-header"><div class="card-title">📇 Kundenkartei</div><button onclick="addCRM()" style="width:28px;height:28px;border-radius:50%;background:#EA087A;color:white;border:none;cursor:pointer;font-size:16px;font-weight:700">+</button><button class="add-btn" onclick="addCrmCard()" aria-label="Kundenkarte hinzufügen">+</button></div>
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px" id="crm-board">
       <!-- Pot. Kunden -->
       <div>
@@ -776,7 +775,7 @@ Was hat euch dahin gebracht, wo ihr heute steht?
     <div id="custom-termine"></div>
     <div style="margin-top:10px;text-align:center"><button onclick="addTermin()" style="width:28px;height:28px;border-radius:50%;background:#EA087A;color:white;border:none;cursor:pointer;font-size:16px;font-weight:700">+</button></div>
     <div id="calendar-custom-list" class="custom-list"></div>
-    <div style="font-size:11px;color:var(--text-sec);margin-top:12px">💡 Sag Jenny einen Termin → wird hier + im Google Calendar eingetragen</div>
+    <div id="custom-termine" style="margin-top:8px;font-size:13px;line-height:2.2"></div><div style="margin-top:8px;text-align:center"><button onclick="addTermin()" style="width:28px;height:28px;border-radius:50%;background:#EA087A;color:white;border:none;cursor:pointer;font-size:16px;font-weight:700">+</button></div><div style="font-size:11px;color:var(--text-sec);margin-top:12px">💡 Sag Jenny einen Termin → wird hier + im Google Calendar eingetragen</div>
   </div>
 </div>
 
@@ -982,7 +981,7 @@ function legacyAddKanbanCard(colId){
   renderKanban();
 }
 document.addEventListener('DOMContentLoaded',function(){
-  loadFromSheet().then(function(cards){
+  renderCustomAbos();renderCustomTermine();renderCustomCRM();loadFromSheet().then(function(cards){
     if(cards&&cards.length>0){console.log('Loaded '+cards.length+' cards from Sheet');}
     renderKanban();
   });
