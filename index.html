@@ -360,19 +360,7 @@ body { font-family:'Inter',-apple-system,sans-serif; background:var(--bg); color
     <div style="margin-left:auto;color:var(--text-sec)">↔️ Drag & Drop</div>
   </div>
   <div class="kanban-board" id="kanban-board"></div>
-  <!-- Backlog (collapsible) -->
-  <div class="card" style="margin-top:12px">
-    <div style="cursor:pointer;font-weight:700;font-size:14px" id="backlog-toggle" onclick="toggleBacklog()">📋 Backlog ▶</div>
-    <div id="backlog-content" style="display:none;margin-top:12px">
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
-        <div class="kanban-card" style="border-left:4px solid var(--pink)"><div class="kanban-card-title">Gewerbeschein FlexCo klären</div><div class="kanban-card-sub">Info einholen</div></div>
-        <div class="kanban-card" style="border-left:4px solid var(--pink)"><div class="kanban-card-title">KMU.DIGITAL nachfragen</div><div class="kanban-card-sub">A2G-Workshops als geförderte Beratung?</div></div>
-        <div class="kanban-card" style="border-left:4px solid var(--orange)"><div class="kanban-card-title">Befähigungsantrag BH</div><div class="kanban-card-sub">Gilt ein Leben lang</div></div>
-        <div class="kanban-card" style="border-left:4px solid var(--orange)"><div class="kanban-card-title">Website erstellen</div><div class="kanban-card-sub">Marketingmaterialien</div></div>
-        <div class="kanban-card" style="border-left:4px solid var(--violet)"><div class="kanban-card-title">GitHub Credentials fixen</div><div class="kanban-card-sub">Dashboard auto-deploy</div></div>
-      </div>
-    </div>
-  </div>
+
 </div>
 
 <!-- ====== SOCIAL MEDIA ====== -->
@@ -871,8 +859,8 @@ var defaultCards=[
   {id:'d4',col:'done',cat:'violet',tag:'Jenny',title:'✅ Sprachnachrichten'},
   {id:'d5',col:'done',cat:'violet',tag:'Jenny',title:'✅ Memory Architektur v3'},
 ];
-var columns=['todo','progress','discuss','done'];
-var colNames={todo:'🎯 To Do',progress:'🔄 In Progress',discuss:'💬 Zu Besprechen',done:'✅ Done'};
+var columns=['todo','progress','discuss','done','backlog'];
+var colNames={todo:'🎯 To Do',progress:'🔄 In Progress',discuss:'💬 Zu Besprechen',done:'✅ Done',backlog:'📋 Backlog'};
 
 function loadK(){try{var s=localStorage.getItem(KANBAN_KEY);if(s){var p=JSON.parse(s);var ids=new Set(p.map(c=>c.id));defaultCards.forEach(d=>{if(!ids.has(d.id))p.push(d)});return p;}}catch(e){}return JSON.parse(JSON.stringify(defaultCards));}
 function saveK(d){
