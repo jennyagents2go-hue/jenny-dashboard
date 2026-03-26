@@ -1078,11 +1078,18 @@ function renderCustomCRM(){
   var crm=JSON.parse(localStorage.getItem('jenny-custom-crm')||'[]');
   ['potential','erstgespraech','workshop','kunde'].forEach(function(s){
     var c=document.getElementById('custom-crm-'+s);if(!c)return;c.innerHTML='';
-    crm.filter(function(k){return k.status===s}).forEach(function(k){
-      c.insertAdjacentHTML('beforeend','<div class="kanban-card" style="border-left:4px solid var(--text-sec);margin-top:6px"><div style="font-size:12px;font-weight:700">'+k.name+'</div><div style="font-size:10px;color:var(--text-sec)">'+k.contact+'</div>'+(k.url?'<div style="font-size:9px"><a href="'+k.url+'" target="_blank">'+k.url+'</a></div>':'')+'</div>');
+    crm.forEach(function(k,index){
+      if(k.status!==s)return;
+      c.insertAdjacentHTML('beforeend','<div class="kanban-card" style="border-left:4px solid var(--text-sec);margin-top:6px;position:relative"><button onclick="deleteCRM('+index+')" style="color:#EF4444;background:none;border:none;cursor:pointer;font-size:14px;font-weight:700;padding:2px 6px;position:absolute;top:4px;right:4px">×</button><div style="font-size:12px;font-weight:700">'+k.name+'</div><div style="font-size:10px;color:var(--text-sec)">'+k.contact+'</div>'+(k.url?'<div style="font-size:9px"><a href="'+k.url+'" target="_blank">'+k.url+'</a></div>':'')+'</div>');
     });
   });
 }
+function deleteCRM(i){if(!confirm('Kunde löschen?'))return;var c=JSON.parse(localStorage.getItem('jenny-custom-crm')||'[]');c.splice(i,1);localStorage.setItem('jenny-custom-crm',JSON.stringify(c));renderCustomCRM();renderCustomCrm();}
+
+// Delete custom items
+function deleteAbo(i){if(!confirm('Abo löschen?'))return;var a=JSON.parse(localStorage.getItem('jenny-custom-abos')||'[]');a.splice(i,1);localStorage.setItem('jenny-custom-abos',JSON.stringify(a));renderCustomAbos();}
+function deleteTermin(i){if(!confirm('Termin löschen?'))return;var t=JSON.parse(localStorage.getItem('jenny-custom-calendar')||'[]');t.splice(i,1);localStorage.setItem('jenny-custom-calendar',JSON.stringify(t));renderCustomTermine();}
+function deleteCRM(i){if(!confirm('Kunde löschen?'))return;var c=JSON.parse(localStorage.getItem('jenny-custom-crm')||'[]');c.splice(i,1);localStorage.setItem('jenny-custom-crm',JSON.stringify(c));renderCustomCRM();}
 
 // Edit/Delete Kanban card
 function editCard(id){
@@ -1167,14 +1174,15 @@ function renderCustomCrm(){
     var empty=kunden.querySelector('[data-empty="true"]');
     if(empty)empty.style.display=loadCustom(CUSTOM_CRM_KEY).some(function(card){return card.status==='kunde';})?'none':'block';
   }
-  loadCustom(CUSTOM_CRM_KEY).forEach(function(card){
+  loadCustom(CUSTOM_CRM_KEY).forEach(function(card,index){
     var target=document.getElementById(crmColumnId(card.status));
     if(!target)return;
     var div=document.createElement('div');
     div.className='kanban-card custom-crm-card';
     div.style.borderLeft='4px solid '+crmAccent(card.status);
     div.style.marginTop='8px';
-    div.innerHTML='<div style="font-size:12px;font-weight:700">'+escapeHtml(card.company)+'</div><div style="font-size:10px;color:var(--text-sec)">'+escapeHtml(card.contact)+'</div><div style="font-size:10px;color:var(--text-sec);margin-top:4px"><a href="'+escapeHtml(normalizeUrl(card.website))+'" target="_blank">'+escapeHtml(card.website)+'</a></div>';
+    div.style.position='relative';
+    div.innerHTML='<button onclick="deleteCRM('+index+')" style="color:#EF4444;background:none;border:none;cursor:pointer;font-size:14px;font-weight:700;padding:2px 6px;position:absolute;top:4px;right:4px">×</button><div style="font-size:12px;font-weight:700">'+escapeHtml(card.company)+'</div><div style="font-size:10px;color:var(--text-sec)">'+escapeHtml(card.contact)+'</div><div style="font-size:10px;color:var(--text-sec);margin-top:4px"><a href="'+escapeHtml(normalizeUrl(card.website))+'" target="_blank">'+escapeHtml(card.website)+'</a></div>';
     target.appendChild(div);
   });
 }
@@ -1233,7 +1241,7 @@ function renderCustomAbos(){
   container.innerHTML='';
   abos.forEach(function(a,i){
     var isCancel=a.status==='kündigen';
-    var row='<tr'+(isCancel?' style="background:#FEE2E2"':'')+'><td style="font-weight:600;'+(isCancel?'color:#EF4444':'')+'">'+escapeHtml(a.name)+'</td><td style="font-size:11px">'+escapeHtml(a.email)+'</td><td>'+escapeHtml(a.date)+'</td><td style="font-weight:700">'+escapeHtml(a.cost)+' €</td><td><span class="card-badge '+(isCancel?'" style="background:#FEE2E2;color:#EF4444">🔴 Kündigen':'badge-success">Aktiv')+'</span></td></tr>';
+    var row='<tr'+(isCancel?' style="background:#FEE2E2"':'')+'><td style="font-weight:600;'+(isCancel?'color:#EF4444':'')+'">'+escapeHtml(a.name)+'</td><td style="font-size:11px">'+escapeHtml(a.email)+'</td><td>'+escapeHtml(a.date)+'</td><td style="font-weight:700">'+escapeHtml(a.cost)+' €</td><td><span class="card-badge '+(isCancel?'" style="background:#FEE2E2;color:#EF4444">🔴 Kündigen':'badge-success">Aktiv')+'</span></td><td><button onclick="deleteAbo('+i+')" style="color:#EF4444;background:none;border:none;cursor:pointer;font-size:14px;font-weight:700;padding:2px 6px">×</button></td></tr>';
     container.insertAdjacentHTML('beforeend',row);
   });
   var total=0;
@@ -1241,6 +1249,7 @@ function renderCustomAbos(){
   var totalEl=document.getElementById('abo-total');
   if(totalEl)totalEl.textContent=formatEuroAmount(total);
 }
+function deleteAbo(i){if(!confirm('Abo löschen?'))return;var a=JSON.parse(localStorage.getItem('jenny-custom-abos')||'[]');a.splice(i,1);localStorage.setItem('jenny-custom-abos',JSON.stringify(a));renderCustomAbos();}
 
 function addTermin(){
   var title=prompt('Termin-Titel:');if(!title)return;
@@ -1260,10 +1269,11 @@ function renderCustomTermine(){
   if(!container)return;
   container.innerHTML='';
   var badges={agents4you:'badge-pink',Einzelunternehmen:'badge-orange',Privat:'badge-info'};
-  termine.forEach(function(t){
-    container.insertAdjacentHTML('beforeend','<div>📌 <strong>'+escapeHtml(t.date)+' '+escapeHtml(t.time)+'</strong> — '+escapeHtml(t.title)+' <span class="card-badge '+(badges[t.cat]||'')+'">'+escapeHtml(t.cat)+'</span></div>');
+  termine.forEach(function(t,index){
+    container.insertAdjacentHTML('beforeend','<div>📌 <strong>'+escapeHtml(t.date)+' '+escapeHtml(t.time)+'</strong> — '+escapeHtml(t.title)+' <span class="card-badge '+(badges[t.cat]||'')+'">'+escapeHtml(t.cat)+'</span> <button onclick="deleteTermin('+index+')" style="color:#EF4444;background:none;border:none;cursor:pointer;font-size:14px;font-weight:700;padding:2px 6px">×</button></div>');
   });
 }
+function deleteTermin(i){if(!confirm('Termin löschen?'))return;var t=JSON.parse(localStorage.getItem('jenny-custom-calendar')||'[]');t.splice(i,1);localStorage.setItem('jenny-custom-calendar',JSON.stringify(t));renderCustomTermine();}
 
 // Backlog toggle
 function toggleBacklog(){var el=document.getElementById('backlog-content');var btn=document.getElementById('backlog-toggle');
