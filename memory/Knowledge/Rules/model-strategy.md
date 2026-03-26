@@ -24,3 +24,10 @@ created: 2026-03-24
 Immer das günstigste Modell wählen das die Aufgabe gut erledigt.
 Opus NUR wenn nötig. Sonnet für alles was Routine ist.
 Gemini für alles was kostenlos geht.
+
+## WICHTIG: So viel wie möglich abgeben!
+- Dashboard-Änderungen → Sub-Agent (Codex/Sonnet) delegieren
+- Recherchen → Gemini
+- Einfache Edits → weniger Tool-Calls, effizienter arbeiten
+- Nicht 5x verifizieren → 1x richtig machen
+- Denise hat gesagt: "Gib so viel ab wie du nur kannst!"
