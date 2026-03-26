@@ -46,6 +46,7 @@ body { font-family:'Inter',-apple-system,sans-serif; background:var(--bg); color
 .card { background:var(--card); border-radius:var(--radius); padding:20px; box-shadow:var(--shadow); border:1px solid var(--border); margin-bottom:16px; }
 .card-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; }
 .card-title { font-size:15px; font-weight:700; display:flex; align-items:center; gap:8px; }
+.card-header-actions { display:flex; align-items:center; gap:8px; }
 .card-badge { font-size:10px; font-weight:600; padding:3px 10px; border-radius:20px; text-transform:uppercase; letter-spacing:0.5px; }
 .badge-pink { background:var(--pink-light); color:var(--pink); }
 .badge-orange { background:var(--orange-light); color:var(--orange); }
@@ -148,6 +149,9 @@ body { font-family:'Inter',-apple-system,sans-serif; background:var(--bg); color
 /* NOTE */
 .note-area { width:100%; min-height:100px; border:2px dashed var(--border); border-radius:var(--radius-sm); padding:14px; font-family:inherit; font-size:13px; resize:vertical; outline:none; }
 .note-area:focus { border-color:var(--pink); }
+.add-btn { width:28px; height:28px; border-radius:50%; background:#EA087A; color:white; border:none; cursor:pointer; font-size:16px; font-weight:700; display:inline-flex; align-items:center; justify-content:center; flex-shrink:0; }
+.custom-list { display:flex; flex-direction:column; gap:8px; margin-top:12px; }
+.custom-inline-item { background:var(--bg); border-radius:8px; padding:10px 12px; font-size:12px; line-height:1.5; }
 
 /* MOBILE NAV */
 .mobile-nav { display:none; position:fixed; bottom:0; left:0; right:0; background:var(--sidebar-bg); z-index:200; padding:6px 0 env(safe-area-inset-bottom,6px); border-top:1px solid rgba(255,255,255,0.1); }
@@ -327,10 +331,10 @@ body { font-family:'Inter',-apple-system,sans-serif; background:var(--bg); color
 
   <!-- ABOS -->
   <div class="card">
-    <div class="card-header"><div class="card-title">💳 Laufende Abos</div><span class="card-badge badge-pink" id="abo-total">161,59 €/Monat</span></div>
+    <div class="card-header"><div class="card-title">💳 Laufende Abos <button class="add-btn" onclick="addAbo()" aria-label="Abo hinzufügen">+</button></div><div class="card-header-actions"><span class="card-badge badge-pink" id="abo-total">161,59 €/Monat</span></div></div>
     <table class="content-plan" style="font-size:12px">
       <thead><tr><th>Dienst</th><th>Account</th><th>Seit</th><th>Kosten</th><th>Status</th></tr></thead>
-      <tbody>
+      <tbody id="abo-table-body">
         <tr><td style="font-weight:600">Anthropic (Claude)</td><td style="font-size:11px">jenny.agents2go@gmail.com</td><td>17.03.2026</td><td style="font-weight:700">108,00 €</td><td><span class="card-badge badge-success">Aktiv</span></td></tr>
         <tr><td style="font-weight:600">ChatGPT</td><td style="font-size:11px">denise.stadtegger@gmx.at</td><td>22.09.2025</td><td style="font-weight:700">23,00 €</td><td><span class="card-badge badge-success">Aktiv</span></td></tr>
         <tr style="background:#FEE2E2"><td style="font-weight:600;color:var(--danger)">⚠️ Renderforest</td><td style="font-size:11px">jenny.agents2go@gmail.com</td><td>25.03.2026</td><td style="font-weight:700">22,80 €</td><td><span class="card-badge" style="background:#FEE2E2;color:var(--danger)">🔴 Kündigen 23.04!</span></td></tr>
@@ -373,7 +377,7 @@ body { font-family:'Inter',-apple-system,sans-serif; background:var(--bg); color
 
   <!-- CALENDAR -->
   <div class="card">
-    <div class="card-header"><div class="card-title">📅 Content-Kalender</div><span class="card-badge badge-pink">März / April 2026</span></div>
+    <div class="card-header"><div class="card-title">📅 Content-Kalender <button class="add-btn" onclick="addCustomPost()" aria-label="Post hinzufügen">+</button></div><div class="card-header-actions"><span class="card-badge badge-pink">März / April 2026</span></div></div>
     <div class="cal-grid">
       <div class="cal-header">Mo</div><div class="cal-header">Di</div><div class="cal-header">Mi</div><div class="cal-header">Do</div><div class="cal-header">Fr</div><div class="cal-header">Sa</div><div class="cal-header">So</div>
       <!-- W13: 23-29 März -->
@@ -410,6 +414,7 @@ body { font-family:'Inter',-apple-system,sans-serif; background:var(--bg); color
       <div class="cal-day empty"><div class="cal-date">18</div></div>
       <div class="cal-day empty"><div class="cal-date">19</div></div>
     </div>
+    <div id="social-custom-posts" class="custom-list"></div>
   </div>
 
   <!-- ANALYTICS -->
@@ -578,7 +583,7 @@ Was hat euch dahin gebracht, wo ihr heute steht?
 
   <!-- CRM / KUNDENKARTEI -->
   <div class="card">
-    <div class="card-header"><div class="card-title">📇 Kundenkartei</div></div>
+    <div class="card-header"><div class="card-title">📇 Kundenkartei</div><button class="add-btn" onclick="addCrmCard()" aria-label="Kundenkarte hinzufügen">+</button></div>
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px" id="crm-board">
       <!-- Pot. Kunden -->
       <div>
@@ -694,7 +699,7 @@ Was hat euch dahin gebracht, wo ihr heute steht?
       <div>
         <div style="font-weight:700;font-size:12px;color:var(--success);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.5px">✅ Kunden</div>
         <div id="crm-kunden" style="min-height:60px">
-          <div style="text-align:center;padding:20px;color:var(--text-sec);font-size:11px">Noch keine</div>
+          <div data-empty="true" style="text-align:center;padding:20px;color:var(--text-sec);font-size:11px">Noch keine</div>
         </div>
       </div>
     </div>
@@ -718,7 +723,7 @@ Was hat euch dahin gebracht, wo ihr heute steht?
 <!-- ====== KALENDER ====== -->
 <div id="tab-calendar" class="tab-content">
   <div class="card">
-    <div class="card-header"><div class="card-title">📅 Termine — KW 13-16</div><div style="font-size:10px;color:var(--text-sec)">🔴 Erstgespräch · 🟠 Workshop · NUR Google Calendar Termine</div></div>
+    <div class="card-header"><div class="card-title">📅 Termine — KW 13-16 <button class="add-btn" onclick="addCalendarEntry()" aria-label="Termin hinzufügen">+</button></div><div style="display:flex;align-items:center;gap:8px"><div style="font-size:10px;color:var(--text-sec)">🔴 Erstgespräch · 🟠 Workshop · NUR Google Calendar Termine</div></div></div>
     <div class="cal-grid">
       <div class="cal-header">Mo</div><div class="cal-header">Di</div><div class="cal-header">Mi</div><div class="cal-header">Do</div><div class="cal-header">Fr</div><div class="cal-header">Sa</div><div class="cal-header">So</div>
       <!-- W13: Mo 23 - So 29 März -->
@@ -758,7 +763,7 @@ Was hat euch dahin gebracht, wo ihr heute steht?
 
   <div class="card">
     <div class="card-header"><div class="card-title">🗓️ Terminliste</div></div>
-    <div style="font-size:13px;line-height:2.2">
+    <div style="font-size:13px;line-height:2.2" id="calendar-termine-list">
       <div>🔴 <strong>Di 31.03. 10:00</strong> — Erstgespräch KJS <span class="card-badge badge-pink">agents4you</span></div>
       <div>🍽️ <strong>Di 31.03. 19:00</strong> — Essen Co-Founder, Eggenberg <span class="card-badge badge-pink">agents4you</span></div>
       <div>🔴 <strong>Fr 10.04. 09:00</strong> — Erstgespräch Waldpark Hochreiter <span class="card-badge badge-pink">agents4you</span></div>
@@ -766,6 +771,7 @@ Was hat euch dahin gebracht, wo ihr heute steht?
       <div>🏆 <strong>22.06.2026</strong> — CMO Award Night, Cannes</div>
       <div>🚀 <strong>01.07.2026</strong> — agents4you Gründung</div>
     </div>
+    <div id="calendar-custom-list" class="custom-list"></div>
     <div style="font-size:11px;color:var(--text-sec);margin-top:12px">💡 Sag Jenny einen Termin → wird hier + im Google Calendar eingetragen</div>
   </div>
 </div>
@@ -811,6 +817,10 @@ document.getElementById('current-date').textContent='📅 '+new Date().toLocaleD
 // KANBAN
 var KANBAN_KEY='jenny-kanban-v3';
 var KANBAN_SHEET='1ey8EdzYgeiokS8CIR4P6ot4bNjKYsCKlz2qjBpG6qQ4';
+var CUSTOM_POSTS_KEY='jenny-custom-posts';
+var CUSTOM_CRM_KEY='jenny-custom-crm';
+var CUSTOM_CALENDAR_KEY='jenny-custom-calendar';
+var CUSTOM_ABOS_KEY='jenny-custom-abos';
 
 // Load from Google Sheet (source of truth)
 function loadFromSheet(){
@@ -870,6 +880,28 @@ function saveK(d){
   fetch(url,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify({cards:d})}).catch(function(){});
 }
 function catColor(c){return{pink:'var(--pink)',orange:'var(--orange)',violet:'var(--violet)',info:'var(--info)'}[c]||'#888';}
+function makeId(prefix){return prefix+'-'+Date.now()+'-'+Math.random().toString(36).slice(2,7);}
+function loadCustom(key){try{return JSON.parse(localStorage.getItem(key)||'[]');}catch(e){return [];}}
+function saveCustom(key,data){localStorage.setItem(key,JSON.stringify(data));}
+function escapeHtml(str){return String(str||'').replace(/[&<>"']/g,function(ch){return({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]);});}
+function promptRequired(label,defaultValue){
+  var value=prompt(label,defaultValue||'');
+  if(value===null)return null;
+  value=value.trim();
+  if(!value){alert('Eingabe erforderlich.');return null;}
+  return value;
+}
+function statusBadge(status){
+  if(status==='planned')return 'badge-pink';
+  if(status==='ready'||status==='workshop')return 'badge-orange';
+  if(status==='live'||status==='active')return 'badge-success';
+  if(status==='cancel')return 'badge-warning';
+  return 'badge-success';
+}
+function normalizeUrl(url){
+  if(/^https?:\/\//i.test(url))return url;
+  return 'https://'+url;
+}
 
 function renderKanban(){
   var cards=loadK(),board=document.getElementById('kanban-board');
@@ -880,7 +912,7 @@ function renderKanban(){
     col.dataset.col=colId;col.setAttribute('ondragover','event.preventDefault()');col.setAttribute('ondrop','kanbanDrop(event)');
     if(colId==='done')col.style.opacity='0.75';
     var badge=colId==='todo'?'badge-pink':colId==='progress'?'badge-orange':'badge-success';
-    col.innerHTML='<div class="card-header"><div class="card-title">'+colNames[colId]+'</div><span class="card-badge '+badge+'">'+cc.length+'</span></div>';
+    col.innerHTML='<div class="card-header"><div class="card-title">'+colNames[colId]+'</div><div class="card-header-actions"><button class="add-btn" onclick="addKanbanCard(\''+colId+'\')" aria-label="Karte hinzufügen">+</button><span class="card-badge '+badge+'">'+cc.length+'</span></div></div>';
     var zone=document.createElement('div');zone.className='kanban-col';zone.dataset.col=colId;
     cc.forEach(function(card){
       var isDone=colId==='done';
@@ -907,11 +939,38 @@ function kanbanDrop(e){e.preventDefault();var el=e.target,col=null;while(el){if(
 var id=e.dataTransfer.getData('text/plain')||dragId;if(id&&col){var d=loadK();d.forEach(c=>{if(c.id===id)c.col=col;});saveK(d);renderKanban();}dragId=null;}
 document.addEventListener('dragend',()=>{document.querySelectorAll('.kanban-card').forEach(c=>c.style.opacity='1');dragId=null;});
 function resetKanban(){localStorage.removeItem(KANBAN_KEY);renderKanban();}
+function addKanbanCard(colId){
+  var title=promptRequired('Title:');
+  if(title===null)return;
+  var description=promptRequired('Description:');
+  if(description===null)return;
+  var category=promptRequired('Category (agents4you/Einzelunternehmen/Jenny/LinkedIn):');
+  if(category===null)return;
+  var assignee=promptRequired('Assignee:');
+  if(assignee===null)return;
+  var catMap={agents4you:'pink',Einzelunternehmen:'orange',Jenny:'violet',LinkedIn:'info'};
+  var cards=loadK();
+  cards.push({
+    id:makeId('k'),
+    title:title,
+    sub:description,
+    tag:category,
+    who:assignee,
+    col:colId,
+    cat:catMap[category]||'violet'
+  });
+  saveK(cards);
+  renderKanban();
+}
 document.addEventListener('DOMContentLoaded',function(){
   loadFromSheet().then(function(cards){
     if(cards&&cards.length>0){console.log('Loaded '+cards.length+' cards from Sheet');}
     renderKanban();
   });
+  renderCustomPosts();
+  renderCustomCrm();
+  renderCustomCalendar();
+  renderCustomAbos();
 });
 
 // Mobile nav
@@ -944,6 +1003,151 @@ function deleteCard(id){
   var d=loadK();
   d=d.filter(c=>c.id!==id);
   saveK(d);renderKanban();
+}
+
+function addCustomPost(){
+  var date=promptRequired('Date:');
+  if(date===null)return;
+  var title=promptRequired('Post Title:');
+  if(title===null)return;
+  var status=promptRequired('Status (planned/ready/live):','planned');
+  if(status===null)return;
+  var posts=loadCustom(CUSTOM_POSTS_KEY);
+  posts.push({id:makeId('post'),date:date,title:title,status:status});
+  saveCustom(CUSTOM_POSTS_KEY,posts);
+  renderCustomPosts();
+}
+function renderCustomPosts(){
+  var el=document.getElementById('social-custom-posts');
+  if(!el)return;
+  var posts=loadCustom(CUSTOM_POSTS_KEY);
+  if(!posts.length){
+    el.innerHTML='';
+    return;
+  }
+  el.innerHTML=posts.map(function(post){
+    return '<div class="custom-inline-item"><strong>'+escapeHtml(post.date)+'</strong> — '+escapeHtml(post.title)+' <span class="card-badge '+statusBadge(post.status)+'">'+escapeHtml(post.status)+'</span></div>';
+  }).join('');
+}
+
+function addCrmCard(){
+  var company=promptRequired('Company Name:');
+  if(company===null)return;
+  var website=promptRequired('Website:');
+  if(website===null)return;
+  var contact=promptRequired('Contact Person:');
+  if(contact===null)return;
+  var status=promptRequired('Status (potential/erstgespraech/workshop/kunde):','potential');
+  if(status===null)return;
+  var cards=loadCustom(CUSTOM_CRM_KEY);
+  cards.push({id:makeId('crm'),company:company,website:website,contact:contact,status:status});
+  saveCustom(CUSTOM_CRM_KEY,cards);
+  renderCustomCrm();
+}
+function crmColumnId(status){
+  return {
+    potential:'crm-potential',
+    erstgespraech:'crm-erstgespraech',
+    workshop:'crm-workshop',
+    kunde:'crm-kunden'
+  }[status]||'crm-potential';
+}
+function crmAccent(status){
+  return {
+    potential:'var(--text-sec)',
+    erstgespraech:'var(--orange)',
+    workshop:'var(--pink)',
+    kunde:'var(--success)'
+  }[status]||'var(--text-sec)';
+}
+function renderCustomCrm(){
+  ['crm-potential','crm-erstgespraech','crm-workshop','crm-kunden'].forEach(function(id){
+    var existing=document.querySelectorAll('#'+id+' .custom-crm-card');
+    existing.forEach(function(node){node.remove();});
+  });
+  var kunden=document.getElementById('crm-kunden');
+  if(kunden){
+    var empty=kunden.querySelector('[data-empty="true"]');
+    if(empty)empty.style.display=loadCustom(CUSTOM_CRM_KEY).some(function(card){return card.status==='kunde';})?'none':'block';
+  }
+  loadCustom(CUSTOM_CRM_KEY).forEach(function(card){
+    var target=document.getElementById(crmColumnId(card.status));
+    if(!target)return;
+    var div=document.createElement('div');
+    div.className='kanban-card custom-crm-card';
+    div.style.borderLeft='4px solid '+crmAccent(card.status);
+    div.style.marginTop='8px';
+    div.innerHTML='<div style="font-size:12px;font-weight:700">'+escapeHtml(card.company)+'</div><div style="font-size:10px;color:var(--text-sec)">'+escapeHtml(card.contact)+'</div><div style="font-size:10px;color:var(--text-sec);margin-top:4px"><a href="'+escapeHtml(normalizeUrl(card.website))+'" target="_blank">'+escapeHtml(card.website)+'</a></div>';
+    target.appendChild(div);
+  });
+}
+
+function addCalendarEntry(){
+  var date=promptRequired('Date:');
+  if(date===null)return;
+  var time=promptRequired('Time:');
+  if(time===null)return;
+  var title=promptRequired('Title:');
+  if(title===null)return;
+  var category=promptRequired('Category (agents4you/Einzelunternehmen/Privat):','agents4you');
+  if(category===null)return;
+  var items=loadCustom(CUSTOM_CALENDAR_KEY);
+  items.push({id:makeId('cal'),date:date,time:time,title:title,category:category});
+  saveCustom(CUSTOM_CALENDAR_KEY,items);
+  renderCustomCalendar();
+}
+function renderCustomCalendar(){
+  var el=document.getElementById('calendar-custom-list');
+  if(!el)return;
+  var items=loadCustom(CUSTOM_CALENDAR_KEY);
+  if(!items.length){
+    el.innerHTML='';
+    return;
+  }
+  el.innerHTML=items.map(function(item){
+    var badge=item.category==='agents4you'?'badge-pink':item.category==='Einzelunternehmen'?'badge-orange':'badge-info';
+    return '<div class="custom-inline-item"><strong>'+escapeHtml(item.date)+' '+escapeHtml(item.time)+'</strong> — '+escapeHtml(item.title)+' <span class="card-badge '+badge+'">'+escapeHtml(item.category)+'</span></div>';
+  }).join('');
+}
+
+function addAbo(){
+  var service=promptRequired('Service Name:');
+  if(service===null)return;
+  var email=promptRequired('Account Email:');
+  if(email===null)return;
+  var startDate=promptRequired('Start Date:');
+  if(startDate===null)return;
+  var monthlyCost=promptRequired('Monthly Cost:');
+  if(monthlyCost===null)return;
+  var status=promptRequired('Status (active/cancel):','active');
+  if(status===null)return;
+  var abos=loadCustom(CUSTOM_ABOS_KEY);
+  abos.push({id:makeId('abo'),service:service,email:email,startDate:startDate,monthlyCost:monthlyCost,status:status});
+  saveCustom(CUSTOM_ABOS_KEY,abos);
+  renderCustomAbos();
+}
+function parseEuroAmount(value){
+  var normalized=String(value||'0').replace(/[^\d,.-]/g,'').replace(/\./g,'').replace(',', '.');
+  var amount=parseFloat(normalized);
+  return isNaN(amount)?0:amount;
+}
+function formatEuroAmount(value){
+  return value.toLocaleString('de-AT',{minimumFractionDigits:2,maximumFractionDigits:2})+' €/Monat';
+}
+function renderCustomAbos(){
+  var body=document.getElementById('abo-table-body');
+  if(!body)return;
+  body.querySelectorAll('.custom-abo-row').forEach(function(row){row.remove();});
+  loadCustom(CUSTOM_ABOS_KEY).forEach(function(abo){
+    var row=document.createElement('tr');
+    row.className='custom-abo-row';
+    row.innerHTML='<td style="font-weight:600">'+escapeHtml(abo.service)+'</td><td style="font-size:11px">'+escapeHtml(abo.email)+'</td><td>'+escapeHtml(abo.startDate)+'</td><td style="font-weight:700">'+escapeHtml(abo.monthlyCost)+'</td><td><span class="card-badge '+(abo.status==='cancel'?'badge-warning':'badge-success')+'">'+escapeHtml(abo.status)+'</span></td>';
+    body.appendChild(row);
+  });
+  var total=0;
+  body.querySelectorAll('tr td:nth-child(4)').forEach(function(cell){total+=parseEuroAmount(cell.textContent);});
+  var totalEl=document.getElementById('abo-total');
+  if(totalEl)totalEl.textContent=formatEuroAmount(total);
 }
 
 // Backlog toggle
