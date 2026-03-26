@@ -875,7 +875,12 @@ var columns=['todo','progress','discuss','done'];
 var colNames={todo:'🎯 To Do',progress:'🔄 In Progress',discuss:'💬 Zu Besprechen',done:'✅ Done'};
 
 function loadK(){try{var s=localStorage.getItem(KANBAN_KEY);if(s){var p=JSON.parse(s);var ids=new Set(p.map(c=>c.id));defaultCards.forEach(d=>{if(!ids.has(d.id))p.push(d)});return p;}}catch(e){}return JSON.parse(JSON.stringify(defaultCards));}
-function saveK(d){localStorage.setItem(KANBAN_KEY,JSON.stringify(d));}
+function saveK(d){
+  localStorage.setItem(KANBAN_KEY,JSON.stringify(d));
+  // Sync to Google Sheet via Apps Script
+  var url='https://script.google.com/macros/s/AKfycbxHC1pE8UOdrKaZUkygoxwOvubAwe3Tx_IAunBqZ183rE5Mz7JDtVTMjlpG-tUTDJwBDg/exec';
+  fetch(url,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify({cards:d})}).catch(function(){});
+}
 function catColor(c){return{pink:'var(--pink)',orange:'var(--orange)',violet:'var(--violet)',info:'var(--info)'}[c]||'#888';}
 
 function renderKanban(){
