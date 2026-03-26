@@ -1,8 +1,9 @@
 ---
-type: playbook
-tags: [daily, morning, must-follow, routine]
+type: skill
+tags: [daily, morning, must-follow, routine, skill]
 created: 2026-03-26
 ---
+# ⚡ SKILL: Morning Brief
 # Morning Brief — Täglicher Workflow
 
 ## Wann
