@@ -179,6 +179,114 @@ body { font-family:'Inter',-apple-system,sans-serif; background:var(--bg); color
 .business-pill { padding:8px 10px; border-radius:999px; background:var(--pink-light); color:var(--pink); font-size:12px; font-weight:700; }
 .business-visual-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; margin-top:18px; }
 .business-visual-card img { width:100%; height:220px; object-fit:cover; border-radius:var(--radius-sm); border:1px solid var(--border); background:linear-gradient(180deg,#fff,#f7f7fa); }
+.market-summary-grid { display:grid; grid-template-columns:1.2fr 0.8fr; gap:16px; margin-bottom:18px; }
+.market-highlight-card { position:relative; overflow:hidden; background:linear-gradient(135deg,rgba(230,0,126,0.1),rgba(245,166,35,0.12)); border:1px solid rgba(230,0,126,0.14); }
+.market-highlight-card::after { content:''; position:absolute; width:180px; height:180px; border-radius:50%; background:rgba(255,255,255,0.35); top:-70px; right:-60px; }
+.market-highlight-card > * { position:relative; z-index:1; }
+.market-summary-title { font-size:22px; font-weight:800; line-height:1.2; margin-bottom:10px; }
+.market-summary-copy { font-size:13px; line-height:1.75; color:var(--text-sec); }
+.market-badge-row, .market-stat-pills, .market-chip-row, .market-legend { display:flex; flex-wrap:wrap; gap:8px; }
+.market-stat-pill, .market-chip, .legend-chip { display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; font-size:11px; font-weight:700; letter-spacing:0.02em; }
+.market-stat-pill { background:rgba(255,255,255,0.75); color:var(--text); border:1px solid rgba(255,255,255,0.5); }
+.market-chip { background:var(--orange-light); color:var(--orange); }
+.market-metric-stack { display:grid; gap:12px; }
+.market-metric { padding:14px 16px; border-radius:var(--radius-sm); background:var(--bg); border:1px solid var(--border); }
+.market-metric-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--text-sec); margin-bottom:8px; }
+.market-metric strong { display:block; font-size:24px; line-height:1; margin-bottom:6px; }
+.market-metric span { display:block; font-size:12px; color:var(--text-sec); line-height:1.55; }
+.market-mini-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin-top:16px; }
+.market-mini-card { background:var(--bg); border:1px solid var(--border); border-radius:var(--radius-sm); padding:14px; }
+.market-mini-card strong { display:block; font-size:18px; margin-bottom:4px; }
+.market-mini-card span { font-size:11px; color:var(--text-sec); line-height:1.5; }
+.market-kpi-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin-top:18px; }
+.market-kpi-card { padding:16px; border-radius:var(--radius-sm); background:var(--card); border:1px solid var(--border); box-shadow:var(--shadow); }
+.market-kpi-card strong { display:block; font-size:26px; margin-bottom:6px; }
+.market-kpi-card span { display:block; font-size:12px; color:var(--text-sec); line-height:1.55; }
+.diagram-grid-2 { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; margin-top:18px; }
+.diagram-card { background:var(--card); border:1px solid var(--border); border-radius:var(--radius-sm); padding:18px; box-shadow:var(--shadow); }
+.diagram-card h4, .company-cluster-card h4, .decision-card h4 { margin:0 0 10px; font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.04em; }
+.diagram-card p, .company-cluster-card p, .decision-card p { margin:12px 0 0; font-size:12px; line-height:1.6; color:var(--text-sec); }
+.market-diagram { margin-top:12px; border-radius:var(--radius-sm); background:linear-gradient(180deg,#fff,#faf8fb); border:1px solid var(--border); padding:16px; overflow:hidden; }
+.swot-grid-dashboard { display:grid; grid-template-columns:1fr 1fr; gap:10px; min-height:360px; }
+.swot-cell { border-radius:14px; padding:16px; color:#fff; }
+.swot-cell h5 { font-size:12px; font-weight:800; margin-bottom:10px; letter-spacing:0.04em; }
+.swot-cell ul { margin:0; padding-left:18px; font-size:12px; line-height:1.55; }
+.swot-cell li { margin-bottom:6px; }
+.swot-strengths { background:linear-gradient(135deg,#10B981,#34D399); }
+.swot-weaknesses { background:linear-gradient(135deg,#EF4444,#F97316); }
+.swot-opportunities { background:linear-gradient(135deg,#E6007E,#FB7185); }
+.swot-threats { background:linear-gradient(135deg,#F59E0B,#FBBF24); color:#3b2100; }
+.porter-dashboard { position:relative; min-height:360px; }
+.porter-center-dashboard, .porter-force-dashboard { position:absolute; border-radius:16px; padding:14px; text-align:center; color:#fff; box-shadow:var(--shadow-md); }
+.porter-center-dashboard { top:50%; left:50%; transform:translate(-50%,-50%); width:34%; background:var(--gradient); }
+.porter-force-dashboard { width:26%; min-height:76px; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; line-height:1.45; }
+.porter-top-dashboard { top:0; left:37%; background:linear-gradient(135deg,#F59E0B,#F97316); }
+.porter-left-dashboard { top:39%; left:0; background:linear-gradient(135deg,#EF4444,#FB7185); }
+.porter-right-dashboard { top:39%; right:0; background:linear-gradient(135deg,#10B981,#34D399); }
+.porter-bottom-dashboard { bottom:0; left:37%; background:linear-gradient(135deg,#6366F1,#8B5CF6); }
+.porter-note-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin-top:14px; }
+.porter-note { background:var(--bg); border:1px solid var(--border); border-radius:12px; padding:12px; font-size:11px; line-height:1.55; color:var(--text-sec); }
+.bcg-dashboard { position:relative; min-height:360px; border:2px solid rgba(26,26,46,0.15); border-radius:14px; background:linear-gradient(to right, transparent 49.7%, rgba(26,26,46,0.18) 49.7%, rgba(26,26,46,0.18) 50.3%, transparent 50.3%), linear-gradient(to bottom, transparent 49.7%, rgba(26,26,46,0.18) 49.7%, rgba(26,26,46,0.18) 50.3%, transparent 50.3%); }
+.bcg-quadrant-label { position:absolute; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-sec); }
+.bcg-label-question { top:12px; left:16px; }
+.bcg-label-stars { top:12px; right:16px; }
+.bcg-label-dogs { bottom:12px; left:16px; }
+.bcg-label-cash { bottom:12px; right:16px; }
+.bcg-bubble { position:absolute; border-radius:50%; display:flex; align-items:center; justify-content:center; text-align:center; padding:12px; color:#fff; font-size:11px; font-weight:800; line-height:1.35; box-shadow:var(--shadow-md); }
+.bcg-bubble small { display:block; font-size:10px; font-weight:600; opacity:0.92; }
+.bcg-workshop { top:22%; left:22%; width:92px; height:92px; background:linear-gradient(135deg,#F59E0B,#FBBF24); color:#4a3200; }
+.bcg-strategy { top:12%; right:18%; width:124px; height:124px; background:linear-gradient(135deg,#E6007E,#FB7185); }
+.bcg-implementation { top:31%; right:35%; width:104px; height:104px; background:linear-gradient(135deg,#F97316,#FB923C); }
+.bcg-retainer { bottom:18%; right:20%; width:98px; height:98px; background:linear-gradient(135deg,#6366F1,#818CF8); }
+.bcg-empty-note { position:absolute; bottom:18%; left:18%; padding:12px 16px; border-radius:14px; background:rgba(107,114,128,0.1); color:var(--text-sec); font-size:12px; font-weight:700; }
+.positioning-dashboard { position:relative; min-height:360px; }
+.positioning-dashboard::before, .positioning-dashboard::after { content:''; position:absolute; background:rgba(26,26,46,0.18); }
+.positioning-dashboard::before { left:50%; top:0; width:2px; height:100%; transform:translateX(-50%); }
+.positioning-dashboard::after { top:50%; left:0; width:100%; height:2px; transform:translateY(-50%); }
+.axis-label-dashboard { position:absolute; font-size:11px; font-weight:800; letter-spacing:0.05em; text-transform:uppercase; color:var(--text-sec); }
+.axis-top { top:8px; left:50%; transform:translateX(-50%); }
+.axis-bottom { bottom:8px; left:50%; transform:translateX(-50%); }
+.axis-left { left:8px; top:50%; transform:translateY(-50%); }
+.axis-right { right:8px; top:50%; transform:translateY(-50%); }
+.position-point { position:absolute; transform:translate(-50%,-50%); padding:10px 14px; border-radius:999px; color:#fff; font-size:11px; font-weight:800; text-align:center; box-shadow:var(--shadow-md); }
+.point-denise { top:18%; left:72%; background:var(--gradient); }
+.point-classic { top:24%; left:23%; background:#374151; }
+.point-digital { top:66%; left:34%; background:#60A5FA; }
+.point-tech { top:70%; left:74%; background:#F59E0B; }
+.point-boutique { top:34%; left:63%; background:#EC4899; }
+.market-dynamics-chart { padding:18px; background:linear-gradient(180deg,#fff7fb 0%,#fff 100%); }
+.market-dynamics-bars { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:12px; align-items:end; min-height:260px; margin-top:14px; }
+.market-year { display:flex; flex-direction:column; align-items:center; gap:6px; }
+.market-bars { height:200px; display:flex; align-items:flex-end; gap:6px; }
+.market-bar { width:24px; border-radius:10px 10px 4px 4px; }
+.market-bar.traditional { background:#9CA3AF; }
+.market-bar.digital { background:#FB7185; }
+.market-bar.ai { background:#F59E0B; }
+.market-year-label { font-size:11px; font-weight:800; color:var(--text-sec); }
+.market-year-forecast { padding:3px 8px; border-radius:999px; font-size:9px; font-weight:800; background:var(--warning-light); color:var(--warning); }
+.legend-chip { background:var(--bg); color:var(--text-sec); }
+.legend-dot { width:10px; height:10px; border-radius:50%; }
+.competitor-columns { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+.competitor-card { border-radius:16px; padding:18px; color:#fff; min-height:100%; }
+.competitor-card.direct { background:linear-gradient(135deg,#E6007E,#FB7185); }
+.competitor-card.indirect { background:linear-gradient(135deg,#F59E0B,#FB923C); color:#4a3200; }
+.competitor-card.substitute { background:linear-gradient(135deg,#6366F1,#60A5FA); }
+.competitor-card h4 { margin:0 0 10px; font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.04em; }
+.competitor-card ol { margin:0; padding-left:18px; font-size:12px; line-height:1.6; }
+.competitor-card li { margin-bottom:6px; }
+.market-table { width:100%; border-collapse:separate; border-spacing:0 8px; margin-top:16px; }
+.market-table th { text-align:left; font-size:11px; color:var(--text-sec); text-transform:uppercase; letter-spacing:0.05em; padding:0 10px 6px; }
+.market-table td { background:var(--bg); padding:12px 10px; font-size:12px; vertical-align:top; }
+.market-table tr td:first-child { border-radius:10px 0 0 10px; font-weight:700; }
+.market-table tr td:last-child { border-radius:0 10px 10px 0; }
+.company-cluster-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin-top:16px; }
+.company-cluster-card { padding:16px; border-radius:14px; border:1px solid var(--border); background:var(--bg); }
+.company-count { display:inline-flex; padding:6px 10px; border-radius:999px; background:var(--pink-light); color:var(--pink); font-size:11px; font-weight:800; margin-bottom:10px; }
+.company-cluster-card ul, .decision-card ul { margin:0; padding-left:18px; font-size:12px; line-height:1.55; color:var(--text-sec); }
+.fazit-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:16px; }
+.decision-card { padding:18px; border-radius:16px; border:1px solid var(--border); background:var(--card); box-shadow:var(--shadow); }
+.decision-card.positive { background:linear-gradient(135deg,rgba(16,185,129,0.08),rgba(255,255,255,1)); }
+.decision-card.warning { background:linear-gradient(135deg,rgba(245,166,35,0.12),rgba(255,255,255,1)); }
 .chip { display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; font-size:11px; font-weight:700; letter-spacing:0.02em; border:0; }
 .chip.complete { background:var(--success-light); color:var(--success); }
 .chip.progress { background:var(--orange-light); color:var(--orange); }
@@ -272,9 +380,23 @@ body { font-family:'Inter',-apple-system,sans-serif; background:var(--bg); color
   .business-progress-row,
   .business-detail-grid,
   .business-visual-grid,
-  .business-accordion-header { grid-template-columns:1fr; }
+  .business-accordion-header,
+  .market-summary-grid,
+  .diagram-grid-2,
+  .competitor-columns,
+  .company-cluster-grid,
+  .fazit-grid,
+  .market-kpi-grid { grid-template-columns:1fr; }
+  .market-mini-grid { grid-template-columns:1fr 1fr; }
   .business-accordion-header { padding:14px; }
   .business-accordion-body { padding:0 14px 14px; }
+  .swot-grid-dashboard { grid-template-columns:1fr; min-height:auto; }
+  .porter-dashboard { min-height:500px; }
+  .porter-center-dashboard { width:58%; }
+  .porter-force-dashboard { width:40%; }
+  .porter-top-dashboard, .porter-bottom-dashboard { left:30%; }
+  .market-dynamics-bars { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .market-table { display:block; overflow-x:auto; }
 
   /* Workflows */
   .workflow-item { padding:8px; gap:8px; }
@@ -923,34 +1045,199 @@ Drückt mir die Daumen? 🤞
   <div class="business-panel" data-business-panel="markt">
     <div class="card">
       <div class="card-header"><div class="card-title">📈 Marktanalyse</div><span class="card-badge badge-success">100+ Unternehmen analysiert</span></div>
-      <div class="business-intro">Bestehende Marktanalyse, SWOT-, BCG- und Positionierungsdiagramme sind direkt im Dashboard integriert und nicht mehr ausgelagert.</div>
+      <div class="business-intro">Die gestrige Marktanalyse ist jetzt vollständig im Markt-Tab eingebettet: Executive Summary, Wettbewerber-Logik, 100-Unternehmen-Überblick, Marktdynamik, Fazit und alle strategischen Diagramme direkt im Dashboard.</div>
+      <div class="market-summary-grid">
+        <div class="card market-highlight-card">
+          <div class="market-badge-row" style="margin-bottom:14px">
+            <span class="card-badge badge-success">Markt attraktiv</span>
+            <span class="card-badge badge-pink">Sweet Spot besetzbar</span>
+            <span class="card-badge badge-orange">Timing 2026</span>
+          </div>
+          <div class="market-summary-title">Executive Summary der Marktanalyse</div>
+          <div class="market-summary-copy">Der Markt für strategische Marketingberatung mit KI-Einsatz ist in Bewegung: klassische Leistungen verlieren an Relevanz, digitale Beratung wächst stabil und KI-nahe Strategieangebote entwickeln sich zum stärksten Nachfragefeld. Denise kann sich zwischen klassischer Strategieberatung, Full-Service-Agenturen und reiner KI-Beratung klar differenzieren.</div>
+          <div class="market-stat-pills" style="margin-top:14px">
+            <span class="market-stat-pill">100+ Unternehmen betrachtet</span>
+            <span class="market-stat-pill">Top-10 Konkurrenztypen priorisiert</span>
+            <span class="market-stat-pill">4 Kern-Diagramme integriert</span>
+            <span class="market-stat-pill">Business-Entscheidung ableitbar</span>
+          </div>
+          <div class="market-mini-grid">
+            <div class="market-mini-card"><strong>1</strong><span>Freie Position zwischen C-Level-Strategie und KI-Praxis</span></div>
+            <div class="market-mini-card"><strong>3</strong><span>stärkste Hebel: Thought Leadership, Premium Pricing, fokussierte Segmente</span></div>
+            <div class="market-mini-card"><strong>4</strong><span>Dropdown-Bereiche für Marktgröße, Wettbewerber, Analysen und Fazit</span></div>
+            <div class="market-mini-card"><strong>2024-2028</strong><span>stärkstes Wachstumsfenster für KI-Marketing-Angebote</span></div>
+          </div>
+        </div>
+        <div class="market-metric-stack">
+          <div class="market-metric">
+            <div class="market-metric-label">Marktfenster</div>
+            <strong>Sehr stark</strong>
+            <span>KI-Marketing wächst am schnellsten, während traditionelle Marketingleistungen an Attraktivität verlieren.</span>
+          </div>
+          <div class="market-metric">
+            <div class="market-metric-label">Wettbewerbsdruck</div>
+            <strong>Hoch</strong>
+            <span>Viele Anbieter konkurrieren um ähnliche Budgets, aber nur wenige verbinden C-Level-Strategie glaubwürdig mit KI-Kompetenz.</span>
+          </div>
+          <div class="market-metric">
+            <div class="market-metric-label">Business-Relevanz</div>
+            <strong>Sofort nutzbar</strong>
+            <span>Die Analyse stützt Positionierung, Angebotsarchitektur, Pricing-Logik und das Argument für einen schnellen Marktstart.</span>
+          </div>
+        </div>
+      </div>
       <div class="business-accordion-list">
         <div class="business-accordion open">
           <div class="business-accordion-header">
-            <button class="business-accordion-toggle" type="button"><span><span class="business-accordion-title">Marktdynamik und Zielgruppen</span><span class="business-accordion-subtitle">Der Markt ist attraktiv, weil KI-nahe Marketingberatung deutlich schneller wächst als klassische Leistungen.</span></span><span class="business-accordion-icon">⌄</span></button>
+            <button class="business-accordion-toggle" type="button"><span><span class="business-accordion-title">Marktgröße und Dynamik</span><span class="business-accordion-subtitle">Der Markt ist attraktiv, weil KI-nahe Marketingberatung deutlich schneller wächst als klassische Leistungen und Denise genau in das Wachstumsfenster startet.</span></span><span class="business-accordion-icon">⌄</span></button>
             <button class="chip complete" type="button">Komplett</button>
           </div>
           <div class="business-accordion-body">
             <div class="business-detail-grid">
-              <div class="business-detail-box"><h4>Kernpunkte</h4><ul class="business-list"><li>KMU und wachstumsorientierte Unternehmen mit Marketingverantwortung</li><li>Bedarf an strategischer Klarheit und KI-naher Umsetzung</li><li>Timing für Positionierung aktuell sehr günstig</li></ul></div>
+              <div class="business-detail-box"><h4>Kernpunkte</h4><ul class="business-list"><li>KMU, Mittelstand und wachstumsorientierte Unternehmen mit Marketingverantwortung bilden die primäre Nachfragebasis.</li><li>Der Bedarf entsteht aus Transformationsdruck, Effizienzanforderungen und fehlender interner Strategiekompetenz für KI im Marketing.</li><li>Das Timing ist günstig, weil 2026 viele Unternehmen vom Experimentieren in die strukturierte Umsetzung wechseln.</li></ul></div>
               <div class="business-snapshot-box"><h4>Statusbild</h4><div class="business-pill-row"><span class="business-pill">Timing stark</span><span class="business-pill">Bedarf plausibel</span><span class="business-pill">Zielcluster definierbar</span></div></div>
+            </div>
+            <div class="market-kpi-grid">
+              <div class="market-kpi-card"><strong>+50%</strong><span>jährliches Wachstum im KI-Marketing-Segment laut integrierter Marktdynamik</span></div>
+              <div class="market-kpi-card"><strong>+15%</strong><span>stabiles Wachstum im digitalen Marketing als angrenzender Markt</span></div>
+              <div class="market-kpi-card"><strong>-3%</strong><span>jährlicher Rückgang klassischer Leistungen ohne KI- bzw. Transformationsbezug</span></div>
+            </div>
+            <div class="diagram-card market-dynamics-chart">
+              <h4>Marktdynamik 2020-2028</h4>
+              <div class="market-dynamics-bars">
+                <div class="market-year"><div class="market-bars"><div class="market-bar traditional" style="height:80px"></div><div class="market-bar digital" style="height:40px"></div><div class="market-bar ai" style="height:5px"></div></div><div class="market-year-label">2020</div></div>
+                <div class="market-year"><div class="market-bars"><div class="market-bar traditional" style="height:75px"></div><div class="market-bar digital" style="height:60px"></div><div class="market-bar ai" style="height:15px"></div></div><div class="market-year-label">2022</div></div>
+                <div class="market-year"><div class="market-bars"><div class="market-bar traditional" style="height:70px"></div><div class="market-bar digital" style="height:85px"></div><div class="market-bar ai" style="height:40px"></div></div><div class="market-year-label">2024</div></div>
+                <div class="market-year"><div class="market-bars"><div class="market-bar traditional" style="height:65px"></div><div class="market-bar digital" style="height:110px"></div><div class="market-bar ai" style="height:85px"></div></div><div class="market-year-label">2026</div><div class="market-year-forecast">Prognose</div></div>
+                <div class="market-year"><div class="market-bars"><div class="market-bar traditional" style="height:60px"></div><div class="market-bar digital" style="height:140px"></div><div class="market-bar ai" style="height:150px"></div></div><div class="market-year-label">2028</div><div class="market-year-forecast">Prognose</div></div>
+              </div>
+              <div class="market-legend">
+                <span class="legend-chip"><span class="legend-dot" style="background:#9CA3AF"></span>Traditionell</span>
+                <span class="legend-chip"><span class="legend-dot" style="background:#FB7185"></span>Digitales Marketing</span>
+                <span class="legend-chip"><span class="legend-dot" style="background:#F59E0B"></span>KI-Marketing</span>
+              </div>
+              <p>Die Kurve zeigt klar: Denise startet im Peak-Timing des KI-Marketing-Booms und nicht in einem reifen oder schrumpfenden Segment.</p>
             </div>
           </div>
         </div>
         <div class="business-accordion">
           <div class="business-accordion-header">
-            <button class="business-accordion-toggle" type="button"><span><span class="business-accordion-title">Wettbewerb, SWOT und Positionierung</span><span class="business-accordion-subtitle">Die Konkurrenzlandschaft ist erfasst; Denise besetzt den Sweet Spot zwischen Strategie und KI-Praxis.</span></span><span class="business-accordion-icon">⌄</span></button>
-            <button class="chip progress" type="button">In Arbeit</button>
+            <button class="business-accordion-toggle" type="button"><span><span class="business-accordion-title">Wettbewerber und Konkurrenzanalyse</span><span class="business-accordion-subtitle">Die Konkurrenzlandschaft ist strukturiert erfasst: direkte, indirekte und substitutive Wettbewerber plus priorisierte Top-10-Listen.</span></span><span class="business-accordion-icon">⌄</span></button>
+            <button class="chip complete" type="button">Komplett</button>
           </div>
           <div class="business-accordion-body">
             <div class="business-detail-grid">
-              <div class="business-detail-box"><h4>Kernpunkte</h4><ul class="business-list"><li>Differenzierung gegenüber klassischen Agenturen und KI-Boutiquen sichtbar</li><li>SWOT-, BCG- und Positionierungslogik ist vorhanden</li><li>Nächster Schritt: Vertriebsargumente je Segment ableiten</li></ul></div>
-              <div class="business-snapshot-box"><h4>Statusbild</h4><div class="business-pill-row"><span class="business-pill">Analyse fertig</span><span class="business-pill">Vertrieb ableiten</span></div></div>
+              <div class="business-detail-box"><h4>Kernpunkte</h4><ul class="business-list"><li>Direkte Konkurrenz kommt vor allem aus KI-Marketing-Boutiquen, spezialisierten Freelancern und Transformationsberatungen.</li><li>Indirekte Konkurrenz umfasst große Strategieberatungen, Digitalagenturen und klassische Marketingberater mit breiterem Leistungsportfolio.</li><li>Substitutionskonkurrenz entsteht durch interne Teams, Tools, Weiterbildung und das verbreitete „Wir machen es später selbst“-Narrativ.</li></ul></div>
+              <div class="business-snapshot-box"><h4>Statusbild</h4><div class="business-pill-row"><span class="business-pill">Analyse fertig</span><span class="business-pill">Top-10 priorisiert</span><span class="business-pill">Messaging ableitbar</span></div></div>
             </div>
-            <div class="business-visual-grid">
-              <div class="business-visual-card"><h4>SWOT</h4><img src="swot-analyse.png" alt="SWOT Analyse"><p>Stärken, Schwächen, Chancen und Risiken als strategische Basis für den Businessplan.</p></div>
-              <div class="business-visual-card"><h4>Positionierung</h4><img src="positionierung.png" alt="Positionierung"><p>Visualisiert den Sweet Spot aus Strategie-Kompetenz und KI-Anwendungsnähe.</p></div>
+            <div class="competitor-columns">
+              <div class="competitor-card direct"><h4>Top 10 Direkte Konkurrenz</h4><ol><li>KI-Marketing-Boutiquen</li><li>Freelance KI-Marketing-Berater</li><li>KI-Transformations-Startups</li><li>Strategieberatungen mit KI-Fokus</li><li>Fractional-CMO-Angebote mit KI-Komponente</li><li>Performance-Beratungen mit Automations-Stack</li><li>Marketing-Operations-Berater</li><li>Growth-Boutiquen mit AI-Sparring</li><li>Innovation-Beratungen mit Marketingmodul</li><li>Spezialisierte Executive Advisors</li></ol></div>
+              <div class="competitor-card indirect"><h4>Top 10 Indirekte Konkurrenz</h4><ol><li>Große Strategieberatungen</li><li>Full-Service Digitalagenturen</li><li>Klassische Marketingberatungen</li><li>Branding-Agenturen</li><li>CRM- und MarTech-Berater</li><li>Unternehmensberater mit Vertriebsfokus</li><li>Change-Management-Beratungen</li><li>Workshops- und Trainingsanbieter</li><li>Business-Coaches für Marketingteams</li><li>Tech-/Daten-Beratungen ohne Marketingtiefe</li></ol></div>
+              <div class="competitor-card substitute"><h4>Top 10 Substitutionen</h4><ol><li>Interne Marketingleitung</li><li>Inhouse-AI-Taskforces</li><li>Einzelne Tools statt Beratung</li><li>Weiterbildungen & Online-Kurse</li><li>Freie Prompt-Playbooks</li><li>Agentur-Pitches ohne Strategieprojekt</li><li>Interne Projektgruppen</li><li>Software-Vendor-Beratung</li><li>Peer-Learning in Netzwerken</li><li>„Do Nothing“-Szenario</li></ol></div>
             </div>
+            <table class="market-table">
+              <thead><tr><th>Cluster</th><th>Worüber sie verkaufen</th><th>Schwäche im Vergleich zu Denise</th><th>Argument für Denise</th></tr></thead>
+              <tbody>
+                <tr><td>Boutiquen</td><td>Tempo, Spezialisierung, moderne Tools</td><td>oft weniger C-Level-Erfahrung und strategische Tiefe</td><td>Denise verbindet Business-Relevanz mit KI-Anwendung und Executive Credibility.</td></tr>
+                <tr><td>Große Beratungen</td><td>Marke, Prozesse, Teamgröße</td><td>teurer, schwerfälliger, weniger persönlich</td><td>Direkter Zugang, höhere Umsetzungsnähe, leanes Premium-Modell.</td></tr>
+                <tr><td>Agenturen</td><td>Umsetzungskapazität, Kampagnen-Output</td><td>häufig operativ statt strategisch, KI selten auf Führungsebene</td><td>Denise startet vor der Umsetzung und gibt Richtung, Struktur und Priorisierung.</td></tr>
+                <tr><td>Substitutionen</td><td>Kostenersparnis, interne Kontrolle</td><td>langsamer Lernprozess, fehlende Außenperspektive</td><td>Externe Senior-Expertise beschleunigt Entscheidungen und vermeidet Umwege.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="business-accordion">
+          <div class="business-accordion-header">
+            <button class="business-accordion-toggle" type="button"><span><span class="business-accordion-title">Analysen und Diagramme</span><span class="business-accordion-subtitle">SWOT, Porter, BCG und Positionierung sind design-angepasst direkt im Dashboard nachgebaut und responsiv eingebettet.</span></span><span class="business-accordion-icon">⌄</span></button>
+            <button class="chip complete" type="button">Komplett</button>
+          </div>
+          <div class="business-accordion-body">
+            <div class="diagram-grid-2">
+              <div class="diagram-card">
+                <h4>SWOT-Analyse</h4>
+                <div class="market-diagram">
+                  <div class="swot-grid-dashboard">
+                    <div class="swot-cell swot-strengths"><h5>Stärken</h5><ul><li>CMO-Erfahrung in 50+ Ländern</li><li>European CMO Award Nominierung</li><li>Tiefe B2C- und Strategietiefe</li><li>Umfassende KI-Kenntnisse</li></ul></div>
+                    <div class="swot-cell swot-weaknesses"><h5>Schwächen</h5><ul><li>Einzelunternehmen mit begrenzter Kapazität</li><li>Neue Marke im Beratungsmarkt</li><li>Abhängigkeit von Denise als Person</li><li>Keine eigene Implementierungsgröße</li></ul></div>
+                    <div class="swot-cell swot-opportunities"><h5>Chancen</h5><ul><li>KI-Boom und Transformationsdruck</li><li>Marktlücke für C-Level-KI-Strategie</li><li>Thought Leadership nutzbar</li><li>DACH-weite Skalierung möglich</li></ul></div>
+                    <div class="swot-cell swot-threats"><h5>Risiken</h5><ul><li>Große Beratungen erweitern KI-Angebote</li><li>Agenturen professionalisieren sich</li><li>Schnelle Technologieentwicklung</li><li>Kürzere Budgetzyklen bei Unsicherheit</li></ul></div>
+                  </div>
+                </div>
+                <p>Die SWOT bestätigt eine starke Startposition mit klar kontrollierbaren Schwächen und sehr gutem Marktfenster.</p>
+              </div>
+              <div class="diagram-card">
+                <h4>Porter 5 Forces</h4>
+                <div class="market-diagram">
+                  <div class="porter-dashboard">
+                    <div class="porter-force-dashboard porter-top-dashboard">Neue Anbieter<br>Mittel bis hoch</div>
+                    <div class="porter-force-dashboard porter-left-dashboard">Käufermacht<br>Hoch</div>
+                    <div class="porter-center-dashboard">Wettbewerb in der Branche<br><strong>Hoch</strong></div>
+                    <div class="porter-force-dashboard porter-right-dashboard">Lieferantenmacht<br>Niedrig</div>
+                    <div class="porter-force-dashboard porter-bottom-dashboard">Ersatzprodukte<br>Mittel</div>
+                  </div>
+                  <div class="porter-note-grid">
+                    <div class="porter-note"><strong>Lieferantenmacht niedrig:</strong> Denise ist selbst der zentrale Werttreiber.</div>
+                    <div class="porter-note"><strong>Käufermacht hoch:</strong> ROI, Klarheit und Vertrauenssignale sind kaufentscheidend.</div>
+                    <div class="porter-note"><strong>Neue Anbieter:</strong> Eintritt ist einfach, Reputation nicht.</div>
+                    <div class="porter-note"><strong>Ersatzprodukte:</strong> interne Teams und Tools ersetzen keine strategische Tiefe.</div>
+                  </div>
+                </div>
+                <p>Die Five-Forces-Logik zeigt: Differenzierung und Vertrauensaufbau sind entscheidend, nicht nur Angebotstiefe.</p>
+              </div>
+              <div class="diagram-card">
+                <h4>BCG-Matrix der Angebotsfelder</h4>
+                <div class="market-diagram">
+                  <div class="bcg-dashboard">
+                    <span class="bcg-quadrant-label bcg-label-question">Question Marks</span>
+                    <span class="bcg-quadrant-label bcg-label-stars">Stars</span>
+                    <span class="bcg-quadrant-label bcg-label-dogs">Poor Dogs</span>
+                    <span class="bcg-quadrant-label bcg-label-cash">Cash Cows</span>
+                    <div class="bcg-bubble bcg-workshop">Workshops<small>Aufbau nötig</small></div>
+                    <div class="bcg-bubble bcg-strategy">Strategieberatung<small>Kern-Asset</small></div>
+                    <div class="bcg-bubble bcg-implementation">KI-Implementierung<small>Hohes Wachstum</small></div>
+                    <div class="bcg-bubble bcg-retainer">Retainer<small>Langfristige Begleitung</small></div>
+                    <div class="bcg-empty-note">Keine Angebote im Dog-Segment</div>
+                  </div>
+                </div>
+                <p>Die Matrix legt den Fokus klar auf Strategieberatung und KI-Implementierungsbegleitung als Star-Angebote.</p>
+              </div>
+              <div class="diagram-card">
+                <h4>Positionierung im Markt</h4>
+                <div class="market-diagram">
+                  <div class="positioning-dashboard">
+                    <span class="axis-label-dashboard axis-top">Strategisch</span>
+                    <span class="axis-label-dashboard axis-bottom">Operativ</span>
+                    <span class="axis-label-dashboard axis-left">Klassisch</span>
+                    <span class="axis-label-dashboard axis-right">KI-Fokus</span>
+                    <div class="position-point point-denise">Denise Stadtegger</div>
+                    <div class="position-point point-classic">Klassische Strategieberatung</div>
+                    <div class="position-point point-digital">Full-Service Agenturen</div>
+                    <div class="position-point point-tech">Reine KI-/Tech-Beratung</div>
+                    <div class="position-point point-boutique">Boutique/Freelancer</div>
+                  </div>
+                </div>
+                <p>Denise besetzt den seltenen Sweet Spot aus strategischem Anspruch und konkreter KI-Anwendungsnähe.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="business-accordion">
+          <div class="business-accordion-header">
+            <button class="business-accordion-toggle" type="button"><span><span class="business-accordion-title">100 Unternehmen-Übersicht und Fazit</span><span class="business-accordion-subtitle">Die recherchierten Unternehmen sind als Marktcluster verdichtet, damit Denise sofort Prioritäten für Fokus, Messaging und Business-Entscheidungen ableiten kann.</span></span><span class="business-accordion-icon">⌄</span></button>
+            <button class="chip complete" type="button">Komplett</button>
+          </div>
+          <div class="business-accordion-body">
+            <div class="company-cluster-grid">
+              <div class="company-cluster-card"><span class="company-count">Cluster 1 · 28 Unternehmen</span><h4>Klassische Strategieberatung & Marketingberatung</h4><p>Größtes Vergleichsfeld mit starkem Beratungsnarrativ, aber meist geringerer KI-Tiefe und weniger klarer persönlicher Positionierung.</p><ul><li>Verkaufen über Vertrauen, Erfahrung, Prozess</li><li>Schwachstelle: wenig operative KI-Kompetenz</li><li>Chance für Denise: modernes Executive-Angebot</li></ul></div>
+              <div class="company-cluster-card"><span class="company-count">Cluster 2 · 24 Unternehmen</span><h4>Digitalagenturen & Growth-Spezialisten</h4><p>Hohe Sichtbarkeit, umsetzungsstark, aber häufig kampagnen- und performancegetrieben statt wirklich strategisch.</p><ul><li>Verkaufen über Output und Teamgröße</li><li>Schwachstelle: strategische Tiefe auf Geschäftsführungsebene</li><li>Chance für Denise: vor der Umsetzung ansetzen</li></ul></div>
+              <div class="company-cluster-card"><span class="company-count">Cluster 3 · 18 Unternehmen</span><h4>KI-/Tech-Beratungen</h4><p>Technologisch stark, aber oft ohne echtes Marketingverständnis oder ohne Anschluss an CMO-/CEO-Logik.</p><ul><li>Verkaufen über Tools und Innovation</li><li>Schwachstelle: Marketing wirkt als Anwendungsfall, nicht als Kern</li><li>Chance für Denise: Business-Relevanz statt Tool-Show</li></ul></div>
+              <div class="company-cluster-card"><span class="company-count">Cluster 4 · 30 Unternehmen</span><h4>Boutiquen, Freelancer & Substitutionen</h4><p>Heterogenes Feld aus Einzelberatern, Nischenanbietern und internen Alternativen mit hoher Preissensibilität.</p><ul><li>Verkaufen über Nähe, Preis oder Flexibilität</li><li>Schwachstelle: begrenzte Seniorität oder fehlende klare Methodik</li><li>Chance für Denise: Premium-Positionierung und Fokus</li></ul></div>
+            </div>
+            <div class="fazit-grid">
+              <div class="decision-card positive"><h4>Fazit für Denise</h4><p>Der Markt ist attraktiv genug für einen fokussierten Start. Denise muss nicht die breiteste Anbieterin sein, sondern die klarste: strategische Marketingberatung mit echter KI-Umsetzungskompetenz für Unternehmen mit Veränderungsdruck.</p><ul><li>Starte mit wenigen, klaren Angeboten statt breiter Leistungsliste.</li><li>Nutze die CMO-Nominierung und internationale Erfahrung als Vertrauensbeschleuniger.</li><li>Positioniere dich bewusst zwischen Strategiehaus und KI-Boutique.</li></ul></div>
+              <div class="decision-card warning"><h4>Business-Entscheidung</h4><p>Empfohlen ist ein schneller Marktstart mit Premium-Logik, selektiver Kundenauswahl und klarer Vertriebserzählung. Kein Preiswettbewerb, keine operative Full-Service-Falle, keine Verwässerung durch zu viele Zielgruppen.</p><ul><li>Fokus auf Transformationskunden mit sichtbarem ROI-Bedarf.</li><li>Vertriebsargument je Konkurrenzcluster ableiten und standardisieren.</li><li>Retainer und Strategieformate priorisieren, Workshops als Einstieg nutzen.</li></ul></div>
+            </div>
+            <div class="concept-highlight" style="margin-top:16px">Kurz gesagt: Denise ist für den Marktstart nicht zu früh, sondern genau richtig. Entscheidend ist jetzt nicht mehr die Marktfrage, sondern die saubere Übersetzung in Angebot, Pricing und Vertrieb.</div>
           </div>
         </div>
       </div>
