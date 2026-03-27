@@ -1,0 +1,24 @@
+{
+  "name": "Jenny 🔥",
+  "short_name": "Jenny",
+  "description": "Deine COO Jenny - Dashboard für agents4you und Einzelunternehmen",
+  "start_url": "/jenny-dashboard/",
+  "display": "standalone",
+  "background_color": "#E6007E",
+  "theme_color": "#F5A623",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "jenny-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "jenny-icon-512.png", 
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ]
+}
