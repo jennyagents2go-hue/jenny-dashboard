@@ -2539,129 +2539,63 @@ function downloadJennyBigFace() {
   canvas.width = 1024;
   canvas.height = 1024;
   
-  // iOS rounded rectangle background
-  const gradient = ctx.createLinearGradient(0, 0, 1024, 1024);
-  gradient.addColorStop(0, '#E6007E');
-  gradient.addColorStop(1, '#F5A623');
-  ctx.fillStyle = gradient;
+  // Weiß/heller Hintergrund für großflächiges Design
+  ctx.fillStyle = '#FFFFFF';
+  ctx.fillRect(0, 0, 1024, 1024);
   
-  // Draw rounded background
+  // Großflächiger pink-oranger Rahmen
+  const gradient = ctx.createLinearGradient(0, 0, 1024, 1024);
+  gradient.addColorStop(0, '#E6007E');  // Pink
+  gradient.addColorStop(1, '#F5A623');  // Orange
+  
+  // Dicker Rahmen um das komplette Icon
+  ctx.strokeStyle = gradient;
+  ctx.lineWidth = 60;  // Sehr dick für großflächigen Look
   ctx.beginPath();
   if (ctx.roundRect) {
-    ctx.roundRect(0, 0, 1024, 1024, 226);
+    ctx.roundRect(30, 30, 964, 964, 196);
   } else {
-    ctx.rect(0, 0, 1024, 1024);
+    ctx.rect(30, 30, 964, 964);
   }
-  ctx.fill();
-  
-  // ECHTE JENNY RECREATION - Basierend auf dem Telegram-Bild
-  
-  // Jenny's charakteristische pinke Haare - voluminös und wellig
-  const hairGrad = ctx.createLinearGradient(200, 100, 800, 600);
-  hairGrad.addColorStop(0, '#FF1493');  // Deep Pink
-  hairGrad.addColorStop(0.3, '#E6007E'); // Brand Pink
-  hairGrad.addColorStop(0.7, '#FF69B4'); // Hot Pink
-  hairGrad.addColorStop(1, '#C71585');   // Medium Violet Red
-  
-  // Voluminöse Haare - characteristic Jenny style
-  ctx.fillStyle = hairGrad;
-  ctx.beginPath();
-  ctx.ellipse(512, 200, 280, 180, 0, 0, 2 * Math.PI);
-  ctx.fill();
-  
-  // Hair volume on sides
-  ctx.beginPath();
-  ctx.ellipse(300, 350, 120, 150, -0.3, 0, 2 * Math.PI);
-  ctx.fill();
-  ctx.beginPath();
-  ctx.ellipse(724, 350, 120, 150, 0.3, 0, 2 * Math.PI);
-  ctx.fill();
-  
-  // Gesicht - natürlicher Hautton
-  ctx.fillStyle = '#FDBCB4';
-  ctx.beginPath();
-  ctx.ellipse(512, 380, 160, 180, 0, 0, 2 * Math.PI);
-  ctx.fill();
-  
-  // Große, ausdrucksstarke Augen (wie im Bild)
-  ctx.fillStyle = '#FFFFFF';
-  ctx.beginPath();
-  ctx.ellipse(465, 350, 25, 30, 0, 0, 2 * Math.PI);
-  ctx.fill();
-  ctx.beginPath();
-  ctx.ellipse(559, 350, 25, 30, 0, 0, 2 * Math.PI);
-  ctx.fill();
-  
-  // Iris - grün wie im Bild
-  ctx.fillStyle = '#4ECDC4';
-  ctx.beginPath();
-  ctx.arc(465, 355, 15, 0, 2 * Math.PI);
-  ctx.fill();
-  ctx.beginPath();
-  ctx.arc(559, 355, 15, 0, 2 * Math.PI);
-  ctx.fill();
-  
-  // Pupils
-  ctx.fillStyle = '#000000';
-  ctx.beginPath();
-  ctx.arc(465, 355, 8, 0, 2 * Math.PI);
-  ctx.fill();
-  ctx.beginPath();
-  ctx.arc(559, 355, 8, 0, 2 * Math.PI);
-  ctx.fill();
-  
-  // Eye highlights - lebendiger Blick
-  ctx.fillStyle = '#FFFFFF';
-  ctx.beginPath();
-  ctx.arc(468, 350, 3, 0, 2 * Math.PI);
-  ctx.fill();
-  ctx.beginPath();
-  ctx.arc(562, 350, 3, 0, 2 * Math.PI);
-  ctx.fill();
-  
-  // Eyebrows - wie im Bild
-  ctx.fillStyle = '#8B4513';
-  ctx.lineWidth = 4;
-  ctx.strokeStyle = '#8B4513';
-  ctx.beginPath();
-  ctx.moveTo(440, 320);
-  ctx.quadraticCurveTo(465, 315, 490, 320);
-  ctx.stroke();
-  ctx.beginPath();
-  ctx.moveTo(534, 320);
-  ctx.quadraticCurveTo(559, 315, 584, 320);
   ctx.stroke();
   
-  // Breites, offenes Lächeln - wie im Bild
-  ctx.strokeStyle = '#D2691E';
-  ctx.lineWidth = 5;
-  ctx.lineCap = 'round';
-  ctx.beginPath();
-  ctx.moveTo(450, 420);
-  ctx.quadraticCurveTo(512, 450, 574, 420);
-  ctx.stroke();
+  // Großes "J" in der Mitte - minimalistisch
+  ctx.fillStyle = gradient;
+  ctx.font = 'bold 600px Inter, -apple-system, Arial, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('J', 512, 420);
   
-  // Lippen
-  ctx.fillStyle = '#FF6B9D';
-  ctx.beginPath();
-  ctx.ellipse(512, 430, 35, 15, 0, 0, 2 * Math.PI);
-  ctx.fill();
-  
-  // Jenny Text - energetisch
-  ctx.fillStyle = 'white';
-  ctx.font = 'bold 100px Arial, sans-serif';
+  // Jenny Text unten - groß und lesbar
+  ctx.fillStyle = '#333333';
+  ctx.font = 'bold 120px Inter, Arial, sans-serif';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'alphabetic';
-  ctx.fillText('Jenny', 512, 750);
+  ctx.fillText('Jenny', 512, 800);
   
   // Fire Emoji
   ctx.font = '100px Arial';
-  ctx.fillText('🔥', 512, 880);
+  ctx.fillText('🔥', 512, 930);
   
-  // Marketing Mania Badge (wie im Hintergrund)
-  ctx.fillStyle = 'rgba(255,255,255,0.9)';
-  ctx.font = 'bold 32px Arial';
-  ctx.fillText('COO', 512, 990);
+  // iOS Rounded Corners für das ganze Icon
+  const mask = document.createElement('canvas');
+  mask.width = 1024;
+  mask.height = 1024;
+  const maskCtx = mask.getContext('2d');
+  
+  maskCtx.fillStyle = '#000000';
+  maskCtx.beginPath();
+  if (maskCtx.roundRect) {
+    maskCtx.roundRect(0, 0, 1024, 1024, 226);
+  } else {
+    maskCtx.rect(0, 0, 1024, 1024);
+  }
+  maskCtx.fill();
+  
+  // Apply mask
+  ctx.globalCompositeOperation = 'destination-in';
+  ctx.drawImage(mask, 0, 0);
+  ctx.globalCompositeOperation = 'source-over';
   
   // Download
   try {
@@ -2670,13 +2604,13 @@ function downloadJennyBigFace() {
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'jenny-real-icon.png';
+        a.download = 'jenny-simple-icon.png';
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
         
-        alert('🔥 ECHTE JENNY Icon heruntergeladen!\n\nPinke Haare, große Augen, Marketing-Power!\n\n📱 Shortcuts App:\n1. "+" → "App öffnen" → Safari\n2. "URL öffnen" → Dashboard URL\n3. Icon ändern → Jenny Real\n4. Name: "Jenny 🔥"\n\nJetzt hast du die echte Jenny!');
+        alert('✨ JENNY SIMPLE Icon heruntergeladen!\n\nGroßflächig, pink-oranger Rahmen, minimalistisch!\n\n📱 Shortcuts App:\n1. "+" → "App öffnen" → Safari\n2. "URL öffnen" → Dashboard URL\n3. Icon ändern → Jenny Simple\n4. Name: "Jenny 🔥"');
       }
     }, 'image/png');
   } catch(e) {
