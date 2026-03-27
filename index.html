@@ -146,6 +146,44 @@ body { font-family:'Inter',-apple-system,sans-serif; background:var(--bg); color
 .concept-content li { margin-bottom:4px; }
 .concept-highlight { background:rgba(230,0,126,0.05); border-left:3px solid var(--pink); padding:10px 14px; border-radius:0 8px 8px 0; margin:10px 0; font-size:13px; }
 
+/* BUSINESS PLAN */
+.business-tabs { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:18px; }
+.business-tab-button { border:1px solid var(--border); padding:12px 16px; border-radius:999px; background:var(--card); color:var(--text-sec); font:inherit; font-weight:700; cursor:pointer; transition:all 0.2s ease; box-shadow:var(--shadow); }
+.business-tab-button:hover,
+.business-tab-button.active { color:#fff; background:var(--gradient); border-color:transparent; box-shadow:var(--shadow-md); }
+.business-panel { display:none; }
+.business-panel.active { display:block; }
+.business-intro { font-size:13px; color:var(--text-sec); line-height:1.7; margin-bottom:14px; }
+.business-progress-list { display:grid; gap:12px; }
+.business-progress-row { display:grid; grid-template-columns:160px 1fr auto; align-items:center; gap:12px; }
+.business-progress-row strong { font-size:13px; }
+.business-progress-row span { font-size:12px; font-weight:700; color:var(--text-sec); }
+.business-accordion-list { display:grid; gap:12px; }
+.business-accordion { border:1px solid var(--border); border-radius:var(--radius-sm); background:var(--bg); overflow:hidden; }
+.business-accordion-header { display:grid; grid-template-columns:1fr auto; gap:12px; align-items:center; padding:16px 18px; }
+.business-accordion-toggle { display:flex; align-items:center; justify-content:space-between; gap:14px; width:100%; padding:0; border:0; background:transparent; cursor:pointer; text-align:left; font:inherit; }
+.business-accordion-title { display:block; font-size:15px; font-weight:700; }
+.business-accordion-subtitle { display:block; margin-top:6px; color:var(--text-sec); font-size:13px; line-height:1.55; }
+.business-accordion-icon { min-width:34px; height:34px; border-radius:50%; display:grid; place-items:center; background:var(--pink-light); color:var(--pink); font-size:18px; transition:transform 160ms ease; }
+.business-accordion.open .business-accordion-icon { transform:rotate(180deg); }
+.business-accordion-body { display:none; padding:0 18px 18px; border-top:1px solid var(--border); }
+.business-accordion.open .business-accordion-body { display:block; }
+.business-detail-grid { display:grid; grid-template-columns:1.2fr 0.8fr; gap:16px; padding-top:18px; }
+.business-detail-box, .business-snapshot-box, .business-visual-card { padding:18px; border-radius:var(--radius-sm); background:var(--card); border:1px solid var(--border); }
+.business-detail-box h4, .business-snapshot-box h4, .business-visual-card h4 { margin:0 0 12px; font-size:12px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-sec); }
+.business-detail-box p, .business-snapshot-box p, .business-visual-card p { margin:0 0 12px; color:var(--text-sec); font-size:13px; line-height:1.7; }
+.business-list { margin:0; padding:0; list-style:none; }
+.business-list li { position:relative; padding-left:18px; margin-bottom:10px; line-height:1.6; font-size:13px; }
+.business-list li::before { content:''; position:absolute; left:0; top:9px; width:8px; height:8px; border-radius:50%; background:var(--gradient); }
+.business-pill-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+.business-pill { padding:8px 10px; border-radius:999px; background:var(--pink-light); color:var(--pink); font-size:12px; font-weight:700; }
+.business-visual-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; margin-top:18px; }
+.business-visual-card img { width:100%; height:220px; object-fit:cover; border-radius:var(--radius-sm); border:1px solid var(--border); background:linear-gradient(180deg,#fff,#f7f7fa); }
+.chip { display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; font-size:11px; font-weight:700; letter-spacing:0.02em; border:0; }
+.chip.complete { background:var(--success-light); color:var(--success); }
+.chip.progress { background:var(--orange-light); color:var(--orange); }
+.chip.open { background:#FEE2E2; color:var(--danger); }
+
 /* NOTE */
 .note-area { width:100%; min-height:100px; border:2px dashed var(--border); border-radius:var(--radius-sm); padding:14px; font-family:inherit; font-size:13px; resize:vertical; outline:none; }
 .note-area:focus { border-color:var(--pink); }
@@ -229,6 +267,14 @@ body { font-family:'Inter',-apple-system,sans-serif; background:var(--bg); color
   .concept-section h3 { font-size:14px; }
   .concept-content { font-size:12px; }
   .concept-highlight { padding:8px 10px; font-size:12px; }
+  .business-tabs { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .business-tab-button { padding:10px 12px; font-size:12px; }
+  .business-progress-row,
+  .business-detail-grid,
+  .business-visual-grid,
+  .business-accordion-header { grid-template-columns:1fr; }
+  .business-accordion-header { padding:14px; }
+  .business-accordion-body { padding:0 14px 14px; }
 
   /* Workflows */
   .workflow-item { padding:8px; gap:8px; }
@@ -764,16 +810,248 @@ Drückt mir die Daumen? 🤞
 
 <!-- ====== EINZELUNTERNEHMEN BUSINESSPLAN ====== -->
 <div id="tab-business" class="tab-content">
-  <iframe src="einzelunternehmen-businessplan.html" 
-          style="width: 100%; height: 100vh; border: none; border-radius: 14px; box-shadow: var(--shadow);"
-          frameborder="0">
-  </iframe>
-</div>
-  <div class="concept-section"><h3>💎 Differenzierung</h3><div class="concept-content">
-    <div class="concept-highlight">Senior-Level Strategie + KI-Verständnis + Umsetzungsfokus = einzigartig am Markt.</div>
-    <ul><li>Systematische KI-Integration statt Tool-Aktionismus</li><li>Internationale CMO-Erfahrung (50+ Länder)</li></ul></div></div>
-  <div class="concept-section"><h3>💰 Finanzen</h3><div class="concept-content"><ul><li>Monatliche Fixkosten: ~300-400 €</li><li>Software/KI: ~200 € · Steuerberatung: ~150 € · Website: ~50 €</li></ul>
-    <div class="concept-highlight">Geringe Fixkosten = niedriges Risiko. Finanzierung: Rücklagen + erste Umsätze.</div></div></div>
+  <div class="focus-banner">
+    <h2>🏢 Einzelunternehmen</h2>
+    <p>Strategisches Marketing mit KI-Einsatz direkt im Hauptdashboard.</p>
+    <div class="focus-sub">Kein iFrame mehr. Gleiche Navigation, gleiche Card-Logik, gleiche Design-Sprache.</div>
+  </div>
+
+  <div class="grid-4" style="margin-bottom:16px">
+    <div class="card stat-card"><div class="stat-number" id="business-count-complete">9</div><div class="stat-label">Komplett</div></div>
+    <div class="card stat-card"><div class="stat-number" id="business-count-progress">11</div><div class="stat-label">In Arbeit</div></div>
+    <div class="card stat-card"><div class="stat-number" id="business-count-open">8</div><div class="stat-label">Offen</div></div>
+    <div class="card stat-card"><div class="stat-number" id="business-market-ready">3/4</div><div class="stat-label">Marktbereit</div></div>
+  </div>
+
+  <div class="business-tabs">
+    <button class="business-tab-button active" type="button" data-business-tab="summary">Executive Summary</button>
+    <button class="business-tab-button" type="button" data-business-tab="profil">Profil</button>
+    <button class="business-tab-button" type="button" data-business-tab="angebot">Angebot</button>
+    <button class="business-tab-button" type="button" data-business-tab="markt">Markt</button>
+    <button class="business-tab-button" type="button" data-business-tab="vertrieb">Vertrieb</button>
+    <button class="business-tab-button" type="button" data-business-tab="finanzen">Finanzen</button>
+    <button class="business-tab-button" type="button" data-business-tab="risiko">Risiko</button>
+  </div>
+
+  <div class="business-panel active" data-business-panel="summary">
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-header"><div class="card-title">📌 Gesamtbild</div><span class="card-badge badge-pink">Executive Summary</span></div>
+        <div class="business-intro">Das Einzelunternehmen positioniert Denise als strategische Marketingberatung mit klarem KI-Fokus. Markt und Positionierung sind bereits belastbar; die größte Hebelwirkung liegt jetzt in Finanzmodell, Vertriebsprozess und KPI-Logik.</div>
+        <ul class="business-list">
+          <li>Premium-nahe Beratung für Unternehmen mit Transformationsdruck im Marketing</li>
+          <li>Kombination aus C-Level-Erfahrung, internationalem Blick und praktischer KI-Anwendung</li>
+          <li>Lean aufgesetztes Modell mit niedrigen Fixkosten und schneller Umsetzbarkeit</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-title">🎯 Nächste Prioritäten</div><span class="card-badge badge-orange">In Arbeit</span></div>
+        <div class="business-progress-list">
+          <div class="business-progress-row"><strong>Markt</strong><div class="progress-bar"><div class="progress-fill" style="width:75%"></div></div><span>75%</span></div>
+          <div class="business-progress-row"><strong>Positionierung</strong><div class="progress-bar"><div class="progress-fill" style="width:70%"></div></div><span>70%</span></div>
+          <div class="business-progress-row"><strong>Vertrieb</strong><div class="progress-bar"><div class="progress-fill" style="width:45%"></div></div><span>45%</span></div>
+          <div class="business-progress-row"><strong>Finanzen</strong><div class="progress-bar"><div class="progress-fill" style="width:35%"></div></div><span>35%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="business-panel" data-business-panel="profil">
+    <div class="card">
+      <div class="card-header"><div class="card-title">👤 Gründerinnenprofil</div><span class="card-badge badge-success">Belastbar</span></div>
+      <div class="business-accordion-list">
+        <div class="business-accordion open">
+          <div class="business-accordion-header">
+            <button class="business-accordion-toggle" type="button"><span><span class="business-accordion-title">Rolle und Unternehmerinnenprofil</span><span class="business-accordion-subtitle">Die persönliche Story stützt die Glaubwürdigkeit im Businessplan und in Förderunterlagen.</span></span><span class="business-accordion-icon">⌄</span></button>
+            <button class="chip complete" type="button">Komplett</button>
+          </div>
+          <div class="business-accordion-body">
+            <div class="business-detail-grid">
+              <div class="business-detail-box"><h4>Kernpunkte</h4><ul class="business-list"><li>Seniorige Marketing-Führungserfahrung auf C-Level</li><li>Klare Positionierung als Strategin mit KI-Verständnis</li><li>Direkt nutzbar für Executive Summary und Förderlogik</li></ul></div>
+              <div class="business-snapshot-box"><h4>Statusbild</h4><div class="business-pill-row"><span class="business-pill">Story vorhanden</span><span class="business-pill">Expertise klar</span><span class="business-pill">Businessplan-tauglich</span></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="business-accordion">
+          <div class="business-accordion-header">
+            <button class="business-accordion-toggle" type="button"><span><span class="business-accordion-title">Qualifikation und Erfahrung</span><span class="business-accordion-subtitle">Marketing-Leadership, Weiterbildung und Praxis im KI-Einsatz sind klar dokumentiert.</span></span><span class="business-accordion-icon">⌄</span></button>
+            <button class="chip progress" type="button">In Arbeit</button>
+          </div>
+          <div class="business-accordion-body">
+            <div class="business-detail-grid">
+              <div class="business-detail-box"><h4>Kernpunkte</h4><ul class="business-list"><li>Internationale Erfahrung in Marken- und Marketingsteuerung</li><li>Aktuelle KI-Weiterbildung mit klarer Transferleistung in die Praxis</li><li>Noch auf nüchternen Businessplan-Ton verdichten</li></ul></div>
+              <div class="business-snapshot-box"><h4>Statusbild</h4><div class="business-pill-row"><span class="business-pill">Substanz stark</span><span class="business-pill">Verdichtung offen</span></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="business-panel" data-business-panel="angebot">
+    <div class="card">
+      <div class="card-header"><div class="card-title">🧩 Angebot und Nutzen</div><span class="card-badge badge-pink">Positionierung</span></div>
+      <div class="business-accordion-list">
+        <div class="business-accordion open">
+          <div class="business-accordion-header">
+            <button class="business-accordion-toggle" type="button"><span><span class="business-accordion-title">Leistungsangebot</span><span class="business-accordion-subtitle">Strategie-Sprints, Marketing-Roadmaps und KI-nahe Beratungsleistungen bilden das Kernangebot.</span></span><span class="business-accordion-icon">⌄</span></button>
+            <button class="chip complete" type="button">Komplett</button>
+          </div>
+          <div class="business-accordion-body">
+            <div class="business-detail-grid">
+              <div class="business-detail-box"><h4>Kernpunkte</h4><ul class="business-list"><li>Beratung an der Schnittstelle von Marketingstrategie und KI-Anwendung</li><li>Geeignet für Unternehmen, die ihr Marketing modernisieren wollen</li><li>Fokus auf Klarheit, Wirkung und Umsetzbarkeit</li></ul></div>
+              <div class="business-snapshot-box"><h4>Statusbild</h4><div class="business-pill-row"><span class="business-pill">Angebot klar</span><span class="business-pill">Premium-fähig</span></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="business-accordion">
+          <div class="business-accordion-header">
+            <button class="business-accordion-toggle" type="button"><span><span class="business-accordion-title">Alleinstellungsmerkmal</span><span class="business-accordion-subtitle">Die Differenzierung liegt in der Verbindung aus Senior-Level-Strategie, internationalem Blick und KI-Umsetzung.</span></span><span class="business-accordion-icon">⌄</span></button>
+            <button class="chip progress" type="button">In Arbeit</button>
+          </div>
+          <div class="business-accordion-body">
+            <div class="business-detail-grid">
+              <div class="business-detail-box"><h4>Kernpunkte</h4><ul class="business-list"><li>Kein Tool-Hype, sondern systematische KI-Integration</li><li>Starker Hebel für Unternehmen mit strategischem Nachholbedarf</li><li>Noch stärker in konkrete Nutzenargumente pro Zielgruppe übersetzen</li></ul></div>
+              <div class="business-snapshot-box"><h4>Statusbild</h4><div class="business-pill-row"><span class="business-pill">USP klar</span><span class="business-pill">Messaging schärfen</span></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="business-panel" data-business-panel="markt">
+    <div class="card">
+      <div class="card-header"><div class="card-title">📈 Marktanalyse</div><span class="card-badge badge-success">100+ Unternehmen analysiert</span></div>
+      <div class="business-intro">Bestehende Marktanalyse, SWOT-, BCG- und Positionierungsdiagramme sind direkt im Dashboard integriert und nicht mehr ausgelagert.</div>
+      <div class="business-accordion-list">
+        <div class="business-accordion open">
+          <div class="business-accordion-header">
+            <button class="business-accordion-toggle" type="button"><span><span class="business-accordion-title">Marktdynamik und Zielgruppen</span><span class="business-accordion-subtitle">Der Markt ist attraktiv, weil KI-nahe Marketingberatung deutlich schneller wächst als klassische Leistungen.</span></span><span class="business-accordion-icon">⌄</span></button>
+            <button class="chip complete" type="button">Komplett</button>
+          </div>
+          <div class="business-accordion-body">
+            <div class="business-detail-grid">
+              <div class="business-detail-box"><h4>Kernpunkte</h4><ul class="business-list"><li>KMU und wachstumsorientierte Unternehmen mit Marketingverantwortung</li><li>Bedarf an strategischer Klarheit und KI-naher Umsetzung</li><li>Timing für Positionierung aktuell sehr günstig</li></ul></div>
+              <div class="business-snapshot-box"><h4>Statusbild</h4><div class="business-pill-row"><span class="business-pill">Timing stark</span><span class="business-pill">Bedarf plausibel</span><span class="business-pill">Zielcluster definierbar</span></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="business-accordion">
+          <div class="business-accordion-header">
+            <button class="business-accordion-toggle" type="button"><span><span class="business-accordion-title">Wettbewerb, SWOT und Positionierung</span><span class="business-accordion-subtitle">Die Konkurrenzlandschaft ist erfasst; Denise besetzt den Sweet Spot zwischen Strategie und KI-Praxis.</span></span><span class="business-accordion-icon">⌄</span></button>
+            <button class="chip progress" type="button">In Arbeit</button>
+          </div>
+          <div class="business-accordion-body">
+            <div class="business-detail-grid">
+              <div class="business-detail-box"><h4>Kernpunkte</h4><ul class="business-list"><li>Differenzierung gegenüber klassischen Agenturen und KI-Boutiquen sichtbar</li><li>SWOT-, BCG- und Positionierungslogik ist vorhanden</li><li>Nächster Schritt: Vertriebsargumente je Segment ableiten</li></ul></div>
+              <div class="business-snapshot-box"><h4>Statusbild</h4><div class="business-pill-row"><span class="business-pill">Analyse fertig</span><span class="business-pill">Vertrieb ableiten</span></div></div>
+            </div>
+            <div class="business-visual-grid">
+              <div class="business-visual-card"><h4>SWOT</h4><img src="swot-analyse.png" alt="SWOT Analyse"><p>Stärken, Schwächen, Chancen und Risiken als strategische Basis für den Businessplan.</p></div>
+              <div class="business-visual-card"><h4>Positionierung</h4><img src="positionierung.png" alt="Positionierung"><p>Visualisiert den Sweet Spot aus Strategie-Kompetenz und KI-Anwendungsnähe.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="business-panel" data-business-panel="vertrieb">
+    <div class="card">
+      <div class="card-header"><div class="card-title">🤝 Marketing und Vertrieb</div><span class="card-badge badge-orange">Go-to-Market</span></div>
+      <div class="business-accordion-list">
+        <div class="business-accordion open">
+          <div class="business-accordion-header">
+            <button class="business-accordion-toggle" type="button"><span><span class="business-accordion-title">Marketing</span><span class="business-accordion-subtitle">Personal Brand, LinkedIn und klare Thought-Leadership sind die primären Zugpferde.</span></span><span class="business-accordion-icon">⌄</span></button>
+            <button class="chip progress" type="button">In Arbeit</button>
+          </div>
+          <div class="business-accordion-body">
+            <div class="business-detail-grid">
+              <div class="business-detail-box"><h4>Kernpunkte</h4><ul class="business-list"><li>LinkedIn als primärer Kanal für Sichtbarkeit und Vertrauen</li><li>Inhalte müssen Expertise, Haltung und Praxisnähe zeigen</li><li>Website und Marketingmaterialien als nächster Enablement-Schritt</li></ul></div>
+              <div class="business-snapshot-box"><h4>Statusbild</h4><div class="business-pill-row"><span class="business-pill">Brand im Aufbau</span><span class="business-pill">Kanäle definiert</span></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="business-accordion">
+          <div class="business-accordion-header">
+            <button class="business-accordion-toggle" type="button"><span><span class="business-accordion-title">Vertriebsarchitektur</span><span class="business-accordion-subtitle">Erstkontakt, Qualifizierung, Angebotsformat und Follow-up sind der größte offene Hebel.</span></span><span class="business-accordion-icon">⌄</span></button>
+            <button class="chip open" type="button">Offen</button>
+          </div>
+          <div class="business-accordion-body">
+            <div class="business-detail-grid">
+              <div class="business-detail-box"><h4>Kernpunkte</h4><ul class="business-list"><li>Lead-Strecke vom Erstkontakt bis zum Angebot definieren</li><li>Standardisiertes Angebotsformat festlegen</li><li>KPIs für Conversion und Nachverfolgung ergänzen</li></ul></div>
+              <div class="business-snapshot-box"><h4>Statusbild</h4><div class="business-pill-row"><span class="business-pill">Hebel hoch</span><span class="business-pill">Noch undefiniert</span></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="business-panel" data-business-panel="finanzen">
+    <div class="card">
+      <div class="card-header"><div class="card-title">💰 Finanzen</div><span class="card-badge badge-warning">Zahlen schärfen</span></div>
+      <div class="business-accordion-list">
+        <div class="business-accordion open">
+          <div class="business-accordion-header">
+            <button class="business-accordion-toggle" type="button"><span><span class="business-accordion-title">Kostenstruktur</span><span class="business-accordion-subtitle">Fixkosten bleiben bewusst lean und halten das Risiko niedrig.</span></span><span class="business-accordion-icon">⌄</span></button>
+            <button class="chip progress" type="button">In Arbeit</button>
+          </div>
+          <div class="business-accordion-body">
+            <div class="business-detail-grid">
+              <div class="business-detail-box"><h4>Kernpunkte</h4><ul class="business-list"><li>Software/KI ca. 200 €</li><li>Steuerberatung ca. 150 €</li><li>Website/Branding ca. 50 € bis 100 €</li></ul></div>
+              <div class="business-snapshot-box"><h4>Statusbild</h4><div class="business-pill-row"><span class="business-pill">Lean Setup</span><span class="business-pill">Noch validieren</span></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="business-accordion">
+          <div class="business-accordion-header">
+            <button class="business-accordion-toggle" type="button"><span><span class="business-accordion-title">Umsatz, Liquidität und Rentabilität</span><span class="business-accordion-subtitle">Noch keine belastbaren Kennzahlen hinterlegt, aber das Modell ist klar ansteuerbar.</span></span><span class="business-accordion-icon">⌄</span></button>
+            <button class="chip open" type="button">Offen</button>
+          </div>
+          <div class="business-accordion-body">
+            <div class="business-detail-grid">
+              <div class="business-detail-box"><h4>Kernpunkte</h4><ul class="business-list"><li>Preismodell und Umsatzszenarien definieren</li><li>Liquiditätsvorschau aus Vertriebslogik ableiten</li><li>Rentabilität als Kernbaustein für Executive Summary ergänzen</li></ul></div>
+              <div class="business-snapshot-box"><h4>Statusbild</h4><div class="business-pill-row"><span class="business-pill">Risikorelevant</span><span class="business-pill">Noch offen</span></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="business-panel" data-business-panel="risiko">
+    <div class="card">
+      <div class="card-header"><div class="card-title">🛡 Risiko und Umsetzung</div><span class="card-badge badge-info">Realistische Steuerung</span></div>
+      <div class="business-accordion-list">
+        <div class="business-accordion open">
+          <div class="business-accordion-header">
+            <button class="business-accordion-toggle" type="button"><span><span class="business-accordion-title">Chancen, Risiken und Gegenmaßnahmen</span><span class="business-accordion-subtitle">Die Story ist plausibel, muss aber noch stärker quantifiziert und mit Szenarien versehen werden.</span></span><span class="business-accordion-icon">⌄</span></button>
+            <button class="chip progress" type="button">In Arbeit</button>
+          </div>
+          <div class="business-accordion-body">
+            <div class="business-detail-grid">
+              <div class="business-detail-box"><h4>Kernpunkte</h4><ul class="business-list"><li>Erfolgshebel: klare Zielgruppe, starke Angebote, schneller Vertriebsprozess</li><li>Risiken: verzögerter Vertriebsstart, unklare Preislogik, fehlende KPI-Steuerung</li><li>Gegenmaßnahmen: standardisierte Angebote, Fokus auf wenige Segmente, laufendes Tracking</li></ul></div>
+              <div class="business-snapshot-box"><h4>Statusbild</h4><div class="business-pill-row"><span class="business-pill">SWOT vorhanden</span><span class="business-pill">Szenarien offen</span></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="business-accordion">
+          <div class="business-accordion-header">
+            <button class="business-accordion-toggle" type="button"><span><span class="business-accordion-title">Organisation und Partnerstruktur</span><span class="business-accordion-subtitle">Das Modell startet solo, kann aber flexibel über Partner oder Freelancer erweitert werden.</span></span><span class="business-accordion-icon">⌄</span></button>
+            <button class="chip progress" type="button">In Arbeit</button>
+          </div>
+          <div class="business-accordion-body">
+            <div class="business-detail-grid">
+              <div class="business-detail-box"><h4>Kernpunkte</h4><ul class="business-list"><li>Kein fixes Team zum Start</li><li>Skalierung über selektive Partner oder Freelancer möglich</li><li>Partnerprofil noch definieren, damit Wachstumslogik belastbar wird</li></ul></div>
+              <div class="business-snapshot-box"><h4>Statusbild</h4><div class="business-pill-row"><span class="business-pill">Struktur plausibel</span><span class="business-pill">Partnerprofil offen</span></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- ====== KALENDER ====== -->
@@ -867,6 +1145,27 @@ function showTab(name,el){
   var titles={'overview':'🏠 Übersicht','tasks':'✅ Tasks','social':'📣 Social Media','agents4you':'🚀 agents4you','business':'🏢 Einzelunternehmen','calendar':'📅 Kalender','workflows':'⚡ Workflows','notes':'📝 Notizen'};
   document.getElementById('page-title').textContent=titles[name]||name;
   if(name==='tasks')renderKanban();
+}
+
+function initBusinessTabs(){
+  var buttons=document.querySelectorAll('.business-tab-button');
+  var panels=document.querySelectorAll('.business-panel');
+  buttons.forEach(function(button){
+    button.addEventListener('click',function(){
+      var target=button.getAttribute('data-business-tab');
+      buttons.forEach(function(item){item.classList.toggle('active',item===button);});
+      panels.forEach(function(panel){panel.classList.toggle('active',panel.getAttribute('data-business-panel')===target);});
+    });
+  });
+}
+
+function initBusinessAccordions(){
+  document.querySelectorAll('.business-accordion-toggle').forEach(function(toggle){
+    toggle.addEventListener('click',function(){
+      var card=toggle.closest('.business-accordion');
+      if(card)card.classList.toggle('open');
+    });
+  });
 }
 
 // DATE
@@ -1036,6 +1335,8 @@ function legacyAddKanbanCard(colId){
   renderKanban();
 }
 document.addEventListener('DOMContentLoaded',function(){
+  initBusinessTabs();
+  initBusinessAccordions();
   renderCustomAbos();renderCustomTermine();renderCustomCRM();loadFromSheet().then(function(cards){
     if(cards&&cards.length>0){console.log('Loaded '+cards.length+' cards from Sheet');}
     renderKanban();
