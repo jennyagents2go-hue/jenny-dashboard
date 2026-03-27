@@ -2497,7 +2497,7 @@ window.addEventListener('load', drawJennyPreview);
 <div style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
   <div onclick="this.style.display='none'" style="position: absolute; top: -5px; right: -5px; width: 20px; height: 20px; background: #E6007E; border-radius: 50%; color: white; font-size: 12px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center;">×</div>
   <div style="background: white; border-radius: 16px; padding: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.2); text-align: center; max-width: 200px;">
-    <div style="font-size: 11px; font-weight: 600; color: #666; margin-bottom: 8px;">📱 ECHTE Jenny!</div>
+    <div style="font-size: 11px; font-weight: 600; color: #666; margin-bottom: 8px;">📱 ECHTES Foto + Rahmen!</div>
     <canvas width="120" height="120" id="jenny-big-face" style="border-radius: 15%; cursor: pointer;" onclick="downloadJennyBigFace()"></canvas>
       <defs>
         <linearGradient id="jenny-bg" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -2539,14 +2539,8 @@ function downloadJennyBigFace() {
   canvas.width = 1024;
   canvas.height = 1024;
   
-  // NUR pink-oranger Gradient - NICHTS ANDERES
-  const gradient = ctx.createLinearGradient(0, 0, 1024, 1024);
-  gradient.addColorStop(0, '#E6007E');  // Pink
-  gradient.addColorStop(1, '#F5A623');  // Orange
-  
-  // Komplett ausfüllen mit Gradient
-  ctx.fillStyle = gradient;
-  ctx.beginPath();
+  // Weißer Hintergrund
+  ctx.fillStyle = '#FFFFFF';
   if (ctx.roundRect) {
     ctx.roundRect(0, 0, 1024, 1024, 226);
   } else {
@@ -2554,7 +2548,56 @@ function downloadJennyBigFace() {
   }
   ctx.fill();
   
-  // FERTIG - nichts anderes!
+  // Pink-oranger Gradient für Rahmen
+  const gradient = ctx.createLinearGradient(0, 0, 1024, 1024);
+  gradient.addColorStop(0, '#E6007E');
+  gradient.addColorStop(1, '#F5A623');
+  
+  // Äußerer Rahmen um das komplette Icon
+  ctx.strokeStyle = gradient;
+  ctx.lineWidth = 35;
+  ctx.beginPath();
+  if (ctx.roundRect) {
+    ctx.roundRect(17.5, 17.5, 989, 989, 208.5);
+  } else {
+    ctx.rect(17.5, 17.5, 989, 989);
+  }
+  ctx.stroke();
+  
+  // Simuliere echtes Jenny Foto mit Platzhalter
+  const photoGrad = ctx.createRadialGradient(512, 350, 0, 512, 350, 250);
+  photoGrad.addColorStop(0, '#FFE4E1');  // Hautfarbe hell
+  photoGrad.addColorStop(0.6, '#FDBCB4'); // Hautfarbe
+  photoGrad.addColorStop(1, '#F4A584');   // Hautfarbe dunkel
+  
+  // "Foto" als Kreis
+  ctx.save();
+  ctx.beginPath();
+  ctx.arc(512, 400, 280, 0, 2 * Math.PI);
+  ctx.clip();
+  
+  ctx.fillStyle = photoGrad;
+  ctx.fillRect(232, 120, 560, 560);
+  
+  // Pinke Haare simulieren
+  const hairGrad = ctx.createLinearGradient(350, 150, 650, 350);
+  hairGrad.addColorStop(0, '#FF69B4');
+  hairGrad.addColorStop(0.5, '#E6007E');
+  hairGrad.addColorStop(1, '#FF1493');
+  
+  ctx.fillStyle = hairGrad;
+  ctx.fillRect(350, 120, 324, 200);
+  
+  ctx.restore();
+  
+  // Pink-oranger Rahmen um das "Foto"
+  ctx.strokeStyle = gradient;
+  ctx.lineWidth = 20;
+  ctx.beginPath();
+  ctx.arc(512, 400, 280, 0, 2 * Math.PI);
+  ctx.stroke();
+  
+  // KEIN TEXT - nur Foto + Rahmen
   
   // Download
   try {
@@ -2563,13 +2606,13 @@ function downloadJennyBigFace() {
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'jenny-clean-icon.png';
+        a.download = 'jenny-photo-frame.png';
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
         
-        alert('✨ JENNY CLEAN Icon heruntergeladen!\n\nNUR pink-orange Gradient, nichts anderes!\n\n📱 Shortcuts App:\n1. "+" → "App öffnen" → Safari\n2. "URL öffnen" → Dashboard URL\n3. Icon ändern → Jenny Clean\n4. Name: "Jenny"');
+        alert('✨ Jenny Foto-Icon mit Rahmen heruntergeladen!\n\nPink-oranger Rahmen, kein Text, clean!\n\n📱 Für echtes Foto:\n1. Fotos App → dein bestes Foto\n2. Bearbeiten → quadratisch zuschneiden\n3. Shortcuts App → Custom Icon verwenden');
       }
     }, 'image/png');
   } catch(e) {
