@@ -1914,7 +1914,13 @@ function renderCustomAbos(){
     container.insertAdjacentHTML('beforeend',row);
   });
   var total=0;
-  document.querySelectorAll('#abo-table-body tr td:nth-child(4), #custom-abos tr td:nth-child(4)').forEach(function(cell){total+=parseEuroAmount(cell.textContent);});
+  document.querySelectorAll('#abo-table-body tr, #custom-abos tr').forEach(function(row){
+    var statusCell=row.querySelector('td:nth-child(5)');
+    var costCell=row.querySelector('td:nth-child(4)');
+    if(costCell&&statusCell&&!statusCell.textContent.includes('Upgegradet')){
+      total+=parseEuroAmount(costCell.textContent);
+    }
+  });
   var totalEl=document.getElementById('abo-total');
   if(totalEl)totalEl.textContent=formatEuroAmount(total);
 }
