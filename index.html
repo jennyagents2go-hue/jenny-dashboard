@@ -2471,60 +2471,70 @@ if(el.style.display==='none'){el.style.display='block';btn.textContent='📋 Bac
 
 <script>
 function downloadJennyIcon() {
-  // Create canvas and draw SVG
+  // Simple direct download approach
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
   canvas.width = 1024;
   canvas.height = 1024;
   
-  // Create image from SVG
-  const svgData = `<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" style="stop-color:#E6007E"/>
-        <stop offset="100%" style="stop-color:#F5A623"/>
-      </linearGradient>
-      <linearGradient id="hair" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" style="stop-color:#FF69B4"/>
-        <stop offset="50%" style="stop-color:#E6007E"/>
-        <stop offset="100%" style="stop-color:#FF1493"/>
-      </linearGradient>
-    </defs>
-    <rect width="1024" height="1024" rx="226" fill="url(#bg)"/>
-    <circle cx="512" cy="380" r="160" fill="#FFD4B3"/>
-    <ellipse cx="512" cy="280" rx="180" ry="140" fill="url(#hair)"/>
-    <ellipse cx="420" cy="420" rx="40" ry="80" fill="url(#hair)"/>
-    <ellipse cx="604" cy="420" rx="40" ry="80" fill="url(#hair)"/>
-    <circle cx="470" cy="360" r="18" fill="#1a1a1a"/>
-    <circle cx="554" cy="360" r="18" fill="#1a1a1a"/>
-    <circle cx="473" cy="357" r="6" fill="#fff"/>
-    <circle cx="557" cy="357" r="6" fill="#fff"/>
-    <ellipse cx="470" cy="335" rx="20" ry="5" fill="#8B4513"/>
-    <ellipse cx="554" cy="335" rx="20" ry="5" fill="#8B4513"/>
-    <ellipse cx="512" cy="385" rx="8" ry="12" fill="#FFB380"/>
-    <circle cx="520" cy="390" r="3" fill="#C0C0C0"/>
-    <path d="M 485 415 Q 512 435 539 415" stroke="#D2691E" stroke-width="4" fill="none" stroke-linecap="round"/>
-    <text x="512" y="750" font-family="Arial, sans-serif" font-size="120" font-weight="800" text-anchor="middle" fill="white">Jenny</text>
-    <text x="512" y="900" font-size="140" text-anchor="middle">🔥</text>
-    <ellipse cx="512" cy="200" rx="400" ry="100" fill="rgba(255,255,255,0.1)"/>
-  </svg>`;
+  // Draw gradient background
+  const gradient = ctx.createLinearGradient(0, 0, 1024, 1024);
+  gradient.addColorStop(0, '#E6007E');
+  gradient.addColorStop(1, '#F5A623');
   
-  const img = new Image();
-  img.onload = function() {
-    ctx.drawImage(img, 0, 0);
-    
-    // Download
-    canvas.toBlob(function(blob) {
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'jenny-icon.png';
-      a.click();
-      URL.revokeObjectURL(url);
-    });
-  };
+  // iOS App Icon rounded rectangle
+  ctx.fillStyle = gradient;
+  roundRect(ctx, 0, 0, 1024, 1024, 226);
+  ctx.fill();
   
-  img.src = 'data:image/svg+xml;base64,' + btoa(svgData);
+  // Jenny text
+  ctx.fillStyle = 'white';
+  ctx.font = 'bold 120px Arial';
+  ctx.textAlign = 'center';
+  ctx.fillText('Jenny', 512, 750);
+  
+  // Fire emoji
+  ctx.font = '140px Arial';
+  ctx.fillText('🔥', 512, 900);
+  
+  // Photo placeholder circle
+  ctx.fillStyle = 'rgba(255,255,255,0.2)';
+  ctx.beginPath();
+  ctx.arc(512, 350, 180, 0, 2 * Math.PI);
+  ctx.fill();
+  
+  ctx.fillStyle = 'rgba(255,255,255,0.4)';
+  ctx.font = 'bold 48px Arial';
+  ctx.fillText('Jennys Foto', 512, 330);
+  ctx.font = 'bold 32px Arial';  
+  ctx.fillText('hier einfügen', 512, 380);
+  
+  // Download
+  canvas.toBlob(function(blob) {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'jenny-icon-template.png';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    alert('📱 Icon heruntergeladen! Jetzt kannst du Jennys Foto in der Mitte einfügen.');
+  }, 'image/png');
+}
+
+function roundRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + w - r, y);
+  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+  ctx.lineTo(x + w, y + h - r);
+  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+  ctx.lineTo(x + r, y + h);
+  ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+  ctx.lineTo(x, y + r);
+  ctx.quadraticCurveTo(x, y, x + r, y);
+  ctx.closePath();
 }
 </script>
 
