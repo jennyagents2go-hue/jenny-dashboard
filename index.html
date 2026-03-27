@@ -2564,31 +2564,47 @@ function downloadJennyBigFace() {
   }
   ctx.stroke();
   
-  // Simuliere echtes Jenny Foto mit Platzhalter
-  const photoGrad = ctx.createRadialGradient(512, 350, 0, 512, 350, 250);
-  photoGrad.addColorStop(0, '#FFE4E1');  // Hautfarbe hell
-  photoGrad.addColorStop(0.6, '#FDBCB4'); // Hautfarbe
-  photoGrad.addColorStop(1, '#F4A584');   // Hautfarbe dunkel
+  // Lade ECHTES Denise Foto
+  const img = new Image();
+  img.crossOrigin = 'anonymous';
   
-  // "Foto" als Kreis
-  ctx.save();
-  ctx.beginPath();
-  ctx.arc(512, 400, 280, 0, 2 * Math.PI);
-  ctx.clip();
+  img.onload = function() {
+    // Kreismaske für echtes Foto
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(512, 400, 280, 0, 2 * Math.PI);
+    ctx.clip();
+    
+    // Foto optimal zuschneiden und positionieren
+    const size = Math.min(img.width, img.height);
+    const cropX = (img.width - size) / 2;
+    const cropY = (img.height - size) / 2;
+    
+    // Echtes Foto einzeichnen
+    ctx.drawImage(img, cropX, cropY, size, size, 232, 120, 560, 560);
+    ctx.restore();
+  };
   
-  ctx.fillStyle = photoGrad;
-  ctx.fillRect(232, 120, 560, 560);
+  img.onerror = function() {
+    // Fallback falls Foto nicht lädt
+    console.log('Foto loading failed, using placeholder');
+    
+    const photoGrad = ctx.createRadialGradient(512, 350, 0, 512, 350, 250);
+    photoGrad.addColorStop(0, '#FFE4E1');
+    photoGrad.addColorStop(0.6, '#FDBCB4');
+    photoGrad.addColorStop(1, '#F4A584');
+    
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(512, 400, 280, 0, 2 * Math.PI);
+    ctx.clip();
+    ctx.fillStyle = photoGrad;
+    ctx.fillRect(232, 120, 560, 560);
+    ctx.restore();
+  };
   
-  // Pinke Haare simulieren
-  const hairGrad = ctx.createLinearGradient(350, 150, 650, 350);
-  hairGrad.addColorStop(0, '#FF69B4');
-  hairGrad.addColorStop(0.5, '#E6007E');
-  hairGrad.addColorStop(1, '#FF1493');
-  
-  ctx.fillStyle = hairGrad;
-  ctx.fillRect(350, 120, 324, 200);
-  
-  ctx.restore();
+  // Versuche echtes Denise Foto zu laden
+  img.src = './assets/denise-photos/45-pink-suit-colorful-bg-hires.jpg';
   
   // Pink-oranger Rahmen um das "Foto"
   ctx.strokeStyle = gradient;
