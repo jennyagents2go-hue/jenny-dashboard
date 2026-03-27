@@ -2421,6 +2421,65 @@ function deleteTermin(i){if(!confirm('Termin löschen?'))return;var t=JSON.parse
 function toggleBacklog(){var el=document.getElementById('backlog-content');var btn=document.getElementById('backlog-toggle');
 if(el.style.display==='none'){el.style.display='block';btn.textContent='📋 Backlog ▼';}else{el.style.display='none';btn.textContent='📋 Backlog ▶';}}
 
+// Draw Jenny big face preview
+function drawJennyPreview() {
+  const canvas = document.getElementById('jenny-big-face');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  
+  // Scale down for preview
+  ctx.scale(0.15625, 0.15625); // 160/1024
+  
+  // Background
+  const gradient = ctx.createLinearGradient(0, 0, 1024, 1024);
+  gradient.addColorStop(0, '#E6007E');
+  gradient.addColorStop(1, '#F5A623');
+  ctx.fillStyle = gradient;
+  ctx.fillRect(0, 0, 1024, 1024);
+  
+  // Hair
+  const hairGrad = ctx.createLinearGradient(300, 200, 700, 400);
+  hairGrad.addColorStop(0, '#FF69B4');
+  hairGrad.addColorStop(0.5, '#E6007E');
+  hairGrad.addColorStop(1, '#FF1493');
+  ctx.fillStyle = hairGrad;
+  ctx.beginPath();
+  ctx.ellipse(512, 320, 200, 160, 0, 0, 2 * Math.PI);
+  ctx.fill();
+  
+  // Face
+  ctx.fillStyle = '#FFD4B3';
+  ctx.beginPath();
+  ctx.arc(512, 440, 180, 0, 2 * Math.PI);
+  ctx.fill();
+  
+  // Eyes
+  ctx.fillStyle = '#1a1a1a';
+  ctx.beginPath();
+  ctx.arc(470, 420, 18, 0, 2 * Math.PI);
+  ctx.fill();
+  ctx.beginPath();
+  ctx.arc(554, 420, 18, 0, 2 * Math.PI);
+  ctx.fill();
+  
+  // Nose piercing
+  ctx.fillStyle = '#C0C0C0';
+  ctx.beginPath();
+  ctx.arc(520, 450, 3, 0, 2 * Math.PI);
+  ctx.fill();
+  
+  // Text
+  ctx.fillStyle = 'white';
+  ctx.font = 'bold 100px Arial';
+  ctx.textAlign = 'center';
+  ctx.fillText('Jenny', 512, 780);
+  ctx.font = '120px Arial';
+  ctx.fillText('🔥', 512, 920);
+}
+
+// Draw preview when page loads
+window.addEventListener('load', drawJennyPreview);
+
 </script>
 <!-- MOBILE BOTTOM NAV (at end of body) -->
 <div class="mobile-nav">
@@ -2434,12 +2493,12 @@ if(el.style.display==='none'){el.style.display='block';btn.textContent='📋 Bac
   </div>
 </div>
 
-<!-- Jenny iPhone Icon - Direct Download -->
+<!-- Jenny iPhone Icon - GROSSES GESICHT -->
 <div style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
   <div onclick="this.style.display='none'" style="position: absolute; top: -5px; right: -5px; width: 20px; height: 20px; background: #E6007E; border-radius: 50%; color: white; font-size: 12px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center;">×</div>
   <div style="background: white; border-radius: 16px; padding: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.2); text-align: center; max-width: 200px;">
-    <div style="font-size: 11px; font-weight: 600; color: #666; margin-bottom: 8px;">📱 Jenny iPhone Icon</div>
-    <svg width="80" height="80" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" style="border-radius: 15%; cursor: pointer;" onclick="downloadJennyIcon()">
+    <div style="font-size: 11px; font-weight: 600; color: #666; margin-bottom: 8px;">📱 Jenny Icon - GROSS!</div>
+    <canvas width="160" height="160" id="jenny-big-face" style="border-radius: 15%; cursor: pointer;" onclick="downloadJennyBigFace()"></canvas>
       <defs>
         <linearGradient id="jenny-bg" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" style="stop-color:#E6007E"/>
@@ -2474,56 +2533,103 @@ if(el.style.display==='none'){el.style.display='block';btn.textContent='📋 Bac
 </div>
 
 <script>
-function downloadJennyIcon() {
-  // Simple direct download approach
+function downloadJennyBigFace() {
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
   canvas.width = 1024;
   canvas.height = 1024;
   
-  // Draw gradient background
+  // iOS rounded rectangle background
   const gradient = ctx.createLinearGradient(0, 0, 1024, 1024);
   gradient.addColorStop(0, '#E6007E');
   gradient.addColorStop(1, '#F5A623');
-  
-  // iOS App Icon rounded rectangle
   ctx.fillStyle = gradient;
   roundRect(ctx, 0, 0, 1024, 1024, 226);
   ctx.fill();
   
-  // Jenny text
-  ctx.fillStyle = 'white';
-  ctx.font = 'bold 120px Arial';
-  ctx.textAlign = 'center';
-  ctx.fillText('Jenny', 512, 750);
-  
-  // Fire emoji
-  ctx.font = '140px Arial';
-  ctx.fillText('🔥', 512, 900);
-  
-  // Photo placeholder circle
-  ctx.fillStyle = 'rgba(255,255,255,0.2)';
+  // Jenny's Hair (Pink gradient)
+  const hairGrad = ctx.createLinearGradient(300, 200, 700, 400);
+  hairGrad.addColorStop(0, '#FF69B4');
+  hairGrad.addColorStop(0.5, '#E6007E');
+  hairGrad.addColorStop(1, '#FF1493');
+  ctx.fillStyle = hairGrad;
   ctx.beginPath();
-  ctx.arc(512, 350, 180, 0, 2 * Math.PI);
+  ctx.ellipse(512, 320, 200, 160, 0, 0, 2 * Math.PI);
   ctx.fill();
   
-  ctx.fillStyle = 'rgba(255,255,255,0.4)';
-  ctx.font = 'bold 48px Arial';
-  ctx.fillText('Jennys Foto', 512, 330);
-  ctx.font = 'bold 32px Arial';  
-  ctx.fillText('hier einfügen', 512, 380);
+  // Hair sides
+  ctx.beginPath();
+  ctx.ellipse(380, 480, 50, 100, 0, 0, 2 * Math.PI);
+  ctx.fill();
+  ctx.beginPath();
+  ctx.ellipse(644, 480, 50, 100, 0, 0, 2 * Math.PI);
+  ctx.fill();
+  
+  // Face
+  ctx.fillStyle = '#FFD4B3';
+  ctx.beginPath();
+  ctx.arc(512, 440, 180, 0, 2 * Math.PI);
+  ctx.fill();
+  
+  // Eyes
+  ctx.fillStyle = '#1a1a1a';
+  ctx.beginPath();
+  ctx.arc(470, 420, 18, 0, 2 * Math.PI);
+  ctx.fill();
+  ctx.beginPath();
+  ctx.arc(554, 420, 18, 0, 2 * Math.PI);
+  ctx.fill();
+  
+  // Eye highlights
+  ctx.fillStyle = '#fff';
+  ctx.beginPath();
+  ctx.arc(473, 417, 6, 0, 2 * Math.PI);
+  ctx.fill();
+  ctx.beginPath();
+  ctx.arc(557, 417, 6, 0, 2 * Math.PI);
+  ctx.fill();
+  
+  // Nose
+  ctx.fillStyle = '#FFB380';
+  ctx.beginPath();
+  ctx.ellipse(512, 445, 8, 12, 0, 0, 2 * Math.PI);
+  ctx.fill();
+  
+  // Nose piercing
+  ctx.fillStyle = '#C0C0C0';
+  ctx.beginPath();
+  ctx.arc(520, 450, 3, 0, 2 * Math.PI);
+  ctx.fill();
+  
+  // Smile
+  ctx.strokeStyle = '#D2691E';
+  ctx.lineWidth = 4;
+  ctx.lineCap = 'round';
+  ctx.beginPath();
+  ctx.moveTo(485, 475);
+  ctx.quadraticCurveTo(512, 490, 539, 475);
+  ctx.stroke();
+  
+  // Text
+  ctx.fillStyle = 'white';
+  ctx.font = 'bold 100px Arial';
+  ctx.textAlign = 'center';
+  ctx.fillText('Jenny', 512, 780);
+  ctx.font = '120px Arial';
+  ctx.fillText('🔥', 512, 920);
   
   // Download
   canvas.toBlob(function(blob) {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'jenny-icon-template.png';
+    a.download = 'jenny-big-face-icon.png';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
-    alert('📱 Icon heruntergeladen! Jetzt kannst du Jennys Foto in der Mitte einfügen.');
+    
+    alert('📱 Jenny Icon mit GROSSEM Gesicht heruntergeladen!\n\nJetzt:\n1. Shortcuts App öffnen\n2. "+" → "App öffnen" → Safari\n3. "URL öffnen" hinzufügen\n4. Dashboard URL einfügen\n5. Icon zu deinem Jenny-Bild ändern\n6. Name: "Jenny 🔥"');
   }, 'image/png');
 }
 
