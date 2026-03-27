@@ -2539,8 +2539,13 @@ function downloadJennyBigFace() {
   canvas.width = 1024;
   canvas.height = 1024;
   
-  // Weißer Hintergrund
-  ctx.fillStyle = '#FFFFFF';
+  // Pink-oranger Gradient Hintergrund
+  const gradient = ctx.createLinearGradient(0, 0, 1024, 1024);
+  gradient.addColorStop(0, '#E6007E');  // Pink
+  gradient.addColorStop(1, '#F5A623');  // Orange
+  
+  // Komplett mit Gradient füllen
+  ctx.fillStyle = gradient;
   if (ctx.roundRect) {
     ctx.roundRect(0, 0, 1024, 1024, 226);
   } else {
@@ -2548,72 +2553,12 @@ function downloadJennyBigFace() {
   }
   ctx.fill();
   
-  // Pink-oranger Gradient für Rahmen
-  const gradient = ctx.createLinearGradient(0, 0, 1024, 1024);
-  gradient.addColorStop(0, '#E6007E');
-  gradient.addColorStop(1, '#F5A623');
-  
-  // Äußerer Rahmen um das komplette Icon
-  ctx.strokeStyle = gradient;
-  ctx.lineWidth = 35;
-  ctx.beginPath();
-  if (ctx.roundRect) {
-    ctx.roundRect(17.5, 17.5, 989, 989, 208.5);
-  } else {
-    ctx.rect(17.5, 17.5, 989, 989);
-  }
-  ctx.stroke();
-  
-  // Lade ECHTES Denise Foto
-  const img = new Image();
-  img.crossOrigin = 'anonymous';
-  
-  img.onload = function() {
-    // Kreismaske für echtes Foto
-    ctx.save();
-    ctx.beginPath();
-    ctx.arc(512, 400, 280, 0, 2 * Math.PI);
-    ctx.clip();
-    
-    // Foto optimal zuschneiden und positionieren
-    const size = Math.min(img.width, img.height);
-    const cropX = (img.width - size) / 2;
-    const cropY = (img.height - size) / 2;
-    
-    // Echtes Foto einzeichnen
-    ctx.drawImage(img, cropX, cropY, size, size, 232, 120, 560, 560);
-    ctx.restore();
-  };
-  
-  img.onerror = function() {
-    // Fallback falls Foto nicht lädt
-    console.log('Foto loading failed, using placeholder');
-    
-    const photoGrad = ctx.createRadialGradient(512, 350, 0, 512, 350, 250);
-    photoGrad.addColorStop(0, '#FFE4E1');
-    photoGrad.addColorStop(0.6, '#FDBCB4');
-    photoGrad.addColorStop(1, '#F4A584');
-    
-    ctx.save();
-    ctx.beginPath();
-    ctx.arc(512, 400, 280, 0, 2 * Math.PI);
-    ctx.clip();
-    ctx.fillStyle = photoGrad;
-    ctx.fillRect(232, 120, 560, 560);
-    ctx.restore();
-  };
-  
-  // Versuche echtes Denise Foto zu laden
-  img.src = './assets/denise-photos/45-pink-suit-colorful-bg-hires.jpg';
-  
-  // Pink-oranger Rahmen um das "Foto"
-  ctx.strokeStyle = gradient;
-  ctx.lineWidth = 20;
-  ctx.beginPath();
-  ctx.arc(512, 400, 280, 0, 2 * Math.PI);
-  ctx.stroke();
-  
-  // KEIN TEXT - nur Foto + Rahmen
+  // GROßES WEIßES "J" - einfach und elegant
+  ctx.fillStyle = '#FFFFFF';
+  ctx.font = 'bold 650px Inter, -apple-system, Arial, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('J', 512, 512);
   
   // Download
   try {
@@ -2622,13 +2567,13 @@ function downloadJennyBigFace() {
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'jenny-photo-frame.png';
+        a.download = 'jenny-j-icon.png';
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
         
-        alert('✨ Jenny Foto-Icon mit Rahmen heruntergeladen!\n\nPink-oranger Rahmen, kein Text, clean!\n\n📱 Für echtes Foto:\n1. Fotos App → dein bestes Foto\n2. Bearbeiten → quadratisch zuschneiden\n3. Shortcuts App → Custom Icon verwenden');
+        alert('✅ JENNY "J" Icon heruntergeladen!\n\nGroßes weißes J auf pink-orangem Hintergrund!\nEinfach, elegant, funktioniert garantiert!\n\n📱 Shortcuts App nutzen für Dashboard-Icon');
       }
     }, 'image/png');
   } catch(e) {
