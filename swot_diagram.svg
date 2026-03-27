@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <style>
+      .title { font-family: Arial, sans-serif; font-size: 24px; font-weight: bold; fill: #1f4e79; text-anchor: middle; }
+      .quadrant-title { font-family: Arial, sans-serif; font-size: 18px; font-weight: bold; fill: white; text-anchor: middle; }
+      .quadrant-text { font-family: Arial, sans-serif; font-size: 12px; fill: white; }
+    </style>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="600" fill="#f5f7fa"/>
+  
+  <!-- Title -->
+  <text x="400" y="30" class="title">SWOT-Analyse: Denise Stadtegger</text>
+  <text x="400" y="55" style="font-family: Arial, sans-serif; font-size: 16px; fill: #7f8c8d; text-anchor: middle;">Strategische Marketingberatung mit KI-Einsatz</text>
+  
+  <!-- Grid Lines -->
+  <line x1="400" y1="80" x2="400" y2="580" stroke="#2c3e50" stroke-width="3"/>
+  <line x1="50" y1="330" x2="750" y2="330" stroke="#2c3e50" stroke-width="3"/>
+  
+  <!-- Strengths Quadrant (Top Left) -->
+  <rect x="60" y="90" width="330" height="230" rx="10" fill="#27ae60" opacity="0.9"/>
+  <text x="225" y="115" class="quadrant-title">STÄRKEN (Strengths)</text>
+  <text x="70" y="140" class="quadrant-text">• CMO-Erfahrung in 50+ Ländern</text>
+  <text x="70" y="160" class="quadrant-text">• European CMO of the Year Nominierung</text>
+  <text x="70" y="180" class="quadrant-text">• Tiefe B2C-Marketing-Expertise</text>
+  <text x="70" y="200" class="quadrant-text">• Umfassende KI-Kenntnisse</text>
+  <text x="70" y="220" class="quadrant-text">• Internationale Thought Leadership</text>
+  <text x="70" y="240" class="quadrant-text">• Strategische &amp; operative Erfahrung</text>
+  <text x="70" y="260" class="quadrant-text">• Authentische Personal Brand</text>
+  <text x="70" y="280" class="quadrant-text">• Bewährte Track Record in B2C</text>
+  <text x="70" y="300" class="quadrant-text">• Verständnis für Consumer-Psychologie</text>
+  
+  <!-- Weaknesses Quadrant (Top Right) -->
+  <rect x="410" y="90" width="330" height="230" rx="10" fill="#e74c3c" opacity="0.9"/>
+  <text x="575" y="115" class="quadrant-title">SCHWÄCHEN (Weaknesses)</text>
+  <text x="420" y="140" class="quadrant-text">• Einzelunternehmen (begrenzte Kapazität)</text>
+  <text x="420" y="160" class="quadrant-text">• Neue Marke am Beratungsmarkt</text>
+  <text x="420" y="180" class="quadrant-text">• Abhängigkeit von einer Person</text>
+  <text x="420" y="200" class="quadrant-text">• Keine eigene Implementierungs-</text>
+  <text x="420" y="220" class="quadrant-text">  kapazität für große Teams</text>
+  <text x="420" y="240" class="quadrant-text">• Aufbau von Großkunden-Zugang nötig</text>
+  <text x="420" y="260" class="quadrant-text">• Begrenzte Parallelprojekt-Kapazität</text>
+  <text x="420" y="280" class="quadrant-text">• Fehlende Tech-Umsetzungsressourcen</text>
+  
+  <!-- Opportunities Quadrant (Bottom Left) -->
+  <rect x="60" y="340" width="330" height="230" rx="10" fill="#1f4e79" opacity="0.9"/>
+  <text x="225" y="365" class="quadrant-title">CHANCEN (Opportunities)</text>
+  <text x="70" y="390" class="quadrant-text">• KI-Boom &amp; digitale Transformation</text>
+  <text x="70" y="410" class="quadrant-text">• Marktlücke für C-Level KI-Strategie</text>
+  <text x="70" y="430" class="quadrant-text">• Steigender Effizienz-/Personalisierungsbedarf</text>
+  <text x="70" y="450" class="quadrant-text">• Thought Leadership Positionierung</text>
+  <text x="70" y="470" class="quadrant-text">• Partnerschaften mit Tech-Anbietern</text>
+  <text x="70" y="490" class="quadrant-text">• DACH-weite Internationalisierung</text>
+  <text x="70" y="510" class="quadrant-text">• Wachsende KI-Weiterbildungsnachfrage</text>
+  <text x="70" y="530" class="quadrant-text">• Notwendigkeit für Responsible AI</text>
+  <text x="70" y="550" class="quadrant-text">• Erste-Mover-Vorteil im Premium-Segment</text>
+  
+  <!-- Threats Quadrant (Bottom Right) -->
+  <rect x="410" y="340" width="330" height="230" rx="10" fill="#f39c12" opacity="0.9"/>
+  <text x="575" y="365" class="quadrant-title">BEDROHUNGEN (Threats)</text>
+  <text x="420" y="390" class="quadrant-text">• Große Beratungen erweitern KI-Angebot</text>
+  <text x="420" y="410" class="quadrant-text">• Full-Service Digitalagenturen</text>
+  <text x="420" y="430" class="quadrant-text">• Boutique-Beratungen mit KI-Fokus</text>
+  <text x="420" y="450" class="quadrant-text">• Interne KI-Teams bei Konzernen</text>
+  <text x="420" y="470" class="quadrant-text">• Schnelle technologische Entwicklung</text>
+  <text x="420" y="490" class="quadrant-text">• Wirtschaftliche Abschwünge</text>
+  <text x="420" y="510" class="quadrant-text">• KI-Tool-Anbieter mit Beratung</text>
+  <text x="420" y="530" class="quadrant-text">• Preisdruck durch Standardisierung</text>
+  <text x="420" y="550" class="quadrant-text">• Regulatorische Unsicherheit (GDPR)</text>
+</svg>

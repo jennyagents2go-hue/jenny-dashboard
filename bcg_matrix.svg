@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <style>
+      .title { font-family: Arial, sans-serif; font-size: 24px; font-weight: bold; fill: #1f4e79; text-anchor: middle; }
+      .axis-label { font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; fill: #2c3e50; text-anchor: middle; }
+      .quadrant-label { font-family: Arial, sans-serif; font-size: 16px; font-weight: bold; text-anchor: middle; }
+      .offering-text { font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; text-anchor: middle; fill: white; }
+    </style>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="600" fill="#f5f7fa"/>
+  
+  <!-- Title -->
+  <text x="400" y="30" class="title">BCG-Portfolio-Matrix: Angebotsfelder</text>
+  <text x="400" y="55" style="font-family: Arial, sans-serif; font-size: 16px; fill: #7f8c8d; text-anchor: middle;">Denise Stadtegger - KI-Marketingberatung</text>
+  
+  <!-- Grid -->
+  <line x1="400" y1="100" x2="400" y2="550" stroke="#2c3e50" stroke-width="3"/>
+  <line x1="100" y1="325" x2="700" y2="325" stroke="#2c3e50" stroke-width="3"/>
+  
+  <!-- Grid lines for better orientation -->
+  <g stroke="#ddd" stroke-width="1">
+    <line x1="100" y1="100" x2="700" y2="100"/>
+    <line x1="100" y1="550" x2="700" y2="550"/>
+    <line x1="100" y1="100" x2="100" y2="550"/>
+    <line x1="700" y1="100" x2="700" y2="550"/>
+  </g>
+  
+  <!-- Quadrant backgrounds -->
+  <rect x="100" y="100" width="300" height="225" fill="#f39c12" opacity="0.1"/>
+  <rect x="400" y="100" width="300" height="225" fill="#27ae60" opacity="0.1"/>
+  <rect x="100" y="325" width="300" height="225" fill="#e74c3c" opacity="0.1"/>
+  <rect x="400" y="325" width="300" height="225" fill="#1f4e79" opacity="0.1"/>
+  
+  <!-- Quadrant Labels -->
+  <text x="250" y="130" class="quadrant-label" fill="#f39c12">Question Marks</text>
+  <text x="250" y="145" style="font-family: Arial, sans-serif; font-size: 12px; fill: #f39c12; text-anchor: middle;">(Fragezeichen)</text>
+  
+  <text x="550" y="130" class="quadrant-label" fill="#27ae60">Stars</text>
+  <text x="550" y="145" style="font-family: Arial, sans-serif; font-size: 12px; fill: #27ae60; text-anchor: middle;">(Sterne)</text>
+  
+  <text x="250" y="480" class="quadrant-label" fill="#e74c3c">Poor Dogs</text>
+  <text x="250" y="495" style="font-family: Arial, sans-serif; font-size: 12px; fill: #e74c3c; text-anchor: middle;">(Arme Hunde)</text>
+  
+  <text x="550" y="480" class="quadrant-label" fill="#1f4e79">Cash Cows</text>
+  <text x="550" y="495" style="font-family: Arial, sans-serif; font-size: 12px; fill: #1f4e79; text-anchor: middle;">(Melkkühe)</text>
+  
+  <!-- Axis Labels -->
+  <text x="400" y="85" class="axis-label">Relativer Marktanteil</text>
+  <text x="150" y="75" style="font-family: Arial, sans-serif; font-size: 12px; fill: #2c3e50; text-anchor: middle;">Niedrig</text>
+  <text x="650" y="75" style="font-family: Arial, sans-serif; font-size: 12px; fill: #2c3e50; text-anchor: middle;">Hoch</text>
+  
+  <text x="50" y="325" class="axis-label" transform="rotate(-90 50 325)">Marktwachstum</text>
+  <text x="80" y="115" style="font-family: Arial, sans-serif; font-size: 12px; fill: #2c3e50; text-anchor: middle;">Hoch</text>
+  <text x="80" y="540" style="font-family: Arial, sans-serif; font-size: 12px; fill: #2c3e50; text-anchor: middle;">Niedrig</text>
+  
+  <!-- Offerings positioned as circles -->
+  
+  <!-- Workshops (Question Mark) -->
+  <circle cx="220" cy="180" r="45" fill="#f39c12" opacity="0.8" stroke="#2c3e50" stroke-width="2"/>
+  <text x="220" y="175" class="offering-text">WORKSHOPS</text>
+  <text x="220" y="190" style="font-family: Arial, sans-serif; font-size: 9px; text-anchor: middle; fill: white;">Aufbau nötig</text>
+  
+  <!-- Strategie-Beratung (Star) -->
+  <circle cx="520" cy="160" r="60" fill="#27ae60" opacity="0.8" stroke="#2c3e50" stroke-width="3"/>
+  <text x="520" y="150" class="offering-text">STRATEGIE-</text>
+  <text x="520" y="165" class="offering-text">BERATUNG</text>
+  <text x="520" y="180" style="font-family: Arial, sans-serif; font-size: 9px; text-anchor: middle; fill: white;">Kern-Asset</text>
+  
+  <!-- KI-Implementierung (Star) -->
+  <circle cx="600" cy="240" r="55" fill="#27ae60" opacity="0.8" stroke="#2c3e50" stroke-width="3"/>
+  <text x="600" y="235" class="offering-text">KI-IMPLEMEN-</text>
+  <text x="600" y="250" class="offering-text">TIERUNG</text>
+  <text x="600" y="265" style="font-family: Arial, sans-serif; font-size: 9px; text-anchor: middle; fill: white;">Hohes Wachstum</text>
+  
+  <!-- Retainer (Cash Cow) -->
+  <circle cx="520" cy="420" r="50" fill="#1f4e79" opacity="0.8" stroke="#2c3e50" stroke-width="2"/>
+  <text x="520" y="415" class="offering-text">RETAINER</text>
+  <text x="520" y="430" style="font-family: Arial, sans-serif; font-size: 9px; text-anchor: middle; fill: white;">Langfristige Begleitung</text>
+  
+  <!-- Poor Dogs - leer mit Hinweistext -->
+  <text x="250" y="420" style="font-family: Arial, sans-serif; font-size: 14px; fill: #7f8c8d; text-anchor: middle; font-style: italic;">Keine Angebote</text>
+  <text x="250" y="440" style="font-family: Arial, sans-serif; font-size: 14px; fill: #7f8c8d; text-anchor: middle; font-style: italic;">in diesem Segment</text>
+  
+  <!-- Arrows showing potential movement -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2c3e50"/>
+    </marker>
+  </defs>
+  
+  <!-- Arrow from Workshops to Stars -->
+  <path d="M 265 180 Q 350 160 470 160" stroke="#2c3e50" stroke-width="2" fill="none" marker-end="url(#arrowhead)" stroke-dasharray="5,5"/>
+  <text x="365" y="150" style="font-family: Arial, sans-serif; font-size: 10px; fill: #2c3e50; text-anchor: middle;">Entwicklungspotenzial</text>
+  
+  <!-- Legend -->
+  <g transform="translate(720, 120)">
+    <rect x="-10" y="-10" width="80" height="120" fill="white" stroke="#ddd" stroke-width="1" rx="5"/>
+    <text x="35" y="10" style="font-family: Arial, sans-serif; font-size: 12px; font-weight: bold; fill: #2c3e50; text-anchor: middle;">Legende</text>
+    
+    <circle cx="15" cy="30" r="8" fill="#27ae60" opacity="0.8"/>
+    <text x="30" y="35" style="font-family: Arial, sans-serif; font-size: 10px; fill: #2c3e50;">Stars</text>
+    
+    <circle cx="15" cy="50" r="8" fill="#1f4e79" opacity="0.8"/>
+    <text x="30" y="55" style="font-family: Arial, sans-serif; font-size: 10px; fill: #2c3e50;">Cash Cows</text>
+    
+    <circle cx="15" cy="70" r="8" fill="#f39c12" opacity="0.8"/>
+    <text x="30" y="75" style="font-family: Arial, sans-serif; font-size: 10px; fill: #2c3e50;">Question Marks</text>
+    
+    <circle cx="15" cy="90" r="8" fill="#e74c3c" opacity="0.8"/>
+    <text x="30" y="95" style="font-family: Arial, sans-serif; font-size: 10px; fill: #2c3e50;">Poor Dogs</text>
+  </g>
+</svg>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <style>
+      .title { font-family: Arial, sans-serif; font-size: 24px; font-weight: bold; fill: #1f4e79; text-anchor: middle; }
+      .axis-label { font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; fill: #2c3e50; text-anchor: middle; }
+      .quadrant-label { font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; text-anchor: middle; }
+      .competitor-text { font-family: Arial, sans-serif; font-size: 10px; font-weight: bold; text-anchor: middle; fill: white; }
+    </style>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="600" fill="#f5f7fa"/>
+  
+  <!-- Title -->
+  <text x="400" y="30" class="title">Positionierungskreuz: Markt für KI-Marketingberatung</text>
+  <text x="400" y="55" style="font-family: Arial, sans-serif; font-size: 16px; fill: #7f8c8d; text-anchor: middle;">Wettbewerbsposition von Denise Stadtegger</text>
+  
+  <!-- Main axes -->
+  <line x1="400" y1="100" x2="400" y2="550" stroke="#2c3e50" stroke-width="3"/>
+  <line x1="100" y1="325" x2="700" y2="325" stroke="#2c3e50" stroke-width="3"/>
+  
+  <!-- Quadrant backgrounds with light colors -->
+  <rect x="100" y="100" width="300" height="225" fill="#1f4e79" opacity="0.1"/>
+  <rect x="400" y="100" width="300" height="225" fill="#27ae60" opacity="0.15"/>
+  <rect x="100" y="325" width="300" height="225" fill="#95a5a6" opacity="0.1"/>
+  <rect x="400" y="325" width="300" height="225" fill="#f39c12" opacity="0.1"/>
+  
+  <!-- Axis Labels -->
+  <text x="400" y="85" class="axis-label">KI-Fokus vs. Klassisch</text>
+  <text x="150" y="75" style="font-family: Arial, sans-serif; font-size: 12px; fill: #2c3e50; text-anchor: middle;">KLASSISCH</text>
+  <text x="650" y="75" style="font-family: Arial, sans-serif; font-size: 12px; fill: #2c3e50; text-anchor: middle;">KI-FOKUS</text>
+  
+  <text x="50" y="325" class="axis-label" transform="rotate(-90 50 325)">Strategisch vs. Operativ</text>
+  <text x="80" y="120" style="font-family: Arial, sans-serif; font-size: 12px; fill: #2c3e50; text-anchor: middle;">STRATEGISCH</text>
+  <text x="80" y="540" style="font-family: Arial, sans-serif; font-size: 12px; fill: #2c3e50; text-anchor: middle;">OPERATIV</text>
+  
+  <!-- Quadrant Labels -->
+  <g transform="translate(250, 170)">
+    <rect x="-80" y="-15" width="160" height="30" fill="white" opacity="0.9" rx="5"/>
+    <text x="0" y="-2" class="quadrant-label" fill="#1f4e79">STRATEGISCH &amp;</text>
+    <text x="0" y="12" class="quadrant-label" fill="#1f4e79">KLASSISCH</text>
+  </g>
+  
+  <g transform="translate(550, 170)">
+    <rect x="-70" y="-15" width="140" height="30" fill="white" opacity="0.9" rx="5"/>
+    <text x="0" y="-2" class="quadrant-label" fill="#27ae60">STRATEGISCH &amp;</text>
+    <text x="0" y="12" class="quadrant-label" fill="#27ae60">KI-FOKUS</text>
+  </g>
+  
+  <g transform="translate(250, 470)">
+    <rect x="-70" y="-15" width="140" height="30" fill="white" opacity="0.9" rx="5"/>
+    <text x="0" y="-2" class="quadrant-label" fill="#95a5a6">OPERATIV &amp;</text>
+    <text x="0" y="12" class="quadrant-label" fill="#95a5a6">KLASSISCH</text>
+  </g>
+  
+  <g transform="translate(550, 470)">
+    <rect x="-70" y="-15" width="140" height="30" fill="white" opacity="0.9" rx="5"/>
+    <text x="0" y="-2" class="quadrant-label" fill="#f39c12">OPERATIV &amp;</text>
+    <text x="0" y="12" class="quadrant-label" fill="#f39c12">KI-FOKUS</text>
+  </g>
+  
+  <!-- Competitors positioned as different shapes -->
+  
+  <!-- Denise Stadtegger - STAR in top right -->
+  <g transform="translate(620, 150)">
+    <!-- Star shape -->
+    <polygon points="0,-20 6,-6 20,-6 10,2 16,16 0,10 -16,16 -10,2 -20,-6 -6,-6" fill="#e74c3c" stroke="gold" stroke-width="3"/>
+    <text x="0" y="35" style="font-family: Arial, sans-serif; font-size: 12px; font-weight: bold; text-anchor: middle; fill: #e74c3c;">⭐ DENISE</text>
+    <text x="0" y="50" style="font-family: Arial, sans-serif; font-size: 12px; font-weight: bold; text-anchor: middle; fill: #e74c3c;">STADTEGGER</text>
+  </g>
+  
+  <!-- Klassische Strategieberatung - Circle in top left -->
+  <circle cx="200" cy="180" r="25" fill="#1f4e79" stroke="#2c3e50" stroke-width="2"/>
+  <text cx="200" cy="175" class="competitor-text">Klassische</text>
+  <text cx="200" cy="185" class="competitor-text">Strategie-</text>
+  <text cx="200" cy="195" class="competitor-text">beratung</text>
+  
+  <!-- Full-Service Digitalagenturen - Square in bottom left -->
+  <rect x="225" y="400" width="50" height="50" fill="#4a90e2" stroke="#2c3e50" stroke-width="2" rx="5"/>
+  <text x="250" y="420" class="competitor-text">Full-Service</text>
+  <text x="250" y="435" class="competitor-text">Digital-</text>
+  <text x="250" y="450" class="competitor-text">agenturen</text>
+  
+  <!-- Reine KI/Tech-Beratung - Triangle in bottom right -->
+  <polygon points="550,420 580,470 520,470" fill="#f39c12" stroke="#2c3e50" stroke-width="2"/>
+  <text x="550" y="490" style="font-family: Arial, sans-serif; font-size: 10px; font-weight: bold; text-anchor: middle; fill: #f39c12;">Reine KI/</text>
+  <text x="550" y="505" style="font-family: Arial, sans-serif; font-size: 10px; font-weight: bold; text-anchor: middle; fill: #f39c12;">Tech-Beratung</text>
+  
+  <!-- Boutique/Freelancer - Diamond in center-right -->
+  <g transform="translate(480, 280)">
+    <polygon points="0,-20 20,0 0,20 -20,0" fill="#2c3e50" stroke="#2c3e50" stroke-width="2"/>
+    <text x="0" y="35" style="font-family: Arial, sans-serif; font-size: 10px; font-weight: bold; text-anchor: middle; fill: #2c3e50;">Boutique/</text>
+    <text x="0" y="50" style="font-family: Arial, sans-serif; font-size: 10px; font-weight: bold; text-anchor: middle; fill: #2c3e50;">Freelancer</text>
+  </g>
+  
+  <!-- Success positioning highlight box -->
+  <g transform="translate(400, 570)">
+    <rect x="-350" y="-40" width="700" height="35" fill="#27ae60" opacity="0.2" rx="5" stroke="#27ae60" stroke-width="2"/>
+    <text x="0" y="-25" style="font-family: Arial, sans-serif; font-size: 16px; font-weight: bold; text-anchor: middle; fill: #27ae60;">🎯 EINZIGARTIGE POSITIONIERUNG</text>
+    <text x="0" y="-8" style="font-family: Arial, sans-serif; font-size: 14px; text-anchor: middle; fill: #27ae60;">Denise Stadtegger besetzt als Einzige die Premium-Position: Höchste strategische Tiefe + Führende KI-Expertise</text>
+  </g>
+  
+  <!-- Legend -->
+  <g transform="translate(50, 450)">
+    <rect x="0" y="0" width="120" height="100" fill="white" stroke="#ddd" stroke-width="1" rx="5"/>
+    <text x="60" y="20" style="font-family: Arial, sans-serif; font-size: 12px; font-weight: bold; fill: #2c3e50; text-anchor: middle;">Legende</text>
+    
+    <polygon points="10,35 16,29 22,35 16,41" fill="gold" stroke="#e74c3c" stroke-width="2"/>
+    <text x="30" y="38" style="font-family: Arial, sans-serif; font-size: 10px; fill: #2c3e50;">Denise (⭐)</text>
+    
+    <circle cx="16" cy="50" r="6" fill="#1f4e79"/>
+    <text x="30" y="53" style="font-family: Arial, sans-serif; font-size: 10px; fill: #2c3e50;">Klassisch (●)</text>
+    
+    <rect x="10" y="60" width="12" height="12" fill="#4a90e2" rx="2"/>
+    <text x="30" y="68" style="font-family: Arial, sans-serif; font-size: 10px; fill: #2c3e50;">Digital (■)</text>
+    
+    <polygon points="10,80 16,74 22,80 16,86" fill="#f39c12"/>
+    <text x="30" y="83" style="font-family: Arial, sans-serif; font-size: 10px; fill: #2c3e50;">Tech (▲)</text>
+    
+    <polygon points="10,95 16,89 22,95 16,101" fill="#2c3e50"/>
+    <text x="30" y="98" style="font-family: Arial, sans-serif; font-size: 10px; fill: #2c3e50;">Boutique (♦)</text>
+  </g>
+</svg>
