@@ -2548,101 +2548,62 @@ function downloadJennyBigFace() {
   gradient.addColorStop(1, '#F5A623');
   ctx.fillStyle = gradient;
   
-  // Draw rounded background manually
+  // Draw rounded background
   ctx.beginPath();
-  ctx.roundRect(0, 0, 1024, 1024, 226);
+  if (ctx.roundRect) {
+    ctx.roundRect(0, 0, 1024, 1024, 226);
+  } else {
+    // Fallback
+    ctx.rect(0, 0, 1024, 1024);
+  }
   ctx.fill();
   
-  // MEGA GROSSER Jenny Kopf - nimmt 80% des Icons ein
-  const faceSize = 350; // Viel größer!
-  const faceY = 380;
+  // PROFESSIONELLES DESIGN - Minimalistisch und elegant
   
-  // Hair (Pink gradient) - noch größer
-  const hairGrad = ctx.createLinearGradient(200, 150, 800, 500);
-  hairGrad.addColorStop(0, '#FF69B4');
-  hairGrad.addColorStop(0.5, '#E6007E');
-  hairGrad.addColorStop(1, '#FF1493');
-  ctx.fillStyle = hairGrad;
+  // Großer Jenny Initial "J" - Modern und clean
+  ctx.fillStyle = 'rgba(255,255,255,0.95)';
   ctx.beginPath();
-  ctx.ellipse(512, 250, 280, 200, 0, 0, 2 * Math.PI);
+  ctx.arc(512, 400, 320, 0, 2 * Math.PI);
   ctx.fill();
   
-  // Face (Hautfarbe) - RIESIG
-  ctx.fillStyle = '#FFD4B3';
-  ctx.beginPath();
-  ctx.arc(512, faceY, faceSize, 0, 2 * Math.PI);
-  ctx.fill();
-  
-  // Eyes - größer und deutlicher
-  ctx.fillStyle = '#1a1a1a';
-  ctx.beginPath();
-  ctx.arc(450, 350, 25, 0, 2 * Math.PI);
-  ctx.fill();
-  ctx.beginPath();
-  ctx.arc(574, 350, 25, 0, 2 * Math.PI);
-  ctx.fill();
-  
-  // Eye highlights
-  ctx.fillStyle = '#fff';
-  ctx.beginPath();
-  ctx.arc(455, 345, 8, 0, 2 * Math.PI);
-  ctx.fill();
-  ctx.beginPath();
-  ctx.arc(579, 345, 8, 0, 2 * Math.PI);
-  ctx.fill();
-  
-  // Eyebrows - größer
-  ctx.fillStyle = '#8B4513';
-  ctx.beginPath();
-  ctx.ellipse(450, 315, 30, 8, 0, 0, 2 * Math.PI);
-  ctx.fill();
-  ctx.beginPath();
-  ctx.ellipse(574, 315, 30, 8, 0, 0, 2 * Math.PI);
-  ctx.fill();
-  
-  // Nose - größer
-  ctx.fillStyle = '#FFB380';
-  ctx.beginPath();
-  ctx.ellipse(512, 395, 12, 18, 0, 0, 2 * Math.PI);
-  ctx.fill();
-  
-  // Nose piercing - DEUTLICH SICHTBAR
-  ctx.fillStyle = '#C0C0C0';
-  ctx.beginPath();
-  ctx.arc(525, 405, 5, 0, 2 * Math.PI);
-  ctx.fill();
-  
-  // Smile - größer
-  ctx.strokeStyle = '#D2691E';
-  ctx.lineWidth = 6;
-  ctx.lineCap = 'round';
-  ctx.beginPath();
-  ctx.moveTo(460, 440);
-  ctx.quadraticCurveTo(512, 470, 564, 440);
-  ctx.stroke();
-  
-  // Text - kleiner, um Platz für großes Gesicht zu machen
-  ctx.fillStyle = 'white';
-  ctx.font = 'bold 80px Arial';
+  // Eleganter "J" für Jenny - COO-Style
+  ctx.fillStyle = '#E6007E';
+  ctx.font = 'bold 380px Inter, -apple-system, Arial, sans-serif';
   ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('J', 512, 420);
+  
+  // Subtiler Jenny Text unten
+  ctx.fillStyle = 'rgba(255,255,255,0.9)';
+  ctx.font = 'bold 72px Inter, Arial, sans-serif';
+  ctx.textBaseline = 'alphabetic';
   ctx.fillText('Jenny', 512, 800);
-  ctx.font = '90px Arial';
+  
+  // Fire Emoji - aber kleiner und eleganter
+  ctx.font = '80px Arial';
   ctx.fillText('🔥', 512, 920);
   
-  // Download with better error handling
+  // Eleganter Ring um das J
+  ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+  ctx.lineWidth = 8;
+  ctx.beginPath();
+  ctx.arc(512, 400, 300, 0, 2 * Math.PI);
+  ctx.stroke();
+  
+  // Download
   try {
     canvas.toBlob(function(blob) {
       if (blob) {
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'jenny-mega-face-icon.png';
+        a.download = 'jenny-professional-icon.png';
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
         
-        alert('🔥 JENNY MEGA-GESICHT Icon heruntergeladen!\n\nJetzt:\n1. Shortcuts App → "+" \n2. "App öffnen" → Safari\n3. "URL öffnen" hinzufügen\n4. Dashboard URL\n5. Icon ändern → Jenny-Mega-Face\n6. Name: "Jenny 🔥"');
+        alert('✨ PROFESSIONELLES Jenny Icon heruntergeladen!\n\nElegant, minimalistisch, COO-Style!\n\n📱 Shortcuts App:\n1. "+" → "App öffnen" → Safari\n2. "URL öffnen" hinzufügen  \n3. Dashboard URL\n4. Icon ändern → Jenny Professional\n5. Name: "Jenny 🔥"');
       }
     }, 'image/png');
   } catch(e) {
