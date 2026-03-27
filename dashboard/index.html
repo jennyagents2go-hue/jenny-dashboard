@@ -2497,7 +2497,7 @@ window.addEventListener('load', drawJennyPreview);
 <div style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
   <div onclick="this.style.display='none'" style="position: absolute; top: -5px; right: -5px; width: 20px; height: 20px; background: #E6007E; border-radius: 50%; color: white; font-size: 12px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center;">×</div>
   <div style="background: white; border-radius: 16px; padding: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.2); text-align: center; max-width: 200px;">
-    <div style="font-size: 11px; font-weight: 600; color: #666; margin-bottom: 8px;">📱 Jenny Icon - GROSS!</div>
+    <div style="font-size: 11px; font-weight: 600; color: #666; margin-bottom: 8px;">📱 ECHTE Jenny!</div>
     <canvas width="120" height="120" id="jenny-big-face" style="border-radius: 15%; cursor: pointer;" onclick="downloadJennyBigFace()"></canvas>
       <defs>
         <linearGradient id="jenny-bg" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -2539,9 +2539,6 @@ function downloadJennyBigFace() {
   canvas.width = 1024;
   canvas.height = 1024;
   
-  // Clear canvas
-  ctx.clearRect(0, 0, 1024, 1024);
-  
   // iOS rounded rectangle background
   const gradient = ctx.createLinearGradient(0, 0, 1024, 1024);
   gradient.addColorStop(0, '#E6007E');
@@ -2553,42 +2550,118 @@ function downloadJennyBigFace() {
   if (ctx.roundRect) {
     ctx.roundRect(0, 0, 1024, 1024, 226);
   } else {
-    // Fallback
     ctx.rect(0, 0, 1024, 1024);
   }
   ctx.fill();
   
-  // PROFESSIONELLES DESIGN - Minimalistisch und elegant
+  // ECHTE JENNY RECREATION - Basierend auf dem Telegram-Bild
   
-  // Großer Jenny Initial "J" - Modern und clean
-  ctx.fillStyle = 'rgba(255,255,255,0.95)';
+  // Jenny's charakteristische pinke Haare - voluminös und wellig
+  const hairGrad = ctx.createLinearGradient(200, 100, 800, 600);
+  hairGrad.addColorStop(0, '#FF1493');  // Deep Pink
+  hairGrad.addColorStop(0.3, '#E6007E'); // Brand Pink
+  hairGrad.addColorStop(0.7, '#FF69B4'); // Hot Pink
+  hairGrad.addColorStop(1, '#C71585');   // Medium Violet Red
+  
+  // Voluminöse Haare - characteristic Jenny style
+  ctx.fillStyle = hairGrad;
   ctx.beginPath();
-  ctx.arc(512, 400, 320, 0, 2 * Math.PI);
+  ctx.ellipse(512, 200, 280, 180, 0, 0, 2 * Math.PI);
   ctx.fill();
   
-  // Eleganter "J" für Jenny - COO-Style
-  ctx.fillStyle = '#E6007E';
-  ctx.font = 'bold 380px Inter, -apple-system, Arial, sans-serif';
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'middle';
-  ctx.fillText('J', 512, 420);
-  
-  // Subtiler Jenny Text unten
-  ctx.fillStyle = 'rgba(255,255,255,0.9)';
-  ctx.font = 'bold 72px Inter, Arial, sans-serif';
-  ctx.textBaseline = 'alphabetic';
-  ctx.fillText('Jenny', 512, 800);
-  
-  // Fire Emoji - aber kleiner und eleganter
-  ctx.font = '80px Arial';
-  ctx.fillText('🔥', 512, 920);
-  
-  // Eleganter Ring um das J
-  ctx.strokeStyle = 'rgba(255,255,255,0.3)';
-  ctx.lineWidth = 8;
+  // Hair volume on sides
   ctx.beginPath();
-  ctx.arc(512, 400, 300, 0, 2 * Math.PI);
+  ctx.ellipse(300, 350, 120, 150, -0.3, 0, 2 * Math.PI);
+  ctx.fill();
+  ctx.beginPath();
+  ctx.ellipse(724, 350, 120, 150, 0.3, 0, 2 * Math.PI);
+  ctx.fill();
+  
+  // Gesicht - natürlicher Hautton
+  ctx.fillStyle = '#FDBCB4';
+  ctx.beginPath();
+  ctx.ellipse(512, 380, 160, 180, 0, 0, 2 * Math.PI);
+  ctx.fill();
+  
+  // Große, ausdrucksstarke Augen (wie im Bild)
+  ctx.fillStyle = '#FFFFFF';
+  ctx.beginPath();
+  ctx.ellipse(465, 350, 25, 30, 0, 0, 2 * Math.PI);
+  ctx.fill();
+  ctx.beginPath();
+  ctx.ellipse(559, 350, 25, 30, 0, 0, 2 * Math.PI);
+  ctx.fill();
+  
+  // Iris - grün wie im Bild
+  ctx.fillStyle = '#4ECDC4';
+  ctx.beginPath();
+  ctx.arc(465, 355, 15, 0, 2 * Math.PI);
+  ctx.fill();
+  ctx.beginPath();
+  ctx.arc(559, 355, 15, 0, 2 * Math.PI);
+  ctx.fill();
+  
+  // Pupils
+  ctx.fillStyle = '#000000';
+  ctx.beginPath();
+  ctx.arc(465, 355, 8, 0, 2 * Math.PI);
+  ctx.fill();
+  ctx.beginPath();
+  ctx.arc(559, 355, 8, 0, 2 * Math.PI);
+  ctx.fill();
+  
+  // Eye highlights - lebendiger Blick
+  ctx.fillStyle = '#FFFFFF';
+  ctx.beginPath();
+  ctx.arc(468, 350, 3, 0, 2 * Math.PI);
+  ctx.fill();
+  ctx.beginPath();
+  ctx.arc(562, 350, 3, 0, 2 * Math.PI);
+  ctx.fill();
+  
+  // Eyebrows - wie im Bild
+  ctx.fillStyle = '#8B4513';
+  ctx.lineWidth = 4;
+  ctx.strokeStyle = '#8B4513';
+  ctx.beginPath();
+  ctx.moveTo(440, 320);
+  ctx.quadraticCurveTo(465, 315, 490, 320);
   ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(534, 320);
+  ctx.quadraticCurveTo(559, 315, 584, 320);
+  ctx.stroke();
+  
+  // Breites, offenes Lächeln - wie im Bild
+  ctx.strokeStyle = '#D2691E';
+  ctx.lineWidth = 5;
+  ctx.lineCap = 'round';
+  ctx.beginPath();
+  ctx.moveTo(450, 420);
+  ctx.quadraticCurveTo(512, 450, 574, 420);
+  ctx.stroke();
+  
+  // Lippen
+  ctx.fillStyle = '#FF6B9D';
+  ctx.beginPath();
+  ctx.ellipse(512, 430, 35, 15, 0, 0, 2 * Math.PI);
+  ctx.fill();
+  
+  // Jenny Text - energetisch
+  ctx.fillStyle = 'white';
+  ctx.font = 'bold 100px Arial, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'alphabetic';
+  ctx.fillText('Jenny', 512, 750);
+  
+  // Fire Emoji
+  ctx.font = '100px Arial';
+  ctx.fillText('🔥', 512, 880);
+  
+  // Marketing Mania Badge (wie im Hintergrund)
+  ctx.fillStyle = 'rgba(255,255,255,0.9)';
+  ctx.font = 'bold 32px Arial';
+  ctx.fillText('COO', 512, 990);
   
   // Download
   try {
@@ -2597,13 +2670,13 @@ function downloadJennyBigFace() {
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'jenny-professional-icon.png';
+        a.download = 'jenny-real-icon.png';
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
         
-        alert('✨ PROFESSIONELLES Jenny Icon heruntergeladen!\n\nElegant, minimalistisch, COO-Style!\n\n📱 Shortcuts App:\n1. "+" → "App öffnen" → Safari\n2. "URL öffnen" hinzufügen  \n3. Dashboard URL\n4. Icon ändern → Jenny Professional\n5. Name: "Jenny 🔥"');
+        alert('🔥 ECHTE JENNY Icon heruntergeladen!\n\nPinke Haare, große Augen, Marketing-Power!\n\n📱 Shortcuts App:\n1. "+" → "App öffnen" → Safari\n2. "URL öffnen" → Dashboard URL\n3. Icon ändern → Jenny Real\n4. Name: "Jenny 🔥"\n\nJetzt hast du die echte Jenny!');
       }
     }, 'image/png');
   } catch(e) {
