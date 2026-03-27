@@ -146,6 +146,75 @@ body { font-family:'Inter',-apple-system,sans-serif; background:var(--bg); color
 .concept-content li { margin-bottom:4px; }
 .concept-highlight { background:rgba(230,0,126,0.05); border-left:3px solid var(--pink); padding:10px 14px; border-radius:0 8px 8px 0; margin:10px 0; font-size:13px; }
 
+/* WEBSITE DRAFTS */
+.website-shell { display:grid; gap:20px; }
+.website-insight-grid, .website-learnings-grid, .website-proof-grid, .website-service-grid, .website-credentials, .website-competitor-grid { display:grid; gap:16px; }
+.website-insight-grid, .website-proof-grid, .website-credentials { grid-template-columns:repeat(3,minmax(0,1fr)); }
+.website-learnings-grid, .website-competitor-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+.website-surface { background:linear-gradient(180deg,#fff,#fff7fb 65%,#fffef7); border:1px solid rgba(230,0,126,0.12); border-radius:28px; overflow:hidden; box-shadow:0 22px 60px rgba(15,15,26,0.1); }
+.website-masthead { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:18px 24px; border-bottom:1px solid rgba(230,0,126,0.08); background:rgba(255,255,255,0.88); backdrop-filter:blur(14px); }
+.website-brand { display:flex; align-items:center; gap:12px; }
+.website-brand-mark { width:44px; height:44px; border-radius:14px; background:var(--gradient); color:#fff; display:grid; place-items:center; font-size:18px; font-weight:800; box-shadow:0 10px 24px rgba(230,0,126,0.22); }
+.website-brand-name { font-size:16px; font-weight:800; }
+.website-brand-sub { font-size:11px; color:var(--text-sec); text-transform:uppercase; letter-spacing:0.08em; }
+.website-nav { display:flex; flex-wrap:wrap; gap:8px; color:var(--text-sec); font-size:12px; font-weight:700; }
+.website-nav span { padding:8px 12px; border-radius:999px; background:rgba(245,245,247,0.92); }
+.website-button { display:inline-flex; align-items:center; justify-content:center; gap:8px; border-radius:999px; padding:13px 20px; font-size:13px; font-weight:800; text-decoration:none; border:1px solid transparent; transition:transform 160ms ease, box-shadow 160ms ease; }
+.website-button:hover { transform:translateY(-1px); box-shadow:var(--shadow-md); }
+.website-button.primary { background:var(--gradient); color:#fff; }
+.website-button.secondary { background:#fff; color:var(--text); border-color:rgba(26,26,46,0.08); }
+.website-hero { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(320px,0.85fr); gap:24px; padding:28px 28px 18px; position:relative; overflow:hidden; }
+.website-hero::before { content:''; position:absolute; inset:auto -120px -140px auto; width:340px; height:340px; border-radius:50%; background:radial-gradient(circle,rgba(230,0,126,0.14),rgba(245,166,35,0.05) 55%,transparent 70%); }
+.website-hero-copy { position:relative; z-index:1; }
+.website-eyebrow { display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:rgba(255,255,255,0.8); border:1px solid rgba(230,0,126,0.12); color:var(--pink); font-size:11px; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; }
+.website-hero h1 { font-size:46px; line-height:1.02; margin:18px 0 16px; max-width:10ch; }
+.website-hero p { font-size:16px; line-height:1.8; color:var(--text-sec); max-width:62ch; }
+.website-actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:24px; }
+.website-trustline { display:flex; flex-wrap:wrap; gap:10px; margin-top:22px; }
+.website-pill { display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:#fff; border:1px solid rgba(26,26,46,0.08); font-size:11px; font-weight:700; color:var(--text-sec); }
+.website-photo-stage { position:relative; min-height:100%; border-radius:28px; background:linear-gradient(160deg,rgba(230,0,126,0.14),rgba(245,166,35,0.14)); padding:18px; display:flex; align-items:flex-end; justify-content:center; }
+.website-photo-stage img { width:100%; max-width:440px; height:520px; object-fit:cover; object-position:center top; border-radius:22px; border:1px solid rgba(255,255,255,0.65); box-shadow:0 24px 48px rgba(15,15,26,0.2); background:#fff; }
+.website-floating-card { position:absolute; max-width:190px; padding:14px 16px; border-radius:18px; background:rgba(255,255,255,0.94); box-shadow:0 16px 34px rgba(15,15,26,0.14); border:1px solid rgba(255,255,255,0.6); }
+.website-floating-card strong { display:block; font-size:20px; }
+.website-floating-card span { display:block; margin-top:4px; font-size:12px; line-height:1.5; color:var(--text-sec); }
+.website-floating-top { top:24px; left:-8px; }
+.website-floating-bottom { right:-8px; bottom:24px; }
+.website-proof-strip { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; padding:0 28px 28px; }
+.website-proof-card { padding:16px 18px; border-radius:20px; background:#fff; border:1px solid rgba(26,26,46,0.06); }
+.website-proof-card strong { display:block; font-size:24px; margin-bottom:6px; }
+.website-proof-card span { display:block; font-size:12px; line-height:1.6; color:var(--text-sec); }
+.website-section { padding:0 28px 28px; }
+.website-section-head { display:flex; justify-content:space-between; gap:20px; align-items:flex-end; margin-bottom:16px; }
+.website-section-kicker { font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.09em; color:var(--pink); margin-bottom:8px; }
+.website-section h2 { font-size:30px; line-height:1.15; max-width:14ch; }
+.website-section-intro { font-size:14px; line-height:1.75; color:var(--text-sec); max-width:58ch; }
+.website-card { background:#fff; border:1px solid rgba(26,26,46,0.06); border-radius:22px; padding:22px; box-shadow:var(--shadow); }
+.website-card h3 { font-size:18px; margin-bottom:10px; }
+.website-card p { font-size:13px; line-height:1.75; color:var(--text-sec); }
+.website-card ul { margin:14px 0 0; padding-left:18px; color:var(--text-sec); font-size:13px; line-height:1.7; }
+.website-service-card { position:relative; overflow:hidden; }
+.website-service-card::after { content:''; position:absolute; width:120px; height:120px; border-radius:50%; background:rgba(230,0,126,0.06); top:-40px; right:-40px; }
+.website-service-level { font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:var(--orange); margin-bottom:8px; }
+.website-cred-card { display:grid; grid-template-columns:auto 1fr; gap:14px; align-items:start; }
+.website-cred-icon { width:42px; height:42px; border-radius:14px; display:grid; place-items:center; font-size:18px; background:rgba(230,0,126,0.08); }
+.website-cred-card h3 { font-size:15px; margin-bottom:6px; }
+.website-usp-list { display:grid; gap:12px; }
+.website-usp-item { padding:16px 18px; border-radius:18px; background:linear-gradient(135deg,rgba(230,0,126,0.05),rgba(245,166,35,0.08)); border:1px solid rgba(230,0,126,0.1); }
+.website-usp-item strong { display:block; font-size:14px; margin-bottom:6px; }
+.website-usp-item span { display:block; font-size:13px; line-height:1.7; color:var(--text-sec); }
+.website-cta-band { margin:0 28px 28px; padding:24px 26px; border-radius:24px; background:linear-gradient(135deg,#1A1A2E,#35122f 55%,#5f1b37); color:#fff; display:grid; grid-template-columns:minmax(0,1fr) auto; gap:16px; align-items:center; }
+.website-cta-band h3 { font-size:28px; margin-bottom:8px; }
+.website-cta-band p { font-size:14px; line-height:1.75; color:rgba(255,255,255,0.78); max-width:58ch; }
+.website-note { font-size:12px; line-height:1.7; color:var(--text-sec); }
+.website-competitor-card h3 { display:flex; align-items:center; justify-content:space-between; gap:12px; font-size:15px; margin-bottom:8px; }
+.website-competitor-type { padding:5px 10px; border-radius:999px; font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:0.06em; background:var(--pink-light); color:var(--pink); }
+.website-competitor-card p { margin-bottom:10px; }
+.website-insight-stat { padding:18px; border-radius:20px; background:#fff; border:1px solid rgba(26,26,46,0.06); }
+.website-insight-stat strong { display:block; font-size:28px; margin-bottom:6px; }
+.website-insight-stat span { display:block; font-size:12px; line-height:1.6; color:var(--text-sec); }
+.website-tag-list { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+.website-tag { padding:6px 10px; border-radius:999px; background:var(--orange-light); color:#9a6200; font-size:11px; font-weight:700; }
+
 /* BUSINESS PLAN */
 .business-tabs { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:18px; }
 .business-tab-button { border:1px solid var(--border); padding:12px 16px; border-radius:999px; background:var(--card); color:var(--text-sec); font:inherit; font-weight:700; cursor:pointer; transition:all 0.2s ease; box-shadow:var(--shadow); }
@@ -410,6 +479,26 @@ body { font-family:'Inter',-apple-system,sans-serif; background:var(--bg); color
 
   /* Notes */
   .note-area { min-height:80px; font-size:12px; padding:10px; }
+  .website-insight-grid,
+  .website-learnings-grid,
+  .website-proof-grid,
+  .website-service-grid,
+  .website-credentials,
+  .website-competitor-grid,
+  .website-proof-strip,
+  .website-cta-band,
+  .website-hero { grid-template-columns:1fr; }
+  .website-masthead { flex-direction:column; align-items:flex-start; }
+  .website-nav { width:100%; }
+  .website-hero { padding:20px 20px 16px; }
+  .website-hero h1 { font-size:34px; max-width:none; }
+  .website-hero p { font-size:14px; }
+  .website-photo-stage { min-height:unset; }
+  .website-photo-stage img { height:420px; }
+  .website-floating-card { position:static; max-width:none; margin-top:12px; }
+  .website-proof-strip,
+  .website-section { padding-left:20px; padding-right:20px; }
+  .website-cta-band { margin:0 20px 20px; padding:20px; }
 }
 </style>
 </head>
@@ -428,6 +517,7 @@ body { font-family:'Inter',-apple-system,sans-serif; background:var(--bg); color
     <div class="nav-item" onclick="showTab('social',this)"><span class="nav-icon">📣</span>Social Media</div>
     <div class="nav-item" onclick="showTab('agents4you',this)"><span class="nav-icon">🚀</span>agents4you</div>
     <div class="nav-item" onclick="showTab('business',this)"><span class="nav-icon">🏢</span>Einzelunternehmen</div>
+    <div class="nav-item" onclick="showTab('website-drafts',this)"><span class="nav-icon">🖥️</span>Website-Entwürfe</div>
     <div class="nav-item" onclick="showTab('calendar',this)"><span class="nav-icon">📅</span>Kalender</div>
     <div class="nav-item" onclick="showTab('workflows',this)"><span class="nav-icon">⚡</span>Workflows</div>
     <div class="nav-item" onclick="showTab('notes',this)"><span class="nav-icon">📝</span>Notizen</div>
@@ -1367,6 +1457,161 @@ Drückt mir die Daumen? 🤞
   </div>
 </div>
 
+<!-- ====== WEBSITE-ENTWÜRFE ====== -->
+<div id="tab-website-drafts" class="tab-content">
+  <div class="focus-banner"><h2>🖥️ Website-Entwürfe</h2><p>Premium-Startseite für Denise Stadtegger Consulting</p><div class="focus-sub">Executive Positionierung, klare 3-Ebenen-Logik und sichtbare Vertrauenssignale statt Agentur-Buzzwording.</div></div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-title">🔎 Wettbewerber-Websites analysiert</div><span class="card-badge badge-success">10 Referenzseiten</span></div>
+    <div class="website-note" style="margin-bottom:16px">Analysiert wurden repräsentative Websites aus den wichtigsten Konkurrenzclustern: Fractional-CMO-Firmen, Marketing-Transformation-Beratung, KI-/Tech-Beratung und große Beratungshäuser. Fokus: Hero-Claim, CTA-Platzierung, Vertrauensbeweise, Service-Struktur und Gesamtwirkung.</div>
+    <div class="website-insight-grid">
+      <div class="website-insight-stat"><strong>9/10</strong><span>setzen im Hero direkt auf eine klare Problemformulierung plus sofortigen Termin-CTA.</span></div>
+      <div class="website-insight-stat"><strong>8/10</strong><span>arbeiten mit Trust-Signalen oberhalb der Fold: Zahlen, Logos, Testimonials oder Methodik.</span></div>
+      <div class="website-insight-stat"><strong>6/10</strong><span>wirken eher team- oder prozesszentriert als persönlich-exekutiv. Genau hier kann Denise differenzieren.</span></div>
+    </div>
+    <div class="website-competitor-grid" style="margin-top:16px">
+      <div class="website-card website-competitor-card"><h3>Chief Outsiders <span class="website-competitor-type">Große Beratung</span></h3><p>Starker Enterprise-Claim, früher CTA, viele Proof-Elemente und eine sehr systematische AI-Erzählung. Wirkt hochprofessionell, aber wenig persönlich.</p><div class="website-tag-list"><span class="website-tag">CEO-Fokus</span><span class="website-tag">AI als Businesshebel</span><span class="website-tag">viele Experten</span></div></div>
+      <div class="website-card website-competitor-card"><h3>Marketri <span class="website-competitor-type">Fractional CMO</span></h3><p>Saubere Mid-Market-B2B-Ansprache, zwei klare Angebotswege und starker Social Proof. Weniger pointierte Differenzierung auf eine Person.</p><div class="website-tag-list"><span class="website-tag">Book a Meeting</span><span class="website-tag">Pod-Modell</span><span class="website-tag">Testimonials</span></div></div>
+      <div class="website-card website-competitor-card"><h3>StartupCMO <span class="website-competitor-type">Persönliche Brand</span></h3><p>Sehr gute persönliche Führungsperspektive, klare Sprache und CTA-Dichte. Teilweise lang und startup-spezifisch, dadurch enger als Denise.</p><div class="website-tag-list"><span class="website-tag">Founder-Ansprache</span><span class="website-tag">Case Results</span><span class="website-tag">starke Story</span></div></div>
+      <div class="website-card website-competitor-card"><h3>Authentic <span class="website-competitor-type">Transformation</span></h3><p>Markante Markenidee, viel Methodik und starke Trust-Zahlen. Sehr wirksam, aber stark organisationszentriert statt persönlich pointiert.</p><div class="website-tag-list"><span class="website-tag">Methodenmarke</span><span class="website-tag">Transformation</span><span class="website-tag">viele Stats</span></div></div>
+      <div class="website-card website-competitor-card"><h3>CMOx <span class="website-competitor-type">Fractional Netzwerk</span></h3><p>Conversion-stark mit Termin-CTA, KPI-Magneten und klarer Service-Logik. Visuell funktional, aber weniger premium und weniger beratungs-elegant.</p><div class="website-tag-list"><span class="website-tag">Lead Magnet</span><span class="website-tag">KPI-Fokus</span><span class="website-tag">direkte CTAs</span></div></div>
+      <div class="website-card website-competitor-card"><h3>Growth Generators <span class="website-competitor-type">Capability + AI</span></h3><p>Sehr nah an Denise bei Teamstruktur, AI und Leadership. Gute Themenarchitektur, aber die persönliche Seniorität ist weniger aufgeladen.</p><div class="website-tag-list"><span class="website-tag">AI & Agility</span><span class="website-tag">Teamstruktur</span><span class="website-tag">Fractional CMO</span></div></div>
+      <div class="website-card website-competitor-card"><h3>Content Creative <span class="website-competitor-type">Strategy-first</span></h3><p>Gute Strategie-vor-Execution-Erzählung und konsistente B2B-Sprache. Weniger exekutiver Anspruch, eher Content-/GTM-getrieben.</p><div class="website-tag-list"><span class="website-tag">Strategy first</span><span class="website-tag">GTM</span><span class="website-tag">Inquire CTA</span></div></div>
+      <div class="website-card website-competitor-card"><h3>2b AHEAD Future AI <span class="website-competitor-type">KI-Beratung</span></h3><p>Stark im Zukunfts- und Daten-Narrativ, sehr tool-/produktzentriert. Genau die Art von Tech-Lastigkeit, von der Denise sich bewusst abgrenzen sollte.</p><div class="website-tag-list"><span class="website-tag">Foresight</span><span class="website-tag">Produktfokus</span><span class="website-tag">KI-first</span></div></div>
+      <div class="website-card website-competitor-card"><h3>PwC AI <span class="website-competitor-type">Big Four</span></h3><p>Große Sicherheit, viele Experten und Transformation auf Konzernebene. Professionell, aber unpersönlich und für KMUs oft zu breit und zu schwergewichtig.</p><div class="website-tag-list"><span class="website-tag">Trust</span><span class="website-tag">Governance</span><span class="website-tag">große Struktur</span></div></div>
+      <div class="website-card website-competitor-card"><h3>SingleStone AI Consulting <span class="website-competitor-type">Tech-Beratung</span></h3><p>Verkauft Klarheit, Risikoabbau und menschenzentrierte Technologie. Gute Problem-Solution-Struktur, aber klar technischer als Denise.</p><div class="website-tag-list"><span class="website-tag">Risk framing</span><span class="website-tag">human-centered</span><span class="website-tag">tech-heavy</span></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-title">🧠 Learnings für Denise</div><span class="card-badge badge-pink">Website-Strategie</span></div>
+    <div class="website-learnings-grid">
+      <div class="website-card"><h3>Was übernommen werden sollte</h3><ul><li>Hero mit klarer Problemaussage plus sofortigem Gesprächs-CTA</li><li>Frühe Trust-Zone mit Award, Erfahrung und internationaler Reichweite</li><li>Services nicht als Liste, sondern als klarer Entscheidungsweg darstellen</li><li>Mehrere CTAs entlang der Seite statt nur am Ende</li><li>Klare Sprache ohne Marketing-Agentur-Floskeln</li></ul></div>
+      <div class="website-card"><h3>Was Denise bewusst anders machen sollte</h3><ul><li>Persönliche Executive-Credibility stärker als Teamgröße oder Tool-Stack spielen</li><li>AI als Kontext und Führungsfrage rahmen, nicht als Technikshow</li><li>KMU-Ansprache auf Management-Ebene, nicht auf Marketing-Taktik-Ebene</li><li>Weniger Methodik-Overload, mehr Orientierung und Entscheidungssicherheit</li><li>Kein Pricing auf der Website, stattdessen Premium-Signale und Gesprächseinladung</li></ul></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-title">🏗️ Live-Entwurf Startseite</div><span class="card-badge badge-orange">Dashboard Mockup</span></div>
+    <div class="website-shell">
+      <div class="website-surface">
+        <div class="website-masthead">
+          <div class="website-brand">
+            <div class="website-brand-mark">DS</div>
+            <div>
+              <div class="website-brand-name">Denise Stadtegger Consulting</div>
+              <div class="website-brand-sub">Marketing für die AI-getriebene Welt</div>
+            </div>
+          </div>
+          <div class="website-nav">
+            <span>Leistungen</span>
+            <span>Über Denise</span>
+            <span>Warum Denise</span>
+            <span>Kontakt</span>
+          </div>
+        </div>
+
+        <section class="website-hero">
+          <div class="website-hero-copy">
+            <div class="website-eyebrow">CMO-Level Beratung für KMUs</div>
+            <h1>Marketing, das in einer AI-getriebenen Welt funktioniert.</h1>
+            <p>Ich unterstütze Unternehmen dabei, ihr Marketing strategisch, strukturell und operativ so aufzustellen, dass Entscheidungen klarer werden, Teams wirksamer arbeiten und AI nicht im Aktionismus endet.</p>
+            <div class="website-actions">
+              <a class="website-button primary" href="#website-kontakt">Erstgespräch anfragen</a>
+              <a class="website-button secondary" href="#website-leistungen">Leistungsmodell ansehen</a>
+            </div>
+            <div class="website-trustline">
+              <span class="website-pill">European CMO of the Year 2026 nominiert</span>
+              <span class="website-pill">Internationale Marketingpraxis</span>
+              <span class="website-pill">Strategisch, strukturell, operativ</span>
+            </div>
+          </div>
+          <div class="website-photo-stage">
+            <div class="website-floating-card website-floating-top"><strong>50+ Länder</strong><span>Marketing-Führung und Markenpraxis in internationalen Kontexten.</span></div>
+            <img src="../assets/denise-photos/45-pink-suit-colorful-bg-hires.jpg" alt="Denise Stadtegger">
+            <div class="website-floating-card website-floating-bottom"><strong>CMO-Level</strong><span>Persönliches Sparring für Geschäftsführung und Marketing-Leitung.</span></div>
+          </div>
+        </section>
+
+        <div class="website-proof-strip">
+          <div class="website-proof-card"><strong>Strategisch</strong><span>AI-Marketing-Audit, klare Prioritäten und eine realistische Roadmap statt Tool-Hype.</span></div>
+          <div class="website-proof-card"><strong>Strukturell</strong><span>Prozesse, Rollen und Teamlogik so aufsetzen, dass Marketing tragfähig wird.</span></div>
+          <div class="website-proof-card"><strong>Operativ</strong><span>Begleitung bei Umsetzung, Training und Führungsentscheidungen im Alltag.</span></div>
+          <div class="website-proof-card"><strong>Persönlich</strong><span>Keine Agentur-Schichten dazwischen. Direkter Zugang zu Denise als Beraterin.</span></div>
+        </div>
+
+        <section class="website-section">
+          <div class="website-section-head">
+            <div>
+              <div class="website-section-kicker">Über Denise</div>
+              <h2>Executive Marketing-Erfahrung mit klarem Blick auf die neue Realität.</h2>
+            </div>
+            <div class="website-section-intro">Die Website muss zeigen, warum Denise nicht wie eine klassische Beraterin oder technische AI-Anbieterin wirkt: Sie bringt Management-Perspektive, internationale Erfahrung und eine verständliche Übersetzung komplexer Veränderung in konkrete Entscheidungen mit.</div>
+          </div>
+          <div class="website-credentials">
+            <div class="website-card website-cred-card"><div class="website-cred-icon">🏆</div><div><h3>CMO-Credibility</h3><p>Nominierung für den European CMO of the Year 2026 als sichtbares Proof-Element für strategische Seniorität.</p></div></div>
+            <div class="website-card website-cred-card"><div class="website-cred-icon">🌍</div><div><h3>Internationale Perspektive</h3><p>Marketingpraxis in internationalen Märkten und auf Führungsebene statt rein lokaler Agentur-Sicht.</p></div></div>
+            <div class="website-card website-cred-card"><div class="website-cred-icon">🧭</div><div><h3>Klare Übersetzung</h3><p>AI nicht als Technikthema, sondern als Führungs-, Struktur- und Marketingfrage verständlich machen.</p></div></div>
+          </div>
+        </section>
+
+        <section class="website-section" id="website-leistungen">
+          <div class="website-section-head">
+            <div>
+              <div class="website-section-kicker">Leistungsmodell</div>
+              <h2>Drei Ebenen, ein Ziel: ein zukunftsfähiges Marketing-System.</h2>
+            </div>
+            <div class="website-section-intro">Die Services werden bewusst nicht als Agentur-Menü gezeigt, sondern als Management-Logik. So versteht die Zielgruppe sofort, auf welcher Ebene Unterstützung gebraucht wird.</div>
+          </div>
+          <div class="website-service-grid">
+            <div class="website-card website-service-card"><div class="website-service-level">Strategisch</div><h3>Richtung festlegen</h3><p>AI-Marketing-Audit, Executive Readout, Positionierung der Handlungsfelder und eine priorisierte Roadmap für Geschäftsführung und Marketingleitung.</p><ul><li>Standortbestimmung</li><li>Entscheidungslogik</li><li>Prioritäten & Roadmap</li></ul></div>
+            <div class="website-card website-service-card"><div class="website-service-level">Strukturell</div><h3>Marketing tragfähig aufbauen</h3><p>Prozesse, Teamstruktur und Tool-Entscheidungen so gestalten, dass Marketing nicht an neuen Anforderungen zerfällt, sondern stabiler wird.</p><ul><li>Prozess-Design</li><li>Rollen & Skills</li><li>Tool-Bewertung</li></ul></div>
+            <div class="website-card website-service-card"><div class="website-service-level">Operativ</div><h3>Veränderung sauber verankern</h3><p>Sparring, Trainings und Umsetzungsbegleitung für Teams, die nicht nur wissen wollen, was zu tun ist, sondern es auch konsistent in den Alltag bringen müssen.</p><ul><li>Begleitung im Alltag</li><li>Team-Enablement</li><li>Monitoring & Nachschärfung</li></ul></div>
+          </div>
+        </section>
+
+        <section class="website-section">
+          <div class="website-section-head">
+            <div>
+              <div class="website-section-kicker">Warum Denise</div>
+              <h2>Die Lücke zwischen klassischer Marketingberatung und technischer AI-Beratung.</h2>
+            </div>
+            <div class="website-section-intro">Genau dort liegt die Differenzierung: nicht Tool-first, nicht Agentur-first, nicht nur PowerPoint. Sondern Orientierung, Struktur und Umsetzungsfähigkeit auf CMO-Level.</div>
+          </div>
+          <div class="website-usp-list">
+            <div class="website-usp-item"><strong>Marketing-Strategin mit AI-Verständnis</strong><span>Die Perspektive startet bei Marke, Markt, Team und Führung. AI wird mitgedacht, aber nicht zum Selbstzweck gemacht.</span></div>
+            <div class="website-usp-item"><strong>Persönliche Premium-Beratung statt Beratungsapparat</strong><span>KMUs bekommen direkte Seniorität und klare Empfehlungen, ohne sich durch Teams, Layers oder generische Agentur-Workshops zu arbeiten.</span></div>
+            <div class="website-usp-item"><strong>Klare Sprache statt Technik-Blabla</strong><span>Die Zielgruppe soll nicht beeindruckt, sondern entscheidungsfähig gemacht werden. Genau das erhöht Vertrauen und Abschlusswahrscheinlichkeit.</span></div>
+          </div>
+        </section>
+
+        <section class="website-section" id="website-kontakt">
+          <div class="website-section-head">
+            <div>
+              <div class="website-section-kicker">Kontakt</div>
+              <h2>Wenn Marketing neu ausgerichtet werden muss, braucht es zuerst Klarheit.</h2>
+            </div>
+            <div class="website-section-intro">Der CTA bleibt bewusst hochwertig und einfach: Gespräch anfragen, Situation kurz schildern, gemeinsames Erstgespräch. Keine Preise, keine Paket-Downloads, kein Funnel-Lärm.</div>
+          </div>
+          <div class="website-proof-grid">
+            <div class="website-card"><h3>Für wen es passt</h3><p>KMUs, Geschäftsführer und Marketing-Leiter, die wissen, dass AI relevant ist, aber eine geschäftsnahe Marketing-Perspektive brauchen.</p></div>
+            <div class="website-card"><h3>Worum es im Erstgespräch geht</h3><p>Ausgangslage, Veränderungsdruck, wichtigste Blockaden und die Frage, auf welcher Ebene strategische Begleitung am meisten Hebel erzeugt.</p></div>
+            <div class="website-card"><h3>Was bewusst fehlt</h3><p>Keine Preisangaben, keine Toollisten, keine Leistungsüberfrachtung. Premium-Verkauf beginnt hier über Relevanz und Vertrauen.</p></div>
+          </div>
+        </section>
+
+        <div class="website-cta-band">
+          <div>
+            <h3>Marketing braucht in der AI-Welt keine Hektik. Es braucht Führung.</h3>
+            <p>Der Entwurf positioniert Denise als strategische Sparringspartnerin für Unternehmen, die ihr Marketing neu aufstellen müssen, ohne in Aktionismus, Tool-Einkauf oder Agentur-Overload zu kippen.</p>
+          </div>
+          <a class="website-button primary" href="#website-kontakt">Gespräch anfragen</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ====== KALENDER ====== -->
 <div id="tab-calendar" class="tab-content">
   <div class="card">
@@ -1455,7 +1700,7 @@ function showTab(name,el){
   document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
   document.getElementById('tab-'+name).classList.add('active');
   if(el)el.classList.add('active');
-  var titles={'overview':'🏠 Übersicht','tasks':'✅ Tasks','social':'📣 Social Media','agents4you':'🚀 agents4you','business':'🏢 Einzelunternehmen','calendar':'📅 Kalender','workflows':'⚡ Workflows','notes':'📝 Notizen'};
+  var titles={'overview':'🏠 Übersicht','tasks':'✅ Tasks','social':'📣 Social Media','agents4you':'🚀 agents4you','business':'🏢 Einzelunternehmen','website-drafts':'🖥️ Website-Entwürfe','calendar':'📅 Kalender','workflows':'⚡ Workflows','notes':'📝 Notizen'};
   document.getElementById('page-title').textContent=titles[name]||name;
   if(name==='tasks')renderKanban();
 }
@@ -1961,10 +2206,10 @@ if(el.style.display==='none'){el.style.display='block';btn.textContent='📋 Bac
   <div class="mobile-nav-inner">
     <button class="mob-item active" onclick="mobileNav('overview',this)"><span class="mob-icon">🏠</span>Home</button>
     <button class="mob-item" onclick="mobileNav('tasks',this)"><span class="mob-icon">✅</span>Tasks</button>
+    <button class="mob-item" onclick="mobileNav('agents4you',this)"><span class="mob-icon">🚀</span>A2G</button>
+    <button class="mob-item" onclick="mobileNav('business',this)"><span class="mob-icon">🏢</span>Business</button>
     <button class="mob-item" onclick="mobileNav('social',this)"><span class="mob-icon">📣</span>Social</button>
     <button class="mob-item" onclick="mobileNav('calendar',this)"><span class="mob-icon">📅</span>Kalender</button>
-    <button class="mob-item" onclick="mobileNav('agents4you',this)"><span class="mob-icon">🚀</span>A2G</button>
-    <button class="mob-item" onclick="mobileNav('notes',this)"><span class="mob-icon">📝</span>Notizen</button>
   </div>
 </div>
 </body>
